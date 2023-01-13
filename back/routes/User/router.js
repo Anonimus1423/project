@@ -11,4 +11,7 @@ router.post(
   services.store
 );
 
+router.get("/login", services.loginUser);
+router.get("/auth", services.authUser);
+
 export default router;

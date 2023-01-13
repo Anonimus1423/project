@@ -3,6 +3,7 @@ import express from "express";
 import { connect } from "mongoose";
 import tokenValidator from "./utils/tokenValidator.js";
 import UserRouter from "./routes/User/router.js";
+import Router from "./routes/router.js";
 
 //configs
 const port = config.get("server.port");
@@ -14,11 +15,10 @@ const app = express();
 // middlewares
 app.use(express.json());
 
-app.use(tokenValidator);
-
 // ROUTES
 
 app.use("/user", UserRouter);
+app.use("/api", Router);
 
 app.listen(port, () => {
   connect(bd).then(() => console.log("Mongoo connected!!"));
