@@ -5,14 +5,23 @@ import { body } from "express-validator";
 const router = express.Router();
 
 router.post(
-  "/",
+  "/step1",
   body("name")
     .isLength({ min: 4 })
     .withMessage("Must be at least 4 chars long"),
   body("password")
     .isLength({ min: 8 })
     .withMessage("Must be at least 8 chars long"),
-  services.store
+  body("mail").isEmail().withMessage("Invalid Email"),
+  services.step1
+);
+
+router.post(
+  "/step2",
+  body("code")
+    .isLength({ min: 6 })
+    .withMessage('"Must be at least 6 chars long'),
+  services.step2
 );
 
 router.get("/login", services.loginUser);
