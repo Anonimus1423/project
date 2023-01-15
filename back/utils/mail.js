@@ -1,16 +1,20 @@
 import nodemailer from "nodemailer";
+import config from "config";
 
-export async function main(from, to, inputs) {
+const user = config.get("nodemailer.mail");
+const password = config.get("nodemailer.pass");
+
+export async function mailGenerator(from, to, inputs) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "rudmargaryandev@gmail.com",
-      pass: "afdkpqlalubennfh", // naturally, replace both with your real credentials or an application-specific password
+      user: user,
+      pass: password,
     },
   });
   let mailOptions = {
-    from: from, // sender address
-    to: to, // list of receivers
+    from: from,
+    to: to,
     ...inputs,
   };
   transporter.sendMail(mailOptions, function (error, info) {
@@ -20,7 +24,4 @@ export async function main(from, to, inputs) {
       console.log("Email sent: " + info.response);
     }
   });
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
 }

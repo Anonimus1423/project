@@ -10,5 +10,10 @@
   "JWT": {
     "TOKEN_SECRET": "p2JHQCFtC/JoWTB6aiiQ4A==",
     "EXPIRE": "30s"
-  }
+  },
+  "nodemailer": {
+    "mail": "rudmargaryandev@gmail.com",
+    "pass": "afdkpqlalubennfh"
+  },
+  "main-url": "http://localhost:3000"
 }

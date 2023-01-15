@@ -25,6 +25,21 @@ router.post(
 );
 
 router.get("/login", services.loginUser);
+
 router.get("/auth", services.authUser);
+
+router.post(
+  "/forget-password",
+  body("mail").isEmail().withMessage("Invalid email."),
+  services.forgetPasswordStep1
+);
+
+router.put(
+  "/forget-password",
+  body("password")
+    .isLength({ min: 8 })
+    .withMessage("Must be at least 8 chars long"),
+  services.forgetPasswordStep2
+);
 
 export default router;
