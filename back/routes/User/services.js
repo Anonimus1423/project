@@ -34,7 +34,7 @@ export const step1 = async (req, res) => {
     name,
     password: hashedPassword,
     mail,
-    code: generate(6),
+    code: generate(3),
     mailService: isOnMail,
   };
   mailGenerator("test.test@gmail.com", mail, {
