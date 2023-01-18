@@ -4,6 +4,7 @@ import useSumbitForm from "./utils/submitForm";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Upload } from "./Upload";
 
 function App() {
   // const AuthUser = useSumbitForm(authUser);
@@ -17,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
-      asd
+      <Upload />
     </div>
   );
 }
