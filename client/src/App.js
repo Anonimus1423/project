@@ -1,24 +1,39 @@
 import React, { useEffect } from "react";
 import { authUser } from "./Api/queries";
 import useSumbitForm from "./utils/submitForm";
-import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Upload } from "./Upload";
+import { mainRoutes } from "./Routes/main";
+import { userRoutes } from "./Routes/user";
+import { adminRoutes } from "./Routes/admin";
+import { RouterProvider } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as appSelectors from "./redux/app/selectors";
+import { initApp } from "./redux/app/reducer";
+import "./index.css";
 
 function App() {
-  // const AuthUser = useSumbitForm(authUser);
-  // const Register = useSumbitForm((data) => axios.post("/user", data));
-  // useEffect(() => {
-  //   Register({
-  //     name: "",
-  //     password: "",
-  //   });
-  // }, []);
+  const role = useSelector(appSelectors.roleSelector);
+  const [init, loading] = useSumbitForm(authUser, true);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      init({}, (data) => {
+        dispatch(initApp(data));
+      });
+    }
+  }, []);
   return (
     <div className="App">
       <ToastContainer />
-      <Upload />
+      {!loading && (
+        <>
+          {role === 0 && <RouterProvider router={mainRoutes} />}
+          {role === 1 && <RouterProvider router={userRoutes} />}
+          {role === 2 && <RouterProvider router={adminRoutes} />}
+        </>
+      )}
     </div>
   );
 }

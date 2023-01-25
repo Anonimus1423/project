@@ -13,6 +13,8 @@ import { forgetPasswordEmailTemplate } from "./../../emailTemplates/forget.js";
 //CONFIGS
 const SECRET = config.get("JWT.TOKEN_SECRET");
 const EXPIRE = config.get("JWT.EXPIRE");
+const adminLogin = config.get("admin.login");
+const adminPassword = config.get("admin.password");
 const url = config.get("main-url");
 
 const saltRounds = 10;
@@ -21,7 +23,7 @@ let userInfo = {};
 // REGISTR
 export const step1 = async (req, res) => {
   const errors = ErrorRequest(req, res);
-  const { name, password, mail, isOnMail = false } = req.body;
+  const { name, password, mail, date } = req.body;
   if (errors.length) {
     return res.status(400).json({ errors: errors });
   }
@@ -34,8 +36,8 @@ export const step1 = async (req, res) => {
     name,
     password: hashedPassword,
     mail,
+    date,
     code: generate(3),
-    mailService: isOnMail,
   };
   mailGenerator("test.test@gmail.com", mail, {
     subject: "Vailidate Email",
@@ -60,6 +62,10 @@ export const step2 = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { password, login } = req.body;
+  if (login === adminLogin && password === adminPassword) {
+    const token = jwt.sign({ name: login }, SECRET, { expiresIn: EXPIRE });
+    return res.status(200).send({ login: true, token, isAdmin: true });
+  }
   let findUser = await User.findOne({ name: login });
   let isLoginMail = false;
   if (!findUser) {
@@ -89,6 +95,9 @@ export const authUser = async (req, res) => {
   if (token == null) return res.sendStatus(401);
   try {
     const verify = await jwt.verify(token, SECRET, { expiresIn: EXPIRE });
+    if (verify.name === adminLogin) {
+      return res.status(200).send({ login: true, isAdmin: true });
+    }
     const user = await User.findOne({ name: verify.name }).select(
       "-password -_id -__v"
     );

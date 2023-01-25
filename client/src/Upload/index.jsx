@@ -1,6 +1,8 @@
 import React from "react";
 import cloudinary from "@cloudinary/url-gen";
-export const Upload = () => {
+import { Button } from "@mui/material";
+
+export const Upload = ({ handleUpload }) => {
   const showWidget = () => {
     let widget = window.cloudinary.createUploadWidget(
       {
@@ -10,11 +12,15 @@ export const Upload = () => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log(result.info.url);
+          handleUpload(result.info.url);
         }
       }
     );
     widget.open();
   };
-  return <button onClick={() => showWidget()}>Upload</button>;
+  return (
+    <Button onClick={() => showWidget()} variant="secondary">
+      Upload
+    </Button>
+  );
 };

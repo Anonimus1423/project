@@ -9,11 +9,15 @@
   },
   "JWT": {
     "TOKEN_SECRET": "p2JHQCFtC/JoWTB6aiiQ4A==",
-    "EXPIRE": "30s"
+    "EXPIRE": "5d"
   },
   "nodemailer": {
     "mail": "rudmargaryandev@gmail.com",
     "pass": "afdkpqlalubennfh"
+  },
+  "admin": {
+    "login": "english.admin@gmail.com",
+    "password": "TESTTEST"
   },
   "aws": "Tg6qR_mE^AFcUB)",
   "main-url": "http://localhost:3000"

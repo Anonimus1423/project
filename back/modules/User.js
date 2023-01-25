@@ -4,7 +4,7 @@ const User = new mongoose.Schema({
   name: String,
   password: String,
   mail: String,
-  mailService: Boolean,
+  date: String,
 });
 
 export default mongoose.model("User", User);
