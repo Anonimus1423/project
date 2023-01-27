@@ -14,4 +14,8 @@ router.post(
   services.createCourse
 );
 
+router.get("/get-all-users", services.getUsersList);
+
+router.get("/get-all-courses", services.getCoursesList);
+
 export default router;

@@ -22,12 +22,13 @@ function App() {
       init({}, (data) => {
         dispatch(initApp(data));
       });
+      return;
     }
   }, []);
   return (
     <div className="App">
       <ToastContainer />
-      {!loading && (
+      {(!loading || role === 0) && (
         <>
           {role === 0 && <RouterProvider router={mainRoutes} />}
           {role === 1 && <RouterProvider router={userRoutes} />}

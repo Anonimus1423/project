@@ -3,6 +3,8 @@ import Course from "../../modules/Course.js";
 import moment from "moment";
 import Lesson from "../../modules/Lesson.js";
 import errorsGenerator from "../../utils/errorsGenerator.js";
+import User from "../../modules/User.js";
+import Search from "../../utils/search.js";
 
 export const createCourse = async (req, res) => {
   const errors = ErrorRequest(req, res);
@@ -39,4 +41,14 @@ export const createCourse = async (req, res) => {
       lessons: courseLessons,
     },
   });
+};
+
+export const getUsersList = async (req, res) => {
+  const data = await User.find().select("-password -__v");
+  return res.status(200).json(Search(data, "name", req.query.search));
+};
+
+export const getCoursesList = async (req, res) => {
+  const data = await Course.find();
+  return res.status(200).json(data);
 };
