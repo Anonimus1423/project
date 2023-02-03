@@ -1,6 +1,6 @@
 const logout = () => {
   localStorage.removeItem("token");
-  window.location.reload();
+  window.location = "/";
 };
 
 export default logout;

@@ -11,7 +11,7 @@ const AdminMainPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     init({}, (data) => {
-      setCourses(data);
+      setCourses(data.reverse());
     });
   }, []);
   return (
@@ -41,7 +41,11 @@ const AdminMainPage = () => {
         <>
           {courses.map((e) => {
             return (
-              <div key={e._id} className="fex">
+              <div
+                onClick={() => navigate(`/admin/edit/${e._id}`)}
+                key={e._id}
+                className="fex"
+              >
                 {e.title}
                 <img src={e.picture_src} width="200px" height="200px" alt="" />
               </div>

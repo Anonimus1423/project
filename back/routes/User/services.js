@@ -9,6 +9,7 @@ import { mailGenerator } from "../../utils/mail.js";
 import { validateEmailTemplate } from "./../../emailTemplates/validate.js";
 import errorsGenerator from "./../../utils/errorsGenerator.js";
 import { forgetPasswordEmailTemplate } from "./../../emailTemplates/forget.js";
+import Tokens from "../../modules/Tokens.js";
 
 //CONFIGS
 const SECRET = config.get("JWT.TOKEN_SECRET");
@@ -28,9 +29,9 @@ export const step1 = async (req, res) => {
     return res.status(400).json({ errors: errors });
   }
   const hashedPassword = await bcrypt.hash(password, saltRounds);
-  const findUser = await User.findOne({ mail });
-  if (findUser) {
-    return res.status(200).send({ errors: [{ msg: "User already exixts." }] });
+  const findUser = await User.find({ mail });
+  if (findUser.length) {
+    return res.status(400).send({ errors: [{ msg: "User already exixts." }] });
   }
   userInfo = {
     name,
@@ -55,7 +56,8 @@ export const step2 = async (req, res) => {
     ...userInfo,
   });
   userInfo = {};
-  return res.status(200).send({ created: true, user });
+  const token = jwt.sign({ name: user.name }, SECRET, { expiresIn: EXPIRE });
+  return res.status(200).send({ created: true, user, token });
 };
 
 // LOGIN
@@ -63,7 +65,7 @@ export const step2 = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { password, login } = req.body;
   if (login === adminLogin && password === adminPassword) {
-    const token = jwt.sign({ name: login }, SECRET, { expiresIn: EXPIRE });
+    const token = jwt.sign({ name: login }, SECRET, { expiresIn: "1800s" });
     return res.status(200).send({ login: true, token, isAdmin: true });
   }
   let findUser = await User.findOne({ name: login });
@@ -121,11 +123,12 @@ export const forgetPasswordStep1 = async (req, res) => {
       .send({ errors: errorsGenerator(["User is not exist."]) });
   }
   const token = jwt.sign({ mail: user.mail }, SECRET, { expiresIn: "2400s" });
+  await Tokens.create({ label: user.mail, value: token });
   mailGenerator("test.test@gmail.com", mail, {
     subject: "Forget Password",
     text: "Link",
     html: forgetPasswordEmailTemplate(
-      `${url}/forget/step2/${token}`,
+      `${url}/forget-password/${token}`,
       user.name
     ),
   });
@@ -145,15 +148,33 @@ export const forgetPasswordStep2 = async (req, res) => {
   }
   try {
     const verify = await jwt.verify(token, SECRET, { expiresIn: "2400s" });
+    const securityCheck = await Tokens.find({ label: verify.mail });
+    const toUpdateUser = await User.findOne({ mail: verify.mail });
+    const isPasswordCompare = await bcrypt.compare(
+      password,
+      toUpdateUser.password
+    );
+    if (securityCheck.length === 0) {
+      return res
+        .status(403)
+        .send({ errors: [{ msg: "Something went wrong." }] });
+    }
+    if (isPasswordCompare) {
+      return res.status(400).send({
+        errors: [{ msg: "You cannot update your current password." }],
+      });
+    }
     const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     await User.findOneAndUpdate(
       { mail: verify.mail },
       {
         password: hashedPassword,
       }
     );
+    await Tokens.deleteOne({ label: verify.mail });
     return res.status(200).send({ changes: true });
   } catch {
-    return res.status(403).send({ errors: [{ msg: "Time out." }] });
+    return res.status(403).send({ errors: [{ msg: "Something went wrong." }] });
   }
 };

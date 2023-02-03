@@ -3,8 +3,9 @@ import mongoose from "mongoose";
 const Lesson = new mongoose.Schema({
   title: String,
   description: String,
-  courseId: String,
+  slug: String,
   time: String,
+  courseId: String,
   created_at: String,
 });
 

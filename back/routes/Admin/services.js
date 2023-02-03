@@ -8,7 +8,7 @@ import Search from "../../utils/search.js";
 
 export const createCourse = async (req, res) => {
   const errors = ErrorRequest(req, res);
-  const { title, description, tags = [], image, lessons } = req.body;
+  const { title, description, tags = [], picture_src, lessons } = req.body;
   if (errors.length) {
     return res.status(400).json({ errors: errors });
   }
@@ -18,11 +18,17 @@ export const createCourse = async (req, res) => {
       .status(400)
       .json({ errors: errorsGenerator(["Course already exist."]) });
   }
+  const isHaveEmptyTitleLesson = lessons.some((e) => !e.title);
+  if (isHaveEmptyTitleLesson) {
+    return res
+      .status(400)
+      .json({ errors: errorsGenerator(["Lesson title field is required."]) });
+  }
   const course = await Course.create({
     title,
     description,
     tags,
-    picture_src: image,
+    picture_src: picture_src,
     created_at: moment(),
   });
   const courseLessons = [];
@@ -31,6 +37,7 @@ export const createCourse = async (req, res) => {
       ...e,
       created_at: moment(),
       courseId: course._id,
+      slug: e.slug,
     });
     courseLessons.push(less);
   }
@@ -51,4 +58,94 @@ export const getUsersList = async (req, res) => {
 export const getCoursesList = async (req, res) => {
   const data = await Course.find();
   return res.status(200).json(data);
+};
+
+export const getClass = async (req, res) => {
+  const { id } = req.params;
+  const course = await Course.findOne({ _id: id });
+  const lessons = await Lesson.find({ courseId: course._id });
+  const data = {
+    ...JSON.parse(JSON.stringify(course)),
+    lessons: JSON.parse(JSON.stringify(lessons)),
+  };
+  return res.status(200).json(data);
+};
+
+export const updateCourse = async (req, res) => {
+  const { id } = req.params;
+  const errors = ErrorRequest(req, res);
+  const {
+    title,
+    description,
+    tags = [],
+    picture_src,
+    lessons,
+    toDeleteIds,
+  } = req.body;
+  if (errors.length) {
+    return res.status(400).json({ errors: errors });
+  }
+  const findResult = await Course.findOne({ _id: id });
+  if (!findResult) {
+    return res
+      .status(400)
+      .json({ errors: errorsGenerator(["Course dose not exist."]) });
+  }
+  const isHaveEmptyTitleLesson = lessons.some((e) => !e.title);
+  if (isHaveEmptyTitleLesson) {
+    return res
+      .status(400)
+      .json({ errors: errorsGenerator(["Lesson title field is required."]) });
+  }
+  await Course.findOneAndUpdate(
+    { _id: id },
+    {
+      title,
+      description,
+      tags,
+      picture_src: picture_src,
+    }
+  );
+  for (const e of toDeleteIds) {
+    await Lesson.deleteOne({ _id: e });
+  }
+  for (const e of lessons) {
+    if (e._id) {
+      await Lesson.deleteOne({ _id: e._id });
+      await Lesson.insertMany([
+        {
+          _id: e._id,
+          ...e,
+          created_at: e.created_at ? e.created_at : moment(),
+          courseId: id,
+          slug: e.slug,
+        },
+      ]);
+    } else {
+      await Lesson.create({
+        ...e,
+        created_at: moment(),
+        courseId: id,
+        slug: e.slug,
+      });
+    }
+    // if (e._id) {
+    //   await Lesson.findOneAndUpdate(
+    //     { _id: e._id },
+    //     {
+    //       ...e,
+    //     }
+    //   );
+    // } else {
+    //   await Lesson.create({
+    //     ...e,
+    //     created_at: moment(),
+    //     courseId: id,
+    //     slug: e.slug,
+    //   });
+    // }
+  }
+  return res.status(200).send({
+    updated: true,
+  });
 };

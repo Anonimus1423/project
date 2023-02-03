@@ -12,7 +12,7 @@ const useSumbitForm = (query, initialLoadingState) => {
       if (response.status === 403) {
         alert("TOKEN HAS EXPIRED");
         localStorage.removeItem("token");
-        window.location.reload();
+        window.location = "/";
         return;
       }
       setLoading(false);

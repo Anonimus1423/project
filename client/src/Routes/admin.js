@@ -2,6 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import CreateClass from "../Views/admin/CreateClass";
 import AdminMainPage from "../Views/admin/MainPage";
 import AdminUsersPage from "../Views/admin/Users";
+import { EditClass } from "./../Views/admin/EditClass/index";
+import Main from "../Views/main";
+import LoginPage from "../Views/main/Login";
+import RegistrPage from "../Views/main/Registr";
+import { defaultRoutes } from "./DefaultRoutes";
 
 export const adminRoutes = createBrowserRouter([
   {
@@ -16,4 +21,13 @@ export const adminRoutes = createBrowserRouter([
     path: "/admin/users",
     element: <AdminUsersPage />,
   },
+  {
+    path: "/admin/edit/:id",
+    element: <EditClass />,
+  },
+  {
+    path: "/",
+    element: <Main />,
+  },
+  ...defaultRoutes,
 ]);

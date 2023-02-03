@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as appSelectors from "./redux/app/selectors";
 import { initApp } from "./redux/app/reducer";
 import "./index.css";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 function App() {
   const role = useSelector(appSelectors.roleSelector);
@@ -28,13 +30,15 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
-      {(!loading || role === 0) && (
-        <>
-          {role === 0 && <RouterProvider router={mainRoutes} />}
-          {role === 1 && <RouterProvider router={userRoutes} />}
-          {role === 2 && <RouterProvider router={adminRoutes} />}
-        </>
-      )}
+      <LocalizationProvider dateAdapter={AdapterMoment}>
+        {(!loading || role === 0) && (
+          <>
+            {role === 0 && <RouterProvider router={mainRoutes} />}
+            {role === 1 && <RouterProvider router={userRoutes} />}
+            {role === 2 && <RouterProvider router={adminRoutes} />}
+          </>
+        )}
+      </LocalizationProvider>
     </div>
   );
 }

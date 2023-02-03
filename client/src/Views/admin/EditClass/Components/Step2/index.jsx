@@ -11,7 +11,7 @@ const CreateClassStep2 = ({
   setEditableLesson,
   handleLessonInputChange,
   previousPage,
-  handleCreateClass,
+  handleSaveClass,
   handleDeleteLesson,
   handleDuplicateLesson,
   setData,
@@ -23,7 +23,7 @@ const CreateClassStep2 = ({
     setTimeout(() => {
       setEditorKey(process.env.REACT_APP_TINY);
     }, 0);
-  }, [editableLesson?.lesson?.slug]);
+  }, [editableLesson.lesson.slug]);
   return (
     <div className="flex flex-col gap-12">
       <div className="flex gap-6">
@@ -96,8 +96,8 @@ const CreateClassStep2 = ({
         <Button color="success" onClick={previousPage} variant="outlined">
           Previos
         </Button>
-        <Button color="success" onClick={handleCreateClass} variant="contained">
-          Create Class
+        <Button color="success" onClick={handleSaveClass} variant="contained">
+          Save Class
         </Button>
       </div>
     </div>

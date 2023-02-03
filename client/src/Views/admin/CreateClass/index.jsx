@@ -5,6 +5,10 @@ import { Upload } from "../../../Upload";
 import useSumbitForm from "./../../../utils/submitForm";
 import ClassCreateStep1 from "./Components/Step1";
 import CreateClassStep2 from "./Components/Step2";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import logout from "./../../../utils/logout";
+import { generateSlug } from "./../../../utils/slug";
 
 const CreateClass = () => {
   const [create] = useSumbitForm(createCourse);
@@ -17,6 +21,7 @@ const CreateClass = () => {
     lessons: [],
     tags: "",
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,10 +35,11 @@ const CreateClass = () => {
     create(
       {
         ...data,
-        tags: data.tags.split(" "),
+        tags: (data.tags || "").split(" "),
       },
       () => {
         toast.success("Course created successfully.");
+        navigate("/");
         setData({
           title: "",
           description: "",
@@ -45,29 +51,95 @@ const CreateClass = () => {
     );
   };
   const createLesson = () => {
+    const newLesson = {
+      slug: generateSlug(),
+      title: "New Lesson",
+      description: "",
+      time: "15Minute",
+    };
     setData({
       ...data,
-      lessons: [
-        ...data.lessons,
-        {
-          name: "New Lesson",
-          description: "",
-          time: "15Minute",
-        },
-      ],
+      lessons: [...data.lessons, newLesson],
     });
     setEditableLesson({
-      index: data.lessons.length,
-      lesson: {
-        name: "New Lesson",
-        description: "",
-        time: "15Minute",
-      },
+      lesson: newLesson,
     });
   };
-  console.log(data);
+  const handleLessonInputChange = (name, value) => {
+    const index = editableLesson.lesson.slug;
+    setData({
+      ...data,
+      lessons: data.lessons.map((item) => {
+        if (item.slug === index) {
+          return {
+            ...item,
+            [name]: value,
+          };
+        }
+        return item;
+      }),
+    });
+    if (name !== "description") {
+      setEditableLesson({
+        lesson: {
+          ...editableLesson.lesson,
+          [name]: value,
+        },
+      });
+    }
+  };
+
+  const handleDeleteLesson = (slug) => {
+    if (editableLesson && slug === editableLesson.lesson.slug) {
+      setEditableLesson(
+        data.lessons.length > 1 ? { lesson: data.lessons.at(-2) } : null
+      );
+    }
+    setData({
+      ...data,
+      lessons: data.lessons.filter((e, i) => e.slug !== slug),
+    });
+  };
+
+  const handleDuplicateLesson = (slug) => {
+    const toDuplicate = {
+      ...data.lessons.find((item, i) => item.slug === slug),
+      slug: generateSlug(),
+    };
+    setEditableLesson({
+      lesson: {
+        ...toDuplicate,
+      },
+    });
+    setData({
+      ...data,
+      lessons: [...data.lessons, toDuplicate],
+    });
+  };
+
   return (
     <div className="flex flex-col gap-6 px-6 py-5">
+      <div className="flex justify-between">
+        <div className="flex gap-2">
+          <Button
+            color="success"
+            variant="outlined"
+            onClick={() => navigate("/")}
+          >
+            Home
+          </Button>
+          <Button
+            color="success"
+            variant="outlined"
+            onClick={() => navigate("/admin/users")}
+          >
+            Users
+          </Button>
+        </div>
+        <Button color="error" variant="contained" onClick={() => logout()}>
+          Log Out
+        </Button>
+      </div>
       <span className="text-4xl">
         Create Class{step === 1 ? " / Lessons" : ""}
       </span>
@@ -82,6 +154,11 @@ const CreateClass = () => {
       {step === 1 && (
         <CreateClassStep2
           data={data}
+          handleDuplicateLesson={handleDuplicateLesson}
+          handleDeleteLesson={handleDeleteLesson}
+          previousPage={() => setStep(0)}
+          handleCreateClass={() => handleCreateCourse()}
+          handleLessonInputChange={handleLessonInputChange}
           setData={setData}
           addLesson={createLesson}
           editableLesson={editableLesson}
