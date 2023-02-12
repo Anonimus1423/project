@@ -120,7 +120,7 @@ const CreateClass = () => {
 
   const addQuizeToLesson = () => {
     const newQuize = {
-      title: generateSlug(),
+      title: "",
       description: "",
       answers: [],
       answerIndex: null,

@@ -148,7 +148,7 @@ export const updateCourse = async (req, res) => {
       for (const quiz of e.quizes) {
         const quizModule = await Quizes.create({
           ...quiz,
-          lessonId: less._id,
+          lessonId: e._id,
         });
         quizesArray.push(quizModule);
       }

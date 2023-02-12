@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { DragAndDropLessons } from "../DragAndDropLessons";
 import LessonEdit from "../LessonEdit";
 import { Editor } from "@tinymce/tinymce-react";
+import LessonTestEditor from "../../../CreateClass/Components/LessonTestEditor";
 
 const CreateClassStep2 = ({
   data,
@@ -14,7 +15,12 @@ const CreateClassStep2 = ({
   handleSaveClass,
   handleDeleteLesson,
   handleDuplicateLesson,
+  addQuizeToLesson,
   setData,
+  handleDeleteQuize,
+  dragAndDropquizes,
+  handleDuplicateQuize,
+  changeEditableQuize,
 }) => {
   const [editorKey, setEditorKey] = useState(process.env.REACT_APP_TINY);
   const editorRef = useRef();
@@ -91,6 +97,16 @@ const CreateClassStep2 = ({
             }}
           />
         </div>
+      )}
+      {editableLesson && (
+        <LessonTestEditor
+          dragAndDropquizes={dragAndDropquizes}
+          changeEditableQuize={changeEditableQuize}
+          addQuizeToLesson={addQuizeToLesson}
+          lesson={editableLesson}
+          handleDuplicateQuize={handleDuplicateQuize}
+          handleDeleteQuize={handleDeleteQuize}
+        />
       )}
       <div className="flex mt-auto w-1/1 justify-between">
         <Button color="success" onClick={previousPage} variant="outlined">

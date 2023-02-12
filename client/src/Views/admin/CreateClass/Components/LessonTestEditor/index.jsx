@@ -15,6 +15,9 @@ const LessonTestEditor = ({
   const [selectedQuize, setSelectedQuize] = React.useState();
   const [isOpenAddAnwser, setIsOpenAddAnswer] = React.useState(false);
   const [answer, setAnswer] = React.useState("");
+  React.useEffect(() => {
+    setSelectedQuize(null);
+  }, [lesson.slug]);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setSelectedQuize({

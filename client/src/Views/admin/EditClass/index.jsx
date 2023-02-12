@@ -137,6 +137,137 @@ export const EditClass = () => {
       lessons: [...data.lessons, toDuplicate],
     });
   };
+  const addQuizeToLesson = () => {
+    const newQuize = {
+      title: "",
+      description: "",
+      answers: [],
+      answerIndex: null,
+      slug: generateSlug(),
+    };
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: [...e.quizes, newQuize],
+            },
+          });
+          return {
+            ...e,
+            quizes: [...e.quizes, newQuize],
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
+  const dragAndDropquizes = (newQuizes) => {
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: newQuizes,
+            },
+          });
+          return {
+            ...e,
+            quizes: newQuizes,
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
+  const handleDeleteQuize = (quizeSlug) => {
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: e.quizes.filter((quize) => quize.slug !== quizeSlug),
+            },
+          });
+          return {
+            ...e,
+            quizes: e.quizes.filter((quize) => quize.slug !== quizeSlug),
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
+  const handleDuplicateQuize = (quizeSlug) => {
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          const toDuplicate = {
+            ...e.quizes.find((item, i) => item.slug === quizeSlug),
+            slug: generateSlug(),
+          };
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: [...e.quizes, toDuplicate],
+            },
+          });
+          return {
+            ...e,
+            quizes: [...e.quizes, toDuplicate],
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
+  const changeEditableQuize = (quizeSlug, name, value, newAnswers) => {
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          const newQuizes = e.quizes.map((item) => {
+            if (item.slug === quizeSlug) {
+              if (name === "trashAnswer") {
+                return {
+                  ...item,
+                  answerIndex: value,
+                  answers: newAnswers,
+                };
+              }
+              return {
+                ...item,
+                [name]: value,
+              };
+            }
+            return item;
+          });
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: newQuizes,
+            },
+          });
+          return {
+            ...e,
+            quizes: newQuizes,
+          };
+        }
+        return e;
+      }),
+    });
+  };
   return (
     <>
       {!loading && (
@@ -176,6 +307,11 @@ export const EditClass = () => {
           {step === 1 && (
             <CreateClassStep2
               data={data}
+              addQuizeToLesson={addQuizeToLesson}
+              dragAndDropquizes={dragAndDropquizes}
+              handleDeleteQuize={handleDeleteQuize}
+              handleDuplicateQuize={handleDuplicateQuize}
+              changeEditableQuize={changeEditableQuize}
               handleDuplicateLesson={handleDuplicateLesson}
               handleDeleteLesson={handleDeleteLesson}
               previousPage={() => setStep(0)}
