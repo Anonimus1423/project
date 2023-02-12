@@ -55,6 +55,7 @@ const CreateClass = () => {
       slug: generateSlug(),
       title: "New Lesson",
       description: "",
+      quizes: [],
       time: "15Minute",
     };
     setData({
@@ -117,6 +118,138 @@ const CreateClass = () => {
     });
   };
 
+  const addQuizeToLesson = () => {
+    const newQuize = {
+      title: generateSlug(),
+      description: "",
+      answers: [],
+      answerIndex: null,
+      slug: generateSlug(),
+    };
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: [...e.quizes, newQuize],
+            },
+          });
+          return {
+            ...e,
+            quizes: [...e.quizes, newQuize],
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
+  const dragAndDropquizes = (newQuizes) => {
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: newQuizes,
+            },
+          });
+          return {
+            ...e,
+            quizes: newQuizes,
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
+  const handleDeleteQuize = (quizeSlug) => {
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: e.quizes.filter((quize) => quize.slug !== quizeSlug),
+            },
+          });
+          return {
+            ...e,
+            quizes: e.quizes.filter((quize) => quize.slug !== quizeSlug),
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
+  const handleDuplicateQuize = (quizeSlug) => {
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          const toDuplicate = {
+            ...e.quizes.find((item, i) => item.slug === quizeSlug),
+            slug: generateSlug(),
+          };
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: [...e.quizes, toDuplicate],
+            },
+          });
+          return {
+            ...e,
+            quizes: [...e.quizes, toDuplicate],
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
+  const changeEditableQuize = (quizeSlug, name, value, newAnswers) => {
+    setData({
+      ...data,
+      lessons: data.lessons.map((e) => {
+        if (e.slug === editableLesson.lesson.slug) {
+          const newQuizes = e.quizes.map((item) => {
+            if (item.slug === quizeSlug) {
+              if (name === "trashAnswer") {
+                return {
+                  ...item,
+                  answerIndex: value,
+                  answers: newAnswers,
+                };
+              }
+              return {
+                ...item,
+                [name]: value,
+              };
+            }
+            return item;
+          });
+          setEditableLesson({
+            lesson: {
+              ...e,
+              quizes: newQuizes,
+            },
+          });
+          return {
+            ...e,
+            quizes: newQuizes,
+          };
+        }
+        return e;
+      }),
+    });
+  };
+
   return (
     <div className="flex flex-col gap-6 px-6 py-5">
       <div className="flex justify-between">
@@ -154,7 +287,12 @@ const CreateClass = () => {
       {step === 1 && (
         <CreateClassStep2
           data={data}
+          handleDuplicateQuize={handleDuplicateQuize}
+          handleDeleteQuize={handleDeleteQuize}
+          dragAndDropquizes={dragAndDropquizes}
+          addQuizeToLesson={addQuizeToLesson}
           handleDuplicateLesson={handleDuplicateLesson}
+          changeEditableQuize={changeEditableQuize}
           handleDeleteLesson={handleDeleteLesson}
           previousPage={() => setStep(0)}
           handleCreateClass={() => handleCreateCourse()}

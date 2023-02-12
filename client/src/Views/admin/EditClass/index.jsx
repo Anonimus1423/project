@@ -24,6 +24,7 @@ export const EditClass = () => {
     lessons: [],
     tags: "",
   });
+  console.log(data);
   const params = useParams();
   useEffect(() => {
     init(params.id, (info) => {

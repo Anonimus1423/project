@@ -5,6 +5,7 @@ import Lesson from "../../modules/Lesson.js";
 import errorsGenerator from "../../utils/errorsGenerator.js";
 import User from "../../modules/User.js";
 import Search from "../../utils/search.js";
+import Quizes from "../../modules/Quizes.js";
 
 export const createCourse = async (req, res) => {
   const errors = ErrorRequest(req, res);
@@ -33,13 +34,24 @@ export const createCourse = async (req, res) => {
   });
   const courseLessons = [];
   for (const e of lessons) {
+    const quizesArray = [];
     const less = await Lesson.create({
       ...e,
       created_at: moment(),
       courseId: course._id,
       slug: e.slug,
     });
-    courseLessons.push(less);
+    for (const quiz of e.quizes) {
+      const quizModule = await Quizes.create({
+        ...quiz,
+        lessonId: less._id,
+      });
+      quizesArray.push(quizModule);
+    }
+    courseLessons.push({
+      ...JSON.parse(JSON.stringify(less)),
+      test: quizesArray,
+    });
   }
   return res.status(200).send({
     created: true,
@@ -63,10 +75,20 @@ export const getCoursesList = async (req, res) => {
 export const getClass = async (req, res) => {
   const { id } = req.params;
   const course = await Course.findOne({ _id: id });
-  const lessons = await Lesson.find({ courseId: course._id });
+  const lessons = JSON.parse(
+    JSON.stringify(await Lesson.find({ courseId: course._id }))
+  );
+  const lessonsWithTest = [];
+  for (const e of lessons) {
+    const allQuizes = await Quizes.find({ lessonId: e._id });
+    lessonsWithTest.push({
+      ...e,
+      quizes: allQuizes,
+    });
+  }
   const data = {
     ...JSON.parse(JSON.stringify(course)),
-    lessons: JSON.parse(JSON.stringify(lessons)),
+    lessons: lessonsWithTest,
   };
   return res.status(200).json(data);
 };
@@ -74,6 +96,7 @@ export const getClass = async (req, res) => {
 export const updateCourse = async (req, res) => {
   const { id } = req.params;
   const errors = ErrorRequest(req, res);
+  const quizesArray = [];
   const {
     title,
     description,
@@ -112,6 +135,7 @@ export const updateCourse = async (req, res) => {
   for (const e of lessons) {
     if (e._id) {
       await Lesson.deleteOne({ _id: e._id });
+      await Quizes.deleteMany({ lessonId: e._id });
       await Lesson.insertMany([
         {
           _id: e._id,
@@ -121,13 +145,27 @@ export const updateCourse = async (req, res) => {
           slug: e.slug,
         },
       ]);
+      for (const quiz of e.quizes) {
+        const quizModule = await Quizes.create({
+          ...quiz,
+          lessonId: less._id,
+        });
+        quizesArray.push(quizModule);
+      }
     } else {
-      await Lesson.create({
+      const less = await Lesson.create({
         ...e,
         created_at: moment(),
         courseId: id,
         slug: e.slug,
       });
+      for (const quiz of e.quizes) {
+        const quizModule = await Quizes.create({
+          ...quiz,
+          lessonId: less._id,
+        });
+        quizesArray.push(quizModule);
+      }
     }
     // if (e._id) {
     //   await Lesson.findOneAndUpdate(
