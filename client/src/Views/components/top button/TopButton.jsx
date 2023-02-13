@@ -8,11 +8,16 @@ function TopButton() {
       setScrollY(window.scrollY > 1000);
     });
   }, []);
-  console.log(scrollY);
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return scrollY ? (
-    <a href="/#" className="top-button">
+    <button onClick={() => scrollTop()} className="top-button">
       <TopButton1 />
-    </a>
+    </button>
   ) : null;
 }
 
