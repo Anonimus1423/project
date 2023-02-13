@@ -29,3 +29,7 @@ export const updateClass = ({ id, payload }) => {
 export const login = (data) => {
   return axios.post("/user/login", data);
 };
+
+export const getCoursesList = () => {
+  return axios.get("/api/courses/all");
+};

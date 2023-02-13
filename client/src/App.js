@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { authUser } from "./Api/queries";
+import { authUser, getCoursesList } from "./Api/queries";
 import useSumbitForm from "./utils/submitForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,16 +11,24 @@ import { useDispatch, useSelector } from "react-redux";
 import * as appSelectors from "./redux/app/selectors";
 import { initApp } from "./redux/app/reducer";
 import "./index.scss";
-import "./Views/style/main.scss"
+import "./Views/style/main.scss";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { selectAllCourses } from "./redux/courses/selectors";
+import { getCoursesCompleted } from "./redux/courses/reducer";
 
 function App() {
   const role = useSelector(appSelectors.roleSelector);
   const [init, loading] = useSumbitForm(authUser, true);
+  const [getCourses] = useSumbitForm(getCoursesList, true);
+  const courses = useSelector(selectAllCourses);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
+    getCourses({}, (data) => {
+      dispatch(getCoursesCompleted(data));
+    });
     if (token) {
       init({}, (data) => {
         dispatch(initApp(data));
@@ -28,6 +36,7 @@ function App() {
       return;
     }
   }, []);
+
   return (
     <div className="App">
       <ToastContainer />
