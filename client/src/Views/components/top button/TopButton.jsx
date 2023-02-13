@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { ReactComponent as TopButton1} from "../../images/icons/Top Button.svg"
+import "./style/index.scss"
 
 function TopButton() 
 {
     const [scrollY, setScrollY] = useState(window.screenTop)
-    let show = false;
+    let show = true;
     console.log("sadf");
     useEffect(() => 
     {
@@ -20,9 +21,9 @@ function TopButton()
     return ( 
         show
         ?
-        <button>
+        <a href="/#" className="top-button">
             <TopButton1 />
-        </button>
+        </a>
         :
         null
     );
