@@ -5,6 +5,7 @@ function TopButton()
 {
     let scrollY = useState(window.screenTop)
     let show = false;
+    console.log("dsaf")
     console.log(scrollY, show);
     useEffect(() => 
     {
