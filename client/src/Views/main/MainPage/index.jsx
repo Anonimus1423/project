@@ -12,6 +12,7 @@ import {ReactComponent as CourseImageB2} from "../../images/course images/B2.svg
 import {ReactComponent as CourseImageC1} from "../../images/course images/C1.svg"
 import {ReactComponent as CourseImageC2} from "../../images/course images/C2.svg"
 import Footer from "../../components/footer/Footer";
+import TopButton from "../../components/top button/TopButton";
 
 function MainPage() {
     return ( 
@@ -75,6 +76,7 @@ function MainPage() {
                 </div>
                 <Footer />
             </div>
+            <TopButton />
         </div>
     );
 }
