@@ -1,0 +1,19 @@
+.big-container
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px auto;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 3000px;
+}
+.right-container
+{
+    width: 100%;
+    padding: 0px 100px;
+}
+.right-main-container
+{
+    width: 100%;
+}

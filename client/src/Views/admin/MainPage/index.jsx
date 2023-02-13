@@ -45,8 +45,9 @@ const AdminMainPage = () => {
                 onClick={() => navigate(`/admin/edit/${e._id}`)}
                 key={e._id}
                 className="fex"
+                sx={{ border: 1 }}
               >
-                {e.title}
+                <h4>{e.title}</h4>
                 <img src={e.picture_src} width="200px" height="200px" alt="" />
               </div>
             );

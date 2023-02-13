@@ -1,0 +1,90 @@
+.mainButton
+{
+    padding: 18.5px 60px;
+    background: linear-gradient(140.52deg, #7D16FF 0%, #A766FE 100%);
+    border-radius: 37px;
+    transition: 0.2s;
+    position: relative;
+    &>.background
+    {
+        width: 100.5%;
+        height: 103%;
+        position: absolute;
+        border-radius: 37px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        opacity: 0;
+        transition: 0.2s;
+        background: linear-gradient(123.72deg, #FF8A00 0%, #FFD226 97.41%);
+    }
+    p
+    {
+        position: relative;
+        z-index: 2;
+        color: white;
+        transition: 0.2s;
+    }
+    &.m
+    {
+
+    }
+    &.s
+    {
+        padding: 10.5px 35px;
+    }
+    &.xs
+    {
+
+    }
+    &.purple
+    {
+        background: linear-gradient(140.52deg, #7D16FF 0%, #A766FE 100%);
+        p
+        {
+            color: white;
+        }
+        &:hover
+        {
+            .background
+            {
+                opacity: 1;
+            }
+        }
+    }
+    &.yellow
+    {
+        background: linear-gradient(123.72deg, #FF8A00 0%, #FFD226 97.41%);
+        p
+        {
+            color: white;
+        }
+        &>.background
+        {
+            background: #EFBE00;
+            width: 100%;
+            height: 100%;
+        }
+        &:hover
+        {
+            .background
+            {
+                opacity: 1;
+            }
+        }
+    }
+    &.transparent
+    {
+        padding: 0;
+        background: transparent;
+        p
+        {
+            color: black;
+        }
+        &:hover > p
+        {
+            color: #FF8A00;
+        }
+    }
+}

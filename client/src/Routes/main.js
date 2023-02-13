@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../Views/main";
+import MainPage from "../Views/main/MainPage";
 import { defaultRoutes } from "./DefaultRoutes";
 
 export const mainRoutes = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: <MainPage />,
   },
   ...defaultRoutes,
 ]);
