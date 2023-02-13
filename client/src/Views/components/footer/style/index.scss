@@ -1,0 +1,20 @@
+footer
+{
+    background-color: #343A3E;
+    padding: 16px 0;
+    margin-top: 80px;
+    .right-container
+    {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p.left
+        {
+            color: white;
+        }
+        a.right p
+        {
+            color: white;
+        }
+    }
+}

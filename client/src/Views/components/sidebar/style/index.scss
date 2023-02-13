@@ -3,16 +3,22 @@ nav.sidebar
     width: 50%;
     max-width: 320px;
     background-color: #F8F8F8;
-    height: 100%;
+    min-height: 100%;
     padding-top: 76px;
     ul
     {
         li
         {
             background-color: #EEEEEE;
+            transition: 0.2s;
+            &:hover
+            {
+                background-color: #F8F8F8;
+            }
             &.active
             {
                 background: linear-gradient(123.72deg, #FF8A00 0%, #FFD226 97.41%);
+                transition: 0.2s;
                 a
                 {
                     h6
