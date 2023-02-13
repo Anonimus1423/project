@@ -1,0 +1,51 @@
+nav.sidebar
+{
+    width: 50%;
+    max-width: 320px;
+    background-color: #F8F8F8;
+    height: 100%;
+    padding-top: 76px;
+    ul
+    {
+        li
+        {
+            background-color: #EEEEEE;
+            &.active
+            {
+                background: linear-gradient(123.72deg, #FF8A00 0%, #FFD226 97.41%);
+                a
+                {
+                    h6
+                    {
+                        color: white;
+                    }
+                    svg *
+                    {
+                        fill: white;
+                    }
+                }
+            }
+            a
+            {
+                display: flex;
+                align-items: center;
+                height: 83px;
+                border-bottom: 1px solid #E0E0E0;
+                padding: 0px 40px;
+                svg
+                {
+                    min-width: 32px;
+                    min-height: 32px;
+                    *
+                    {
+                        fill: black;
+                    }
+                }
+                h6
+                {
+                    margin-left: 16px;
+                }
+            }
+        }
+    }
+}

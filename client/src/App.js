@@ -10,7 +10,8 @@ import { RouterProvider } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as appSelectors from "./redux/app/selectors";
 import { initApp } from "./redux/app/reducer";
-import "./index.css";
+import "./index.scss";
+import "./Views/style/main.scss"
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 

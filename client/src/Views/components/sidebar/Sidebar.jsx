@@ -1,28 +1,32 @@
 import SidebarLink from "./Link";
+import {ReactComponent as HomeIcon} from "../../images/icons/Home.svg"
+import {ReactComponent as TestIcon} from "../../images/icons/Test.svg"
+import {ReactComponent as ClassIcon} from "../../images/icons/Class.svg"
+import {ReactComponent as CheckedIcon} from "../../images/icons/Checked.svg"
 
 function Sidebar() {
     return ( 
-        <nav>
+        <nav className="sidebar">
             <ul>
                 <SidebarLink 
                     text="Գլխավոր էջ"
-                    icon=""
+                    Icon={HomeIcon}
                     link="/" 
                 />
                 <SidebarLink 
                     text="Անգլերենի մակարդակի ստուգում"
-                    icon=""
-                    link="/" 
+                    Icon={TestIcon}
+                    link="/a" 
                 />
                 <SidebarLink 
                     text="Իմ դասընթացները"
-                    icon=""
-                    link="/" 
+                    Icon={ClassIcon}
+                    link="/b" 
                 />
                 <SidebarLink 
                     text="Բոլոր դասընթացները"
-                    icon=""
-                    link="/" 
+                    Icon={CheckedIcon}
+                    link="/c" 
                 />
             </ul>        
         </nav>

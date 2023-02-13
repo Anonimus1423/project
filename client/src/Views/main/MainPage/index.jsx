@@ -4,9 +4,11 @@ import Sidebar from "../../components/sidebar/Sidebar";
 
 function MainPage() {
     return ( 
-        <div>
-            <Header />
+        <div className="big-container">
             <Sidebar />
+            <div className="right-container">
+                <Header />
+            </div>
         </div>
     );
 }
