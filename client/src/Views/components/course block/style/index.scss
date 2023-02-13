@@ -1,0 +1,108 @@
+.course
+{
+    background-color: #FFFEF2;
+    padding: 64px 48px;
+    margin-top: 32px;
+    transition: 0.2s;
+    cursor: pointer;
+    border-radius: 16px;
+    .course__body
+    {
+        display: flex;
+        align-items: center;
+        position: relative;
+        &:first-child
+        {
+            margin-top: 0;
+        }
+        .left
+        {
+            svg
+            {
+                
+            }
+        }
+        .right
+        {
+            padding-left: 48px;
+            margin-top: 16px;
+            .top
+            {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                ul.tags
+                {
+                    display: flex;
+                    align-items: center;
+                    li.tag
+                    {
+                        height: 30px;
+                        padding: 0 24.5px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 60px;
+                        margin-right: 16px;
+                        &.purple
+                        {
+                            background-color: #F2E9FF;
+                        }
+                        &.yellow
+                        {
+                            background-color: #FFF8BF;
+                        }
+                        &:last-child
+                        {
+                            margin-right: 0;
+                        }
+                    }
+                }
+                .share
+                {
+                    display: flex;
+                    align-items: center;
+                    svg
+                    {
+                        width: 30px;
+                        height: 30px;
+                    }
+                    p
+                    {
+                        margin-left: 16px;
+                    }
+                }
+            }
+            &>h3
+            {
+                margin: 24px 0;
+            }
+            &>p
+            {
+    
+            }
+        }
+        .proggress
+        {
+            width: 100%;
+            height: 6px;
+            border-radius: 12px;
+            position: absolute;
+            top: 100%;
+            background-color: #F8F3D1;
+            left: 50%;
+            transform: translate(-50%, -100%) translateY(32px);
+            .proggress__pointer
+            {
+                height: 6px;
+                border-radius: 12px;
+                position: absolute;
+                background-color: #EFC31A;
+            }
+        }
+    }
+    &:hover
+    {
+        background: #FFFBD9;
+    }
+}

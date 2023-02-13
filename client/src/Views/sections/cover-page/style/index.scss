@@ -1,0 +1,123 @@
+section.cover-page
+{
+    background-color: #A766FE;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-size: 101%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    align-items: end;
+    background-image: url("../../../images/Cover Page Background.svg");
+    .left
+    {
+        width: 50%;
+        max-width: 560px;
+        padding-top: 179px;
+        padding-bottom: 211px;
+        h1
+        {
+            color: white;
+        }
+        &>p
+        {
+            color: white;
+            margin-top: 24px;
+            margin-bottom: 40px;
+        }
+    }
+    .right-img
+    {
+        position: relative;
+        left: -59px;
+        top: -44px;
+        img
+        {
+
+        }
+    }
+    .play-button
+    {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: linear-gradient(140.52deg, #7D16FF 0%, #A766FE 100%);
+        position: absolute;
+        left: 51.2%;
+        top: 48.9%;
+        transform: translateX(-50%);
+        transition: 0.3s;
+        &:after
+        {
+            content: "";
+            width: 100.5%;
+            height: 100.5%;
+            position: absolute;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: black;
+            opacity: 0;
+            transition: 0.3s;
+            background: linear-gradient(123.72deg, #FF8A00 0%, #FFD226 97.41%);
+        }
+        svg
+        {
+            position: relative;
+            z-index: 2;
+            width: 56px;
+            margin-bottom: 9px;
+            margin-left: 11px;
+            *
+            {
+                transition: 0.7s;
+            }
+        }
+        h4
+        {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            margin-bottom: 17px;
+        }
+        &::before
+        {
+            content: "";
+            position: relative;
+            z-index: 2;
+            width: 212px;
+            height: 212px;
+            border: 2px solid #D9BAFD;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            pointer-events: none;
+            z-index: -1;
+            transition: 0.3s;
+            transform: translate(-50%, -50%);
+        }
+        &:hover
+        {
+            &::before
+            {
+                transform: translate(-50%, -50%) scale(1.07);
+                opacity: 0;
+            }
+            &::after
+            {
+                opacity: 1;
+            }
+            & svg *
+            {
+                fill: white;
+            }
+        }
+    }
+}
