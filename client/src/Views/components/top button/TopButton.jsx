@@ -3,20 +3,19 @@ import { ReactComponent as TopButton1} from "../../images/icons/Top Button.svg"
 
 function TopButton() 
 {
-    let scrollY = useState(window.screenTop)
+    const [scrollY, setScrollY] = useState(window.screenTop)
     let show = false;
-    console.log("dsaf")
-    console.log(scrollY, show);
+    console.log("sadf");
     useEffect(() => 
     {
         if(scrollY > 3000)
         {
-            show = true
+            show = true;
         }
     }, [scrollY])
     window.addEventListener("scroll", () => 
     {
-        scrollY.setState(() => window.screenTop)
+        setScrollY(window.screenTop)
     })
     return ( 
         show
