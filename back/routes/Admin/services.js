@@ -9,7 +9,14 @@ import Quizes from "../../modules/Quizes.js";
 
 export const createCourse = async (req, res) => {
   const errors = ErrorRequest(req, res);
-  const { title, description, tags = [], picture_src, lessons } = req.body;
+  const {
+    title,
+    description,
+    tags = [],
+    picture_src,
+    lessons,
+    videoUrl,
+  } = req.body;
   if (errors.length) {
     return res.status(400).json({ errors: errors });
   }
@@ -29,6 +36,7 @@ export const createCourse = async (req, res) => {
     title,
     description,
     tags,
+    videoUrl,
     picture_src: picture_src,
     created_at: moment(),
   });
@@ -104,6 +112,7 @@ export const updateCourse = async (req, res) => {
     picture_src,
     lessons,
     toDeleteIds,
+    videoUrl,
   } = req.body;
   if (errors.length) {
     return res.status(400).json({ errors: errors });
@@ -126,6 +135,7 @@ export const updateCourse = async (req, res) => {
       title,
       description,
       tags,
+      videoUrl,
       picture_src: picture_src,
     }
   );

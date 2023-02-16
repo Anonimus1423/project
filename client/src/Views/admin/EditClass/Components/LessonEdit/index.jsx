@@ -35,6 +35,18 @@ const LessonEdit = ({ data, onChange, onDelete, onDuplicate, index }) => {
         label="Minimum time for finish this lesson"
       />
       <div className="flex flex-col gap-2">
+        <div className="text-xl">Lesson Video</div>
+        {data.videoUrl && (
+          <video
+            src={data.videoUrl}
+            controls
+            width="400px"
+            style={{ margin: "0px auto" }}
+          ></video>
+        )}
+        <Upload handleUpload={(url) => onChange("videoUrl", url)} />
+      </div>
+      <div className="flex flex-col gap-2">
         <span className="text-xl">
           Insturction - After upload image url auto copied to the clipboard and
           you can past it in the editor
