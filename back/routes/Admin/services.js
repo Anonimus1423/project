@@ -16,6 +16,7 @@ export const createCourse = async (req, res) => {
     picture_src,
     lessons,
     videoUrl,
+    level,
   } = req.body;
   if (errors.length) {
     return res.status(400).json({ errors: errors });
@@ -35,6 +36,7 @@ export const createCourse = async (req, res) => {
   const course = await Course.create({
     title,
     description,
+    level,
     tags,
     videoUrl,
     picture_src: picture_src,
@@ -113,6 +115,7 @@ export const updateCourse = async (req, res) => {
     lessons,
     toDeleteIds,
     videoUrl,
+    level,
   } = req.body;
   if (errors.length) {
     return res.status(400).json({ errors: errors });
@@ -135,6 +138,7 @@ export const updateCourse = async (req, res) => {
       title,
       description,
       tags,
+      level,
       videoUrl,
       picture_src: picture_src,
     }

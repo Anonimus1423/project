@@ -6,6 +6,7 @@ const Course = new mongoose.Schema({
   picture_src: String,
   tags: Array,
   created_at: String,
+  level: String,
 });
 
 export default mongoose.model("Course", Course);

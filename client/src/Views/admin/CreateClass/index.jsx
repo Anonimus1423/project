@@ -19,6 +19,7 @@ const CreateClass = () => {
     description: "",
     picture_src: "",
     lessons: [],
+    level: "A1",
     tags: "",
   });
   const navigate = useNavigate();

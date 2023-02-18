@@ -22,9 +22,9 @@ export const EditClass = () => {
     description: "",
     picture_src: "",
     lessons: [],
+    level: "A1",
     tags: "",
   });
-  console.log(data);
   const params = useParams();
   useEffect(() => {
     init(params.id, (info) => {
