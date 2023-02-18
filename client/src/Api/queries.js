@@ -29,3 +29,15 @@ export const updateClass = ({ id, payload }) => {
 export const login = (data) => {
   return axios.post("/user/login", data);
 };
+
+export const getCoursesList = () => {
+  return axios.get("/api/courses/all");
+};
+
+export const getDefaultTest = () => {
+  return axios.get("/admin/default-test");
+};
+
+export const updateDefaultTest = (data) => {
+  return axios.put("/admin/default-test", data);
+};

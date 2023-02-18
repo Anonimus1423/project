@@ -86,9 +86,20 @@ const CreateClassStep2 = ({
                 "preview",
                 "help",
                 "wordcount",
+                "codesample",
+                "directionality",
+                "emoticons",
+                "fullscreen",
+                "fullpage",
+                "imagetools",
+                "nonbreaking",
+                "insertdatetime",
               ],
+              menubar: "file view",
+              fullpage_default_doctype: "<!DOCTYPE html>",
+              default_link_target: "_blank",
               toolbar:
-                "undo redo | image media | blocks | " +
+                "undo redo nonbreaking | image media insertdatetime imagetools | fullpage fullscreen emoticons | ltr rtl | anchor link charmap code codesample | blocks | " +
                 "bold italic forecolor | alignleft aligncenter " +
                 "alignright alignjustify | bullist numlist outdent indent | " +
                 "removeformat | help ",

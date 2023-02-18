@@ -54,6 +54,8 @@ export const step2 = async (req, res) => {
   }
   const user = await User.create({
     ...userInfo,
+    level: "A1",
+    isLevelCompleted: false,
   });
   userInfo = {};
   const token = jwt.sign({ name: user.name }, SECRET, { expiresIn: EXPIRE });

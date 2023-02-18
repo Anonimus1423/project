@@ -6,6 +6,7 @@ const Lesson = new mongoose.Schema({
   slug: String,
   time: String,
   courseId: String,
+  videoUrl: String,
   created_at: String,
 });
 

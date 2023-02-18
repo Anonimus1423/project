@@ -9,7 +9,15 @@ import Quizes from "../../modules/Quizes.js";
 
 export const createCourse = async (req, res) => {
   const errors = ErrorRequest(req, res);
-  const { title, description, tags = [], picture_src, lessons } = req.body;
+  const {
+    title,
+    description,
+    tags = [],
+    picture_src,
+    lessons,
+    videoUrl,
+    level,
+  } = req.body;
   if (errors.length) {
     return res.status(400).json({ errors: errors });
   }
@@ -28,7 +36,9 @@ export const createCourse = async (req, res) => {
   const course = await Course.create({
     title,
     description,
+    level,
     tags,
+    videoUrl,
     picture_src: picture_src,
     created_at: moment(),
   });
@@ -80,7 +90,7 @@ export const getClass = async (req, res) => {
   );
   const lessonsWithTest = [];
   for (const e of lessons) {
-    const allQuizes = await Quizes.find({ lessonId: e._id });
+    const allQuizes = await Quizes.find({ lessonId: e._id, type: "lesson" });
     lessonsWithTest.push({
       ...e,
       quizes: allQuizes,
@@ -104,6 +114,8 @@ export const updateCourse = async (req, res) => {
     picture_src,
     lessons,
     toDeleteIds,
+    videoUrl,
+    level,
   } = req.body;
   if (errors.length) {
     return res.status(400).json({ errors: errors });
@@ -126,6 +138,8 @@ export const updateCourse = async (req, res) => {
       title,
       description,
       tags,
+      level,
+      videoUrl,
       picture_src: picture_src,
     }
   );
@@ -167,23 +181,39 @@ export const updateCourse = async (req, res) => {
         quizesArray.push(quizModule);
       }
     }
-    // if (e._id) {
-    //   await Lesson.findOneAndUpdate(
-    //     { _id: e._id },
-    //     {
-    //       ...e,
-    //     }
-    //   );
-    // } else {
-    //   await Lesson.create({
-    //     ...e,
-    //     created_at: moment(),
-    //     courseId: id,
-    //     slug: e.slug,
-    //   });
-    // }
   }
   return res.status(200).send({
     updated: true,
   });
+};
+
+export const createOrUpdateDefaultTest = async (req, res) => {
+  const quizes = req.body;
+  try {
+    await Quizes.deleteMany({ type: "user" });
+    for (const quize of quizes) {
+      await Quizes.insertMany([
+        {
+          title: quize.title,
+          description: quize.description,
+          answers: quize.answers,
+          slug: quize.slug,
+          answerIndex: quize.answerIndex,
+          type: "user",
+        },
+      ]);
+    }
+    return res.status(200).send({ updated: true });
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+};
+
+export const getDefaultTest = async (req, res) => {
+  try {
+    const data = await Quizes.find({ type: "user" });
+    return res.status(200).send(data);
+  } catch (error) {
+    return res.status(400).send(error);
+  }
 };

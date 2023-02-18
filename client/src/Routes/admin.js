@@ -7,6 +7,7 @@ import Main from "../Views/main";
 import LoginPage from "../Views/main/Login";
 import RegistrPage from "../Views/main/Registr";
 import { defaultRoutes } from "./DefaultRoutes";
+import { DefaultTestAdmin } from "./../Views/admin/DefaultTest/index";
 
 export const adminRoutes = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const adminRoutes = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+  },
+  {
+    path: "/default-test",
+    element: <DefaultTestAdmin />,
   },
   ...defaultRoutes,
 ]);
