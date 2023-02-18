@@ -5,6 +5,8 @@ const User = new mongoose.Schema({
   password: String,
   mail: String,
   date: String,
+  level: String,
+  isLevelCompleted: Boolean,
 });
 
 export default mongoose.model("User", User);

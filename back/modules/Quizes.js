@@ -5,8 +5,9 @@ const Quiz = new mongoose.Schema({
   description: String,
   answers: Array,
   answerIndex: String | Number,
-  lessonId: String,
+  lessonId: { type: String, default: null },
   slug: String,
+  type: { type: String, default: "lesson" },
 });
 
 export default mongoose.model("Quiz", Quiz);
