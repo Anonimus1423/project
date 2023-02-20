@@ -126,3 +126,14 @@ export const getCourseWithLessons = async (req, res) => {
     return res.status(400).send(error);
   }
 };
+
+export const getCourseLessonWithTest = async (req, res) => {
+  const { id, lessonId } = req.params;
+  try {
+    const lesson = await Lesson.findOne({ courseId: id, _id: lessonId });
+    const quizes = await Quizes.find({ lessonId });
+    return res.status(200).send({ lesson, test: quizes });
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+};
