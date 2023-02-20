@@ -68,6 +68,7 @@ export const EditClass = () => {
       slug: generateSlug(),
       title: "New Lesson",
       description: "",
+      quizes: [],
       time: "15Minute",
     };
     setData({
@@ -123,6 +124,7 @@ export const EditClass = () => {
     const lesson = data.lessons.find((item, i) => item.slug === slug);
     const toDuplicate = {
       title: lesson.title,
+      quizes: lesson.quizes,
       description: lesson.description,
       time: lesson.time,
       slug: generateSlug(),

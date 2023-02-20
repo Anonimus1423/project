@@ -16,10 +16,10 @@ export default async (req, res, next) => {
       return next();
     }
     const user = await User.findOne({ name: verify.name }).select(
-      "-password -_id -__v"
+      "-password  -__v"
     );
     req.user = user;
-    next();
+    return next();
   } catch {
     return res.status(403).send({ errors: [{ msg: "token has expired." }] });
   }
