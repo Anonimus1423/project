@@ -13,6 +13,8 @@ router.get("/user/courses/all", services.getAllCourses);
 
 router.get("/user/course/:id", services.getCourseWithLessons);
 
+router.get("/user/ongoing-courses", services.getUserOngoingCourses);
+
 router.get(
   "/user/course/:id/lesson/:lessonId",
   services.getCourseLessonWithTest

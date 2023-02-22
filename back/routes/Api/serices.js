@@ -5,6 +5,8 @@ import Ongoing from "../../modules/Ongoing.js";
 import Course from "../../modules/Course.js";
 import Lesson from "../../modules/Lesson.js";
 
+const levelsArray = ["A1", "A2", "B1", "B2", "C1", "C2"];
+
 export const defaultTestUpdate = async (req, res) => {
   const { level } = req.body;
   const { user } = req;
@@ -51,6 +53,7 @@ export const getCourseWithProgress = async (courseId, userId) => {
   return {
     course: course,
     progress: Math.floor(prsent * passedLessonLength.length),
+    isPassed: ongoing.isPassed,
   };
 };
 
@@ -62,6 +65,7 @@ export const passLesson = async (req, res) => {
       userId: user._id,
       courseId,
     });
+    const course = await Course.findById(courseId);
     if (isHaveOngoindCourse) {
       await Ongoing.findOneAndUpdate(
         { courseId, userId: user._id },
@@ -69,6 +73,26 @@ export const passLesson = async (req, res) => {
           passedLessonsIds: [...isHaveOngoindCourse.passedLessonsIds, lessonId],
         }
       );
+      const oldVersion = await getCourseWithProgress(courseId, user._id);
+      if (oldVersion.progress === 100 && !oldVersion.isPassed) {
+        if (
+          course.level !== "None" &&
+          levelsArray.indexOf(course.level) > levelsArray.indexOf(user.level)
+        ) {
+          await User.findOneAndUpdate(
+            { _id: user._id },
+            {
+              level: course.level,
+            }
+          );
+        }
+        await Ongoing.findOneAndUpdate(
+          { courseId, userId: user._id },
+          {
+            isPassed: true,
+          }
+        );
+      }
       return res
         .status(200)
         .send({ data: await getCourseWithProgress(courseId, user._id) });
@@ -78,6 +102,26 @@ export const passLesson = async (req, res) => {
       courseId,
       passedLessonsIds: [lessonId],
     });
+    const oldVersion = await getCourseWithProgress(courseId, user._id);
+    if (oldVersion.progress === 100 && !oldVersion.isPassed) {
+      if (
+        course.level !== "None" &&
+        levelsArray.indexOf(course.level) > levelsArray.indexOf(user.level)
+      ) {
+        await User.findOneAndUpdate(
+          { _id: user._id },
+          {
+            level: course.level,
+          }
+        );
+      }
+      await Ongoing.findOneAndUpdate(
+        { courseId, userId: user._id },
+        {
+          isPassed: true,
+        }
+      );
+    }
     return res
       .status(200)
       .send({ data: await getCourseWithProgress(courseId, user._id) });
@@ -133,6 +177,23 @@ export const getCourseLessonWithTest = async (req, res) => {
     const lesson = await Lesson.findOne({ courseId: id, _id: lessonId });
     const quizes = await Quizes.find({ lessonId });
     return res.status(200).send({ lesson, test: quizes });
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+};
+
+export const getUserOngoingCourses = async (req, res) => {
+  try {
+    const { user } = req;
+    const ongoingsArray = await Ongoing.find({ userId: user._id });
+    const returnArray = [];
+    for (const item of ongoingsArray) {
+      const progress = await getCourseWithProgress(item.courseId, user._id);
+      returnArray.push({
+        ...JSON.parse(JSON.stringify(progress)),
+      });
+    }
+    return res.status(200).send(returnArray);
   } catch (error) {
     return res.status(400).send(error);
   }
