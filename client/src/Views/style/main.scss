@@ -108,7 +108,7 @@ p
     text-align: left;
 }
 
-p.m
+p.m, .text-m
 {
     font-family: Segoe UI;
     font-size: 16px;
@@ -190,3 +190,8 @@ button
     }
 }
 // Components Settings Ends
+
+body, .App
+{
+    min-height: 100vh;
+}

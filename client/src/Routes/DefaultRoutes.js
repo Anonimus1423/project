@@ -11,7 +11,7 @@ export const defaultRoutes = [
     element: <LoginPage />,
   },
   {
-    path: "/register",
+    path: "/registration",
     element: <RegistrPage />,
   },
   {
