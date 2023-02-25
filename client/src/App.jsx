@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { mainRoutes } from "./Routes/main";
 import { userRoutes } from "./Routes/user";
 import { adminRoutes } from "./Routes/admin";
-import { RouterProvider } from "react-router-dom";
+import { BrowserRouter, RouterProvider } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as appSelectors from "./redux/app/selectors";
 import { initApp } from "./redux/app/reducer";
@@ -16,6 +16,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { selectAllCourses } from "./redux/courses/selectors";
 import { getCoursesCompleted } from "./redux/courses/reducer";
+import Sidebar from "./Views/components/sidebar/Sidebar";
 
 function App() {
   const role = useSelector(appSelectors.roleSelector);
@@ -41,13 +42,18 @@ function App() {
     <div className="App">
       <ToastContainer />
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        {(!loading || role === 0) && (
-          <>
-            {role === 0 && <RouterProvider router={mainRoutes} />}
-            {role === 1 && <RouterProvider router={userRoutes} />}
-            {role === 2 && <RouterProvider router={adminRoutes} />}
-          </>
-        )}
+        <div className="main__routes">
+          <BrowserRouter>
+            <Sidebar />
+          </BrowserRouter>
+          {(!loading || role === 0) && (
+            <>
+              {role === 0 && <RouterProvider router={mainRoutes} />}
+              {role === 1 && <RouterProvider router={userRoutes} />}
+              {role === 2 && <RouterProvider router={adminRoutes} />}
+            </>
+          )}
+        </div>
       </LocalizationProvider>
     </div>
   );

@@ -17,7 +17,6 @@ import TopButton from "../../components/top button/TopButton";
 function MainPage() {
   return (
     <div className="big-container">
-      <Sidebar />
       <div className="right-main-container">
         <Header />
         <CoverPage />

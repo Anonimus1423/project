@@ -1,7 +1,5 @@
-
-p
-{
-  font-family: 'Segoe UI';
+p {
+  font-family: "Segoe UI";
 }
 
 @tailwind base;
@@ -17,4 +15,8 @@ body {
 
 .tox-notification--warning {
   display: none !important;
+}
+
+.main__routes {
+  display: flex;
 }
