@@ -28,7 +28,7 @@
     }
     &.m
     {
-
+        padding: 14.5px 0;
     }
     &.s
     {
@@ -37,6 +37,14 @@
     &.xs
     {
 
+    }
+    &.full
+    {
+        width: 100%;
+        p
+        {
+            text-align: center;
+        }
     }
     &.purple
     {
@@ -81,6 +89,20 @@
         p
         {
             color: black;
+        }
+        &:hover > p
+        {
+            color: #FF8A00;
+        }
+    }
+    &.transparent-yellow
+    {
+        padding: 0;
+        background: transparent;
+        p
+        {
+            color: #EFBE00;
+
         }
         &:hover > p
         {

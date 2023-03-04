@@ -3,4 +3,10 @@
   top: 100%;
   left: 100%;
   transform: translate(-100%, -100%) translateX(-30px) translateY(-45px);
+  opacity: 0.4;
+  transition: 0.1s;
+  &:hover
+  {
+    opacity: 1;
+  }
 }

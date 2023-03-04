@@ -42,7 +42,7 @@ function App() {
     <div className="App">
       <ToastContainer />
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        <div className="main__routes">
+        <div className="main__routes big-container">
           <BrowserRouter>
             <Sidebar />
           </BrowserRouter>

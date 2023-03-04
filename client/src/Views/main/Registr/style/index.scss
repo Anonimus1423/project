@@ -1,45 +1,70 @@
-.form
+.registration
 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #FFFEF2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &__right
+    &>h2
     {
-        width: 100%;
-        width: 476px;
-        min-height: 506px;
-        padding: 0 64px;
-        padding-top: 24px;
-        padding-bottom: 51px;
-        label
-        {
-            
-        }
-        input
-        {
-
-        }
+        text-align: center;
+        padding-top: 48px;
     }
-    &__left
+    .form
     {
         position: relative;
-        min-height: 506px;
-        width: 476px;
-        background-color: #F2E9FF;
-        border: 1px solid #A766FE;
-        display: flex;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 40px;
+        background-color: #FFFEF2;
+        border-radius: 16px;
+        display: inline-flex;
         justify-content: center;
-        align-items: center;
-        img
+        align-items: stretch;
+        &__right
         {
-            height: 100%;
-            min-width: 400px;
-            min-height: 400px;
+            width: 100%;
+            width: 476px;
+            min-height: 506px;
+            padding: 0 64px;
+            padding-top: 24px;
+            padding-bottom: 51px;
+            label
+            {
+                
+            }
+            input
+            {
+    
+            }
+            &>button
+            {
+                margin-top: 40px;
+            }
+            .form-bottom
+            {
+                margin-top: 24px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                p
+                {
+                    margin-right: 40px;
+                }
+            }
+        }
+        &__left
+        {
+            position: relative;
+            width: 476px;
+            background-color: #F2E9FF;
+            border: 1px solid #A766FE;
+            display: flex;
+            border-radius: 16px 0 0 16px;
+            justify-content: center;
+            align-items: center;
+            img
+            {
+                min-width: 400px;
+                min-height: 400px;
+                max-width: 400px;
+                max-height: 400px;
+            }
         }
     }
 }
