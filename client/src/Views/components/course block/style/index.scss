@@ -3,6 +3,7 @@
     background-color: #FFFEF2;
     padding: 64px 48px;
     margin-top: 32px;
+    position: relative;
     transition: 0.2s;
     cursor: pointer;
     border-radius: 16px;
@@ -25,7 +26,6 @@
         .right
         {
             padding-left: 48px;
-            margin-top: 16px;
             .top
             {
                 display: flex;
@@ -101,8 +101,40 @@
             }
         }
     }
+    .close-block
+    {
+        pointer-events: none;
+        opacity: 0;
+        background: #FFFBD980;
+        position: absolute;
+        border-radius: 16px;
+        left: 50%;
+        z-index: 2;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg
+        {
+            width: 80px;
+            height: 105px;
+        }
+    }
     &:hover
     {
         background: #FFFBD9;
+        box-shadow: 0px 1.399999976158142px 13px 0px #00000009;
+        box-shadow: 0px 7px 80px 0px #00000012;
+    }
+    &.closed
+    {
+        .close-block
+        {
+            pointer-events: auto;
+            opacity: 1;
+        }
     }
 }

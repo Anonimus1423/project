@@ -7,11 +7,21 @@ label.mainTextInput
 input.mainTextInput
 {
     width: 348px;
+    outline: none !important;
     display: block;
     width: 100%;
     padding: 16px;
     border-radius: 8px;
     padding-top: 12px;
     background-color: white;
-    border: 1px solid #E0E0E0
+    border: 1px solid #E0E0E0;
+    &::placeholder
+    {
+        color: #828282;
+    }
+    &[type=date]
+    {
+        border: none;
+        
+    }
 }

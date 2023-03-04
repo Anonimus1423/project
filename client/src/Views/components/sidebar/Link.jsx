@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 
 function SidebarLink({ link, text, Icon }) {
   const location = useLocation();
+  console.log(location.pathname === link, location.pathname, link);
   return (
     <li className={location.pathname === link ? "active" : null}>
       <Link to={link}>

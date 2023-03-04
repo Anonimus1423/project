@@ -9,6 +9,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import RegistrationIcon from "../../images/form images/Registration.svg";
 import "./style/index.scss";
 import Header from "../../components/header/Header";
+import { Link } from "react-router-dom";
 
 const RegistrPage = () => {
   const [step, setStep] = React.useState(0);
@@ -55,51 +56,70 @@ const RegistrPage = () => {
   };
 
   return (
-    <>
+    <div className="right-main-container registration">
+      <Header
+        buttons={{
+          firstText: "Մուտք",
+          secondText: "Գրանցում",
+          firstLink: "/sign-up",
+          secondLink: "/registration",
+        }}
+      />
       {step === 0 && (
-        <div className="form">
-          <div className="form__left">
-            <img src={RegistrationIcon} alt="registration" />
+        <>
+          <h2>Already have an account?</h2>
+          <div className="form">
+            <div className="form__left">
+              <img src={RegistrationIcon} alt="registration" />
+            </div>
+            <div className="form__right">
+              <MainTextInput
+                name="name"
+                value={inputs.name}
+                onChange={handleInputChange}
+                label="Name"
+                placeHolder="Գրեք ձեր անունը"
+              />
+              <MainTextInput
+                name="mail"
+                type="mail"
+                value={inputs.mail}
+                onChange={handleInputChange}
+                label="Mail"
+                placeHolder="Գրեք ձեր Email-ը"
+              />
+              <MainTextInput
+                name="password"
+                type="password"
+                value={inputs.password}
+                onChange={handleInputChange}
+                label="Password"
+                placeHolder="Գրեք ձեր ծածկագիրը"
+              />
+              <MainTextInput
+                type="date"
+                label="Born Date"
+                value={inputs.date}
+                onChange={handleInputChange}
+                name="date"
+                placeHolder="Գրեք ձեր ծննդաթիվը"
+              />
+              <MainButton
+                size="m full"
+                color="yellow"
+                onClick={() => handleSecondStep()}
+              >
+                Անցնել առաջ
+              </MainButton>
+              <div className="form-bottom">
+                <p className="m">Don't have an account?</p>
+                <Link to="/sign-up">
+                  <MainButton color="transparent-yellow">Log In</MainButton>
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="form__right">
-            <MainTextInput
-              name="name"
-              value={inputs.name}
-              onChange={handleInputChange}
-              label="Name"
-            />
-            <MainTextInput
-              name="mail"
-              type="mail"
-              value={inputs.mail}
-              onChange={handleInputChange}
-              label="Mail"
-            />
-            <MainTextInput
-              name="password"
-              type="password"
-              value={inputs.password}
-              onChange={handleInputChange}
-              label="Password"
-            />
-            <MainTextInput
-              type="date"
-              label="Born Date"
-              inputFormat="MM/DD/YYYY"
-              value={inputs.date}
-              onChange={handleInputChange}
-              name="date"
-              renderInput={(params) => <TextField {...params} name="date" />}
-            />
-            <MainButton
-              size="m"
-              color="yellow"
-              onClick={() => handleSecondStep()}
-            >
-              Next Step
-            </MainButton>
-          </div>
-        </div>
+        </>
       )}
       {step === 1 && (
         <div className="flex flex-col gap-2">
@@ -118,7 +138,7 @@ const RegistrPage = () => {
           </MainButton>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
