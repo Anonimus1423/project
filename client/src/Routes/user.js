@@ -5,10 +5,6 @@ import { defaultRoutes } from "./DefaultRoutes";
 export const userRoutes = createBrowserRouter([
   {
     path: "/",
-    element: <div>user</div>,
-  },
-  {
-    path: "/",
     element: <Main />,
   },
   ...defaultRoutes,
