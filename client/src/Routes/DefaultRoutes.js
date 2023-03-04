@@ -29,16 +29,13 @@ export const defaultRoutes = [
     {
       {
         title: "Ստուգեք Ձեր անգլերենի մակարդակը",
-        questions: 
-        {
-          [
+        questions: [
             {
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient?",
-              answers: ["answer1", "answer2","answer1", "answer2"],
-              answerIndex: "",
+              answers: ["answer1", "answer2","answer3", "answer4"],
+              answerIndex: 2,
             }
           ]
-        }
       }
     } />
   },
