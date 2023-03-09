@@ -1,0 +1,28 @@
+.bread
+{
+    margin-top: 24px;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    .bread__element
+    {
+        display: flex;
+        justify-content: center;
+        p
+        {
+            color: #828282;
+        }
+        img
+        {
+            margin-right: 11px;
+            margin-left: 11px;
+        }
+        &:last-child
+        {
+            p
+            {
+                color: #EFBE00;
+            }
+        }
+    }
+}

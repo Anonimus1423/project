@@ -1,0 +1,106 @@
+div.test-container
+{
+    .test-container
+    {
+        padding: 0 100px;
+        .test
+        {
+            margin-top: 40px;
+            border-radius: 16px 16px 0 0;
+            background-color: #FFFEF2;
+            padding-bottom: 40px;
+            width: 100%;
+            .test-top
+            {
+                padding: 16px 40px;
+                background: linear-gradient(140.52deg, #7D16FF 0%, #A766FE 100%);
+                border-radius: 16px 16px 0 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                p:first-child
+                {
+                    color: white;
+                }   
+                p:last-child
+                {
+                    color: white;
+                }
+            }
+            .test-bottom
+            {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                img
+                {
+                    margin-top: 32px;
+    
+                }
+                .question
+                {
+                    width: 810px;
+                    h5
+                    {
+                        margin-top: 32px;
+                        padding-bottom: 8px;
+                    }
+                    .answers
+                    {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        margin: 0 -12px;
+                        .answer
+                        {
+                            width: 50%;
+                            padding: 0 14px;
+                            margin-top: 24px;
+                            .answer-body
+                            {
+                                background-color: #FFF8BF;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                padding: 14px;
+                                border-radius: 8px;
+                                transition: 0.25s;
+                                &>p
+                                {
+                                transition: 0.25s;
+                                }
+                                &:hover
+                                {
+                                    color: white;
+                                    background-color: #FBCB59;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+                .test-buttons
+                {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 40px;
+                    button:nth-child(1)
+                    {
+    
+                    }
+                    button:nth-child(2)
+                    {
+                        margin: 0 64px;
+                    }
+                    button:nth-child(3)
+                    {
+    
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+.lesson-button
+{
+    background-color: #FFFEF2;
+    border-radius: 16px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    cursor: pointer;
+    transition: 0.3s;
+    &.active, &:hover
+    {
+        background-color: #FFFBD9;
+    }
+    &:first-child
+    {
+        margin-top: 0;
+    }
+    .lesson-button__right
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .time
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img
+            {
+                width: 24px;
+                height: 24px;
+            }
+            p
+            {
+                color: #343A3E;
+            }
+        }
+        .check-box
+        {
+            margin: 0 40px;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #BDBDBD;
+            border-radius: 4px;
+            img
+            {
+                display: none;
+            }
+            &.checked
+            {
+                border: none;
+                background-color: #EFBE00;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img
+                {
+                    display: inline-block;
+                }
+            }
+            &.locked
+            {
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img
+                {
+                    display: inline-block;
+                    width: 16px;
+                    height: 21px;
+                }
+            }
+        }
+
+    }
+}

@@ -1,14 +1,12 @@
-import { Button, TextField } from "@mui/material";
 import React from "react";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import axios from "axios";
 import PrintErrors from "../../../utils/PrintError";
 import MainTextInput from "../../components/inputs";
 import MainButton from "../../components/buttons/MainButton";
-import Sidebar from "../../components/sidebar/Sidebar";
 import RegistrationIcon from "../../images/form images/Registration.svg";
 import "./style/index.scss";
 import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom";
 
 const RegistrPage = () => {
@@ -67,77 +65,95 @@ const RegistrPage = () => {
       />
       {step === 0 && (
         <>
-          <h2>Already have an account?</h2>
-          <div className="form">
+          <h2 className="secondPage">Already have an account?</h2>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSecondStep();
+            }}
+            className="form"
+          >
             <div className="form__left">
               <img src={RegistrationIcon} alt="registration" />
             </div>
             <div className="form__right">
-              <MainTextInput
-                name="name"
-                value={inputs.name}
-                onChange={handleInputChange}
-                label="Name"
-                placeHolder="Գրեք ձեր անունը"
-              />
-              <MainTextInput
-                name="mail"
-                type="mail"
-                value={inputs.mail}
-                onChange={handleInputChange}
-                label="Mail"
-                placeHolder="Գրեք ձեր Email-ը"
-              />
-              <MainTextInput
-                name="password"
-                type="password"
-                value={inputs.password}
-                onChange={handleInputChange}
-                label="Password"
-                placeHolder="Գրեք ձեր ծածկագիրը"
-              />
-              <MainTextInput
-                type="date"
-                label="Born Date"
-                value={inputs.date}
-                onChange={handleInputChange}
-                name="date"
-                placeHolder="Գրեք ձեր ծննդաթիվը"
-              />
-              <MainButton
-                size="m full"
-                color="yellow"
-                onClick={() => handleSecondStep()}
-              >
-                Անցնել առաջ
-              </MainButton>
-              <div className="form-bottom">
-                <p className="m">Don't have an account?</p>
-                <Link to="/sign-up">
-                  <MainButton color="transparent-yellow">Log In</MainButton>
-                </Link>
+              <div className="form__right__body margin-top">
+                <MainTextInput
+                  name="name"
+                  value={inputs.name}
+                  onChange={handleInputChange}
+                  label="Name"
+                  placeHolder="Գրեք ձեր անունը"
+                />
+                <MainTextInput
+                  name="mail"
+                  type="mail"
+                  value={inputs.mail}
+                  onChange={handleInputChange}
+                  label="Mail"
+                  placeHolder="Գրեք ձեր Email-ը"
+                />
+                <MainTextInput
+                  name="password"
+                  type="password"
+                  value={inputs.password}
+                  onChange={handleInputChange}
+                  label="Password"
+                  placeHolder="Գրեք ձեր ծածկագիրը"
+                />
+                <MainTextInput
+                  type="date"
+                  label="Born Date"
+                  value={inputs.date}
+                  onChange={handleInputChange}
+                  name="date"
+                  placeHolder="Գրեք ձեր ծննդաթիվը"
+                />
+                <MainButton size="m full" color="yellow">
+                  Անցնել առաջ
+                </MainButton>
+                <div className="form-bottom">
+                  <p className="m">Don't have an account?</p>
+                  <Link to="/log-in">
+                    <MainButton color="transparent-yellow">Log In</MainButton>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </>
       )}
       {step === 1 && (
-        <div className="flex flex-col gap-2">
-          <MainTextInput
-            name="code"
-            value={inputs.code}
-            onChange={handleInputChange}
-            label="Validation Code"
-          />
-          <MainButton
-            color="primary"
-            variant="outlined"
-            onClick={() => handleVerify()}
+        <>
+          <h2 className="secondPage">Already have an account?</h2>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleVerify();
+            }}
+            className="form"
           >
-            Verify
-          </MainButton>
-        </div>
+            <div className="form__left">
+              <img src={RegistrationIcon} alt="registration" />
+            </div>
+            <div className="form__right">
+              <div className="form__right__body">
+                <MainTextInput
+                  name="code"
+                  value={inputs.code}
+                  onChange={handleInputChange}
+                  placeHolder="Write your validation code"
+                  label="Validation Code"
+                />
+                <MainButton size="m full" color="yellow">
+                  Verify
+                </MainButton>
+              </div>
+            </div>
+          </form>
+        </>
       )}
+      <Footer fixed />
     </div>
   );
 };

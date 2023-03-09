@@ -17,4 +17,13 @@ footer
             color: white;
         }
     }
+    &.fixed
+    {
+        position: absolute;
+        margin-top: 0px;
+        top: 100%;
+        width: 100%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+    }
 }

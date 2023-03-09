@@ -1,10 +1,5 @@
 .registration
 {
-    &>h2
-    {
-        text-align: center;
-        padding-top: 48px;
-    }
     .form
     {
         position: relative;
@@ -21,20 +16,16 @@
             width: 100%;
             width: 476px;
             min-height: 506px;
-            padding: 0 64px;
             padding-top: 24px;
+            position: relative;
             padding-bottom: 51px;
-            label
-            {
-                
-            }
-            input
-            {
-    
-            }
-            &>button
+            .form__right__body>button
             {
                 margin-top: 40px;
+            }
+            .form__right__body>button.forget
+            {
+                margin-top: 16px;
             }
             .form-bottom
             {
@@ -45,6 +36,19 @@
                 p
                 {
                     margin-right: 40px;
+                }
+            }
+            .form__right__body
+            {
+                width: 100%;
+                position: relative;
+                padding: 0 64px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                &.margin-top
+                {
+                    transform: translate(-50%, -50%) translateY(-10px);
                 }
             }
         }

@@ -60,7 +60,7 @@ export const DefaultTestAdmin = () => {
     });
   };
   return (
-    <div className="flex flex-col p-4 w-full">
+    <div className="flex flex-col p-4 w-full big-container admin">
       <div className="flex justify-between w-full">
         <div className="text-3xl">Edit Test</div>
         <Button

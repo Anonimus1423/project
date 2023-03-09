@@ -18,9 +18,12 @@
         }
         .left
         {
-            svg
+            img
             {
-                
+                min-width: 500px;
+                min-height: 400px;
+                max-width: 500px;
+                max-height: 400px;
             }
         }
         .right
@@ -135,6 +138,18 @@
         {
             pointer-events: auto;
             opacity: 1;
+        }
+    }
+    &.active
+    {
+        background-color: #E9FFE5;
+        .proggress, .proggress .proggress__pointer
+        {
+            background-color: #10AF63;
+        }
+        .tags .tag:last-child
+        {
+            background-color: #CAF2C4;
         }
     }
 }
