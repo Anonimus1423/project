@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { authUser, getCoursesList } from "./Api/queries";
 import useSumbitForm from "./utils/submitForm";
 import { ToastContainer } from "react-toastify";
@@ -14,7 +14,6 @@ import "./index.scss";
 import "./Views/style/main.scss";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { selectAllCourses } from "./redux/courses/selectors";
 import { getCoursesCompleted } from "./redux/courses/reducer";
 import Sidebar from "./Views/components/sidebar/Sidebar";
 
@@ -22,9 +21,7 @@ function App() {
   const role = useSelector(appSelectors.roleSelector);
   const [init, loading] = useSumbitForm(authUser, true);
   const [getCourses] = useSumbitForm(getCoursesList, true);
-  const courses = useSelector(selectAllCourses);
   const dispatch = useDispatch();
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     getCourses({}, (data) => {
@@ -38,18 +35,67 @@ function App() {
     }
   }, []);
 
+  const [sidebarOpened, setSidebarOpened] = useState(false);
+
+  useEffect(() => {
+    sidebarOpened
+      ? (document.documentElement.style = "overflow: hidden;")
+      : (document.documentElement.style = "");
+  }, [sidebarOpened]);
   return (
     <div className="App">
       <ToastContainer />
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <div className="main__routes big-container">
-          <BrowserRouter>
-            <Sidebar />
-          </BrowserRouter>
           {(!loading || role === 0) && (
             <>
-              {role === 0 && <RouterProvider router={mainRoutes} />}
-              {role === 1 && <RouterProvider router={userRoutes} />}
+              {role === 0 && (
+                <>
+                  <BrowserRouter>
+                    <div
+                      className={
+                        sidebarOpened
+                          ? "sidebar-button active"
+                          : "sidebar-button"
+                      }
+                      onClick={() => setSidebarOpened((state) => !state)}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div
+                      className={
+                        sidebarOpened
+                          ? "black-background active"
+                          : "black-background"
+                      }
+                    ></div>
+                    <Sidebar sidebarOpened={sidebarOpened} />
+                  </BrowserRouter>
+                  <RouterProvider router={mainRoutes} />
+                </>
+              )}
+              {role === 1 && (
+                <>
+                  <BrowserRouter>
+                    <div
+                      className={
+                        sidebarOpened
+                          ? "sidebar-button active"
+                          : "sidebar-button"
+                      }
+                      onClick={() => setSidebarOpened((state) => !state)}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <Sidebar sidebarOpened={sidebarOpened} />
+                  </BrowserRouter>
+                  <RouterProvider router={userRoutes} />
+                </>
+              )}
               {role === 2 && <RouterProvider router={adminRoutes} />}
             </>
           )}

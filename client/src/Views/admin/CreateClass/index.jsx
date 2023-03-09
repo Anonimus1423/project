@@ -252,7 +252,7 @@ const CreateClass = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 px-6 py-5">
+    <div className="flex flex-col gap-6 px-6 py-5 big-container admin">
       <div className="flex justify-between">
         <div className="flex gap-2">
           <Button

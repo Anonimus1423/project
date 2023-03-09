@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllCourses } from "../../../Api/queries";
 import logout from "../../../utils/logout";
 import useSumbitForm from "../../../utils/submitForm";
+import "../style/index.scss";
 
 const AdminMainPage = () => {
   const [init, loading] = useSumbitForm(getAllCourses, true);
@@ -15,7 +16,7 @@ const AdminMainPage = () => {
     });
   }, []);
   return (
-    <div className="flex-col flex gap-4 px-4 py-3">
+    <div className="flex-col flex gap-4 px-4 py-3 big-container admin">
       <div className="flex w-1/1 justify-between">
         <div className="flex gap-2">
           <Button
@@ -51,7 +52,7 @@ const AdminMainPage = () => {
               <div
                 onClick={() => navigate(`/admin/edit/${e._id}`)}
                 key={e._id}
-                className="fex"
+                className="fex admin-course"
                 sx={{ border: 1 }}
               >
                 <h4>{e.title}</h4>

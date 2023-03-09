@@ -29,7 +29,7 @@ const CreateClassStep2 = ({
     setTimeout(() => {
       setEditorKey(process.env.REACT_APP_TINY);
     }, 0);
-  }, [editableLesson.lesson.slug]);
+  }, [editableLesson?.lesson?.slug]);
   return (
     <div className="flex flex-col gap-12">
       <div className="flex gap-6">
@@ -49,7 +49,7 @@ const CreateClassStep2 = ({
         </div>
         <div className="w-[100%]">
           {!editableLesson && <span>Please Create Lesson</span>}
-          {editableLesson && (
+          {editableLesson && editableLesson.lesson && (
             <LessonEdit
               data={editableLesson.lesson}
               index={editableLesson.index}
@@ -58,7 +58,7 @@ const CreateClassStep2 = ({
           )}
         </div>
       </div>
-      {editableLesson && (
+      {editableLesson && editableLesson.lesson && (
         <div className="w-1/1">
           <Editor
             key={editorKey}
@@ -98,7 +98,7 @@ const CreateClassStep2 = ({
           />
         </div>
       )}
-      {editableLesson && (
+      {editableLesson && editableLesson.lesson && (
         <LessonTestEditor
           dragAndDropquizes={dragAndDropquizes}
           changeEditableQuize={changeEditableQuize}

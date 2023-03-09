@@ -3,6 +3,7 @@ section.additionalInformation
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     position: relative;
     top: -32px;
     .info-block
@@ -43,4 +44,70 @@ section.additionalInformation
 .after-relative h2:first-child
 {
     margin-top: 48px;
+}
+@media screen and (max-width: 1480px) {
+    section.additionalInformation
+    {
+        top: -32px;
+        .info-block
+        {
+            width: 33.33%;
+            padding: 0 3px;
+            margin: 0 -6px;
+            &__container
+            {
+                height: 83px;
+                padding: 0 25px;
+                svg
+                {
+                    min-width: 38px;
+                    min-height: 38px;
+                    max-width: 38px;
+                    max-height: 38px;
+                }
+                i
+                {
+                    margin: 0 14px;
+                    font-size: 26px;
+                }
+                p
+                {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1360px) {
+    section.additionalInformation
+    {
+        top: -32px;
+        .info-block
+        {
+            width: 33.33%;
+            padding: 0 3px;
+            margin: 0 -6px;
+            &__container
+            {
+                height: 83px;
+                padding: 0 25px;
+                svg
+                {
+                    min-width: 38px;
+                    min-height: 38px;
+                    max-width: 38px;
+                    max-height: 38px;
+                }
+                i
+                {
+                    margin: 0 14px;
+                    font-size: 26px;
+                }
+                p
+                {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
 }

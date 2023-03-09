@@ -17,7 +17,7 @@ const AdminUsersPage = () => {
     });
   }, []);
   return (
-    <div className="flex-col flex gap-8 px-4 py-3">
+    <div className="flex-col flex gap-8 px-4 py-3 big-container admin">
       <div className="flex w-1/1 justify-between">
         <div className="flex gap-2">
           <Button
@@ -79,12 +79,6 @@ const AdminUsersPage = () => {
                     {e.name}
                     <br />
                     {e.mail}
-                    <img
-                      src={e.picture_src}
-                      width="200px"
-                      height="200px"
-                      alt=""
-                    />
                   </div>
                 );
               })}

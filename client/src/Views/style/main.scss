@@ -23,6 +23,11 @@ h2, .h2
     line-height: 45px;
     letter-spacing: 0em;
     text-align: left;
+    &.secondPage
+    {
+        margin-top: 48px;
+        text-align: center;
+    }
 }
 
 h3
@@ -127,24 +132,9 @@ p.s
     letter-spacing: 0em;
     text-align: left;
 }
-
-b
-{
-}
 // Text Settings Ends
 
 // Components Settings Starts
-html
-{
-}
-input, textarea
-{
-
-}
-textarea
-{
-
-}
 button
 {
     p
@@ -194,4 +184,129 @@ button
 body, .App
 {
     min-height: 100vh;
+}
+
+@media screen and (max-width: 1200px) {
+    h1
+    {
+        font-size: 38px !important;
+        line-height: 45px !important;
+    }
+    p
+    {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    // Text Settings Starts
+    h1, h2, h3, h4, h5, h6, p, a, i, strong
+    {
+    	font-family: 'Segoe UI';
+    }
+    h1
+    {
+        font-size: 26px !important;
+        line-height: 36px !important;
+    }
+
+    h2, .h2
+    {
+        font-size: 20px;
+        line-height: 30px;
+        &.secondPage
+        {
+            margin-top: 32px;
+        }
+    }
+
+    h3
+    {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    h4, .h4
+    {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    h5
+    {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    h2.subtitle, .h2.subtitle
+    {
+        font-size: 14px;
+        line-height: 18.5px;
+    }
+
+    h4.subtitle, .h4.subtitle
+    {
+        font-size: 7px;
+        line-height: 9.3px;
+    }
+
+    p
+    {
+        font-size: 14px !important;
+        line-height: 22.4px !important;
+    }
+
+    p.m, .text-m, input::placeholder
+    {
+        font-size: 14px;
+        line-height: 22.4px;
+    }
+
+    p.s
+    {
+        font-size: 12px;
+        line-height: 19.2px;
+    }
+    // Text Settings Ends
+
+    // Components Settings Starts
+    button
+    {
+        p
+        {
+            font-size: 14px;
+            line-height: 18.2px;
+        }
+        &.m
+        {
+            p
+            {
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 21px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
+        &.s
+        {
+            p
+            {
+                font-size: 12px;
+                line-height: 15.6px;
+            }
+        }
+        &.xs
+        {
+            p
+            {
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 16px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+        }
+    }
+    // Components Settings Ends
 }

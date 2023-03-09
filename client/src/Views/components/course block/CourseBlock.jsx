@@ -11,14 +11,23 @@ function CourseBlock({
   proggress,
   closed,
 }) {
+  console.log(title, description, tags, date, Image, proggress, closed);
   return (
-    <div className={closed ? "course closed" : "course"}>
+    <div
+      className={
+        closed
+          ? "course closed"
+          : proggress === 100
+          ? "course active"
+          : "course"
+      }
+    >
       <div className="close-block">
         <Lock />
       </div>
       <div className="course__body">
         <div className="left">
-          <Image />
+          <img src={Image} />
         </div>
         <div className="right">
           <div className="top">
@@ -35,6 +44,11 @@ function CourseBlock({
                   </li>
                 );
               })}
+              {proggress !== 100 ? null : (
+                <li className="tag">
+                  <p className="s">ավարտված</p>
+                </li>
+              )}
             </ul>
             <div className="share">
               <Share />

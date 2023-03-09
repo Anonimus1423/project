@@ -1,7 +1,7 @@
 nav.sidebar
 {
-    width: 50%;
     max-width: 320px;
+    min-width: 320px;
     background-color: #F8F8F8;
     min-height: 100%;
     padding-top: 76px;
@@ -50,6 +50,105 @@ nav.sidebar
                 h6
                 {
                     margin-left: 16px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    nav.sidebar
+    {
+        max-width: 265px;
+        min-width: 265px;
+        ul
+        {
+            li
+            {
+                a
+                {
+                    padding: 0px 20px;
+                    font-size: 14px;
+                    svg
+                    {
+                        min-width: 26px;
+                        min-height: 26px;
+                        max-width: 26px;
+                        max-height: 26px;
+                    }
+                    h6
+                    {
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    nav.sidebar
+    {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+        z-index: 9;
+        min-width: 320px;
+        max-width: 320px;
+        transition: 0.25s;
+        ul
+        {
+            li
+            {
+                a
+                {
+                    padding: 0px 40px;
+                    font-size: 16px;
+                    svg
+                    {
+                        min-width: 32px;
+                        min-height: 32px;
+                    }
+                    h6
+                    {
+                        margin-left: 16px;
+                    }
+                }
+            }
+        }
+        &.active
+        {
+            transform: translateX(0%);
+        }
+    }
+}
+@media screen and (max-width: 576px) {
+    nav.sidebar
+    {
+        max-width: 265px;
+        min-width: 265px;
+        padding-top: 52px;
+        ul
+        {
+            li
+            {
+                a
+                {
+                    padding: 0px 20px;
+                    font-size: 14px;
+                    height: 72px;
+                    svg
+                    {
+                        min-width: 26px;
+                        min-height: 26px;
+                        max-width: 26px;
+                        max-height: 26px;
+                    }
+                    h6
+                    {
+                        margin-left: 12px;
+                    }
                 }
             }
         }
