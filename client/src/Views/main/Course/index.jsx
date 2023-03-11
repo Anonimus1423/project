@@ -39,7 +39,7 @@ function Course() {
           image={CourseExampleImage}
         />
         <LessonButton
-          title="Present Simple։ Կիրառություն"
+          title="Present Simple։ Կիրառություն Present Simple։ Կիրառություն "
           time="15ր."
           checked
         />

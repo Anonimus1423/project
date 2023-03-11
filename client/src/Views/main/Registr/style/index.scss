@@ -11,10 +11,12 @@
         display: inline-flex;
         justify-content: center;
         align-items: stretch;
+        max-width: 952px;
+        width: 100%;
         &__right
         {
             width: 100%;
-            width: 476px;
+            width: 50%;
             min-height: 506px;
             padding-top: 24px;
             position: relative;
@@ -55,7 +57,7 @@
         &__left
         {
             position: relative;
-            width: 476px;
+            width: 50%;
             background-color: #F2E9FF;
             border: 1px solid #A766FE;
             display: flex;
@@ -68,6 +70,168 @@
                 min-height: 400px;
                 max-width: 400px;
                 max-height: 400px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .registration
+    {
+        .form
+        {
+            margin-top: 32px;
+            &__right
+            {
+                padding-top: 19px;
+                    width: 55%;
+                    padding-bottom: 41px;
+                .form__right__body>button
+                {
+                    margin-top: 32px;
+                }
+                .form__right__body>button.forget
+                {
+                    margin-top: 13px;
+                }
+                .form-bottom
+                {
+                    margin-top: 19px;
+                    p
+                    {
+                        margin-right: 32px;
+                    }
+                }
+                .form__right__body
+                {
+                    padding: 0 35px;
+                    &.margin-top
+                    {
+                        transform: translate(-50%, -50%) translateY(-8px);
+                    }
+                    .forget
+                    {
+                        p
+                        {
+                            font-size: 16px;
+                        }
+                    }
+                    &>button.mainButton.m.full.yellow
+                    {
+                        padding: 11.5px 36px;
+                        p
+                        {
+                            font-size: 15px;
+                        }
+                    }
+                    .form-bottom
+                    {
+                        flex-wrap: wrap;
+                        &>p
+                        {
+                            white-space: nowrap;
+                            font-size: 15px;
+                        }  
+                        button
+                        {
+                            p
+                            {
+                                font-size: 17px;
+                            }
+                        } 
+                    }
+                }
+            }
+            &__left
+            {
+                width: 45%;
+                img
+                {
+                    min-width: 300px;
+                    min-height: 300px;
+                    max-width: 300px;
+                    max-height: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .registration
+    {
+        .form
+        {
+            margin-top: 27px;
+            position: relative;
+            flex-direction: column-reverse;
+            margin-bottom: 136px;
+            &__right
+            {
+                min-height: 0;
+                width: 100%;
+                .form__right__body
+                {
+                    top: 0;
+                    left: 0;
+                    transform: none !important;
+                }
+            }
+            &__left
+            {
+                width: 100%;
+                border-radius: 0 0 16px 16px;
+                padding: 30px 0;
+                img
+                {
+                    max-height: none;
+                    max-width: none;
+                    min-height: 0;
+                    min-width: 0;
+                    width: 59.5%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 576px) 
+{
+    .registration
+    {
+        .form
+        {
+            margin-top: 25px;
+            &__right
+            {
+                padding-top: 24px;
+                padding-bottom: 24px;
+                .form__right__body>button.mainButton.m.full.yellow
+                {
+                    margin-top: 24px;
+                    padding: 10.5px 0;
+                }
+                .form__right__body>button.forget
+                {
+                    margin-top: 12px;
+                    p
+                    {
+                        font-size: 14px;
+                    }
+                }
+                .form-bottom
+                {
+                    margin-top: 24px;
+                    justify-content: space-between;
+                    p
+                    {
+                        margin-right: 0px;
+                    }
+                }
+                .form__right__body
+                {
+                    padding: 0 24px;
+                }
             }
         }
     }

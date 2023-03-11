@@ -1,6 +1,7 @@
 header
 {
     height: 76px;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -128,6 +129,16 @@ header
     header .right > a:first-child{
         display: none;
     }
+    header .right .profile .profile-icon
+    {
+        width: 48px;
+        height: 48px;
+        img
+        {
+            width: 21px;
+            height: 21px;
+        }
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -148,6 +159,10 @@ header
     header .left a
     {
         margin-left: 75px;
+    }
+    .sidebar-button
+    {
+        left: 25px;
     }
 }
 
@@ -174,5 +189,15 @@ header
     header
     {
         height: 52px !important;
+    }
+    header .right .profile .profile-icon
+    {
+        width: 40px;
+        height: 40px;
+        img
+        {
+            width: 16px;
+            height: 16px;
+        }
     }
 }

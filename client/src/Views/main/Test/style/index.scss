@@ -1,6 +1,6 @@
 div.test-container
 {
-    .test-container
+    .test-container-2
     {
         padding: 0 100px;
         .test
@@ -33,6 +33,7 @@ div.test-container
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                padding: 0 40px;
                 img
                 {
                     margin-top: 32px;
@@ -40,7 +41,8 @@ div.test-container
                 }
                 .question
                 {
-                    width: 810px;
+                    width: 100%;
+                    max-width: 810px;
                     h5
                     {
                         margin-top: 32px;
@@ -87,17 +89,226 @@ div.test-container
                     justify-content: center;
                     align-items: center;
                     margin-top: 40px;
-                    button:nth-child(1)
+                    .hide
                     {
-    
+                        display: none;
+                        width: 100%;
                     }
                     button:nth-child(2)
                     {
-                        margin: 0 64px;
+    
                     }
                     button:nth-child(3)
                     {
+                        margin: 0 64px;
+                    }
+                    button:nth-child(4)
+                    {
     
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1450px) {
+    div.test-container
+    {
+        .test-container-2
+        {
+            .test
+            {
+                margin-top: 36px;
+                padding-bottom: 36px;
+                .test-top
+                {
+                    padding: 14.5px 36px;
+                }
+                .test-bottom
+                {
+                    padding: 0 36px;
+                    img
+                    {
+                        margin-top: 29px;
+                    
+                    }
+                    .question
+                    {
+                        width: 100%;
+                        max-width: 810px;
+                        h5
+                        {
+                            margin-top: 29px;
+                            padding-bottom: 7px;
+                        }
+                        .answers
+                        {
+                            margin: 0 -11px;
+                            .answer
+                            {
+                                padding: 0 10px;
+                                margin-top: 20px;
+                                .answer-body
+                                {
+                                    padding: 12px;
+                                }
+                            }
+                        }
+                    }
+                    .test-buttons
+                    {
+                        margin-top: 36px;
+                        button:nth-child(3), .hide button
+                        {
+                            margin: 0 50px;
+                            padding: 16px 50px;
+                            p
+                            {
+                                font-size: 16px;
+                                line-height: 23px;
+                            }
+                        }
+                        button:nth-child(4), button:nth-child(2)
+                        {
+                            p
+                            {
+                                font-size: 16px;
+                                line-height: 23px;
+                            }
+                        }
+                        button:nth-child(4)
+                        {
+                            svg
+                            {
+                                margin-left: 13px;
+                            }
+                        }
+                        button:nth-child(2)
+                        {
+                            svg
+                            {
+                                margin-right: 13px;
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+    div.test-container
+    {
+        .test-container-2
+        {
+            .test
+            {
+                .test-bottom
+                {
+                    .question
+                    {
+                        .answers
+                        {
+                            flex-direction: column;
+                            .answer
+                            {
+                                width: 100%;
+                                padding: 0 0px;
+                                margin-top: 18px;
+                                padding: 0 12px;
+                            }
+                        }
+                    }
+                    .test-buttons
+                    {
+                        display: block;
+                        button:nth-child(2)
+                        {
+                            flex: none;
+                        }
+                        .hide
+                        {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            button
+                            {
+                                margin: 0;
+                                margin-bottom: 24px;
+                            }
+                        }
+                        button:nth-child(3)
+                        {   
+                            display: none;
+                        }
+                        button:nth-child(4)
+                        {
+                            flex: none;
+                            margin-left: 32px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 576px) {
+    div.test-container
+    {
+        .test-container-2
+        {
+            .test
+            {
+                margin-top: 24px;
+                padding-bottom: 24px;
+                .test-top
+                {
+                    padding: 12px 16px;
+                }
+                .test-bottom
+                {
+                    padding: 0 16px;
+                    img
+                    {
+                        margin-top: 24px;
+                    }
+                    .question
+                    {
+                        h5
+                        {
+                            margin-top: 17px;
+                            padding-bottom: 0px;
+                        }
+                        .answers
+                        {
+                            .answer
+                            {
+                                margin-top: 16px;
+                                padding: 0 10px;
+                                .answer-body
+                                {
+                                    padding: 10px;
+                                }
+                            }
+                        }
+                    }
+                    .test-buttons
+                    {
+                        margin-top: 24px;
+                        .hide button
+                        {
+                            padding: 10.5px 35px;
+                            p
+                            {
+                                font-size: 14px;
+                            }
+                        }
                     }
                 }
             }

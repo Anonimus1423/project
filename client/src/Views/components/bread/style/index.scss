@@ -26,3 +26,43 @@
         }
     }
 }
+
+
+@media screen and (max-width: 1550px) {
+    .bread
+    {
+        margin-top: 22px;
+        margin-bottom: 45px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .bread
+    {
+        margin-top: 21px;
+        margin-bottom: 42.5px;
+    }
+}
+
+@media screen and (max-width: 1112px) {
+    .bread
+    {
+        margin-top: 18px;
+        margin-bottom: 36px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .bread
+    {
+        margin-top: 16px;
+        margin-bottom: 31px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .bread
+    {
+        margin-bottom: 24px;
+    }
+}

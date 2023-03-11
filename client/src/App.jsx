@@ -91,6 +91,13 @@ function App() {
                       <span></span>
                       <span></span>
                     </div>
+                    <div
+                      className={
+                        sidebarOpened
+                          ? "black-background active"
+                          : "black-background"
+                      }
+                    ></div>
                     <Sidebar sidebarOpened={sidebarOpened} />
                     <UserRoutes />
                   </BrowserRouter>
