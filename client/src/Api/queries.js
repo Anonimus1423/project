@@ -41,3 +41,7 @@ export const getDefaultTest = () => {
 export const updateDefaultTest = (data) => {
   return axios.put("/admin/default-test", data);
 };
+
+export const deleteClass = (id) => {
+  return axios.delete(`/admin/class/${id}`);
+};

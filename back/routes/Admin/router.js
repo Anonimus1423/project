@@ -31,4 +31,6 @@ router.put(
   services.updateCourse
 );
 
+router.delete("/class/:id", services.deleteCourse);
+
 export default router;

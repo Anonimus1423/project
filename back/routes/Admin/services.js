@@ -217,3 +217,18 @@ export const getDefaultTest = async (req, res) => {
     return res.status(400).send(error);
   }
 };
+
+export const deleteCourse = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    await Course.deleteOne({ _id: courseId });
+    const allLessons = await Lesson.find({ courseId });
+    for (const lesson of allLessons) {
+      await Lesson.deleteOne({ _id: lesson._id });
+      await Quizes.deleteMany({ lessonId: lesson._id });
+    }
+    return res.status(200).send({ deleted: true });
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+};
