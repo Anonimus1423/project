@@ -1,6 +1,7 @@
 header
 {
     height: 76px;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -158,6 +159,10 @@ header
     header .left a
     {
         margin-left: 75px;
+    }
+    .sidebar-button
+    {
+        left: 25px;
     }
 }
 

@@ -1,0 +1,31 @@
+.pop-up
+{
+    position: absolute;
+    background-color: #FFFBD9;
+    padding: 32px 16px;
+    padding-top: 16px;
+    min-width: 280px;
+    border-radius: 8px;
+    box-shadow: 0px 4.400000095367432px 4.712500095367432px 0px #00000005;
+    box-shadow: 0px 22px 29px 0px #0000000A;
+    z-index: 3;
+    h6
+    {   
+        margin-bottom: 16px;
+        margin-top: -4px;
+    }
+    svg
+    {
+        position: relative;
+        left: 100%;
+        cursor: pointer;
+        opacity: 0.5;
+        width: 20px;
+        height: 20px;
+        transform: translateX(-100%);
+        &:hover
+        {
+            opacity: 1;
+        }
+    }
+}
