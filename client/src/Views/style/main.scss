@@ -186,6 +186,13 @@ body, .App
     min-height: 100vh;
 }
 
+@media screen and (max-width: 1450px) 
+{
+    h2.secondPage
+    {
+        margin-top: 42px;
+    }
+}
 @media screen and (max-width: 1200px) {
     h1
     {
@@ -195,6 +202,12 @@ body, .App
     p
     {
         font-size: 16px;
+    }
+    h2.secondPage
+    {
+        margin-top: 38px;
+        font-size: 28px;
+        line-height: 42px;
     }
 }
 
@@ -212,11 +225,11 @@ body, .App
 
     h2, .h2
     {
-        font-size: 20px;
-        line-height: 30px;
+        font-size: 20px !important;
+        line-height: 30px !important;
         &.secondPage
         {
-            margin-top: 32px;
+            margin-top: 32px !important;
         }
     }
 
@@ -240,8 +253,8 @@ body, .App
 
     h2.subtitle, .h2.subtitle
     {
-        font-size: 14px;
-        line-height: 18.5px;
+        font-size: 14px !important;
+        line-height: 18.5px !important;
     }
 
     h4.subtitle, .h4.subtitle
@@ -250,7 +263,7 @@ body, .App
         line-height: 9.3px;
     }
 
-    p
+    p 
     {
         font-size: 14px !important;
         line-height: 22.4px !important;

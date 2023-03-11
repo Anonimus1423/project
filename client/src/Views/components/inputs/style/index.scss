@@ -25,3 +25,25 @@ input.mainTextInput
         
     }
 }
+
+@media screen and (max-width: 1350px) {
+    label.mainTextInput
+    {
+        margin-top: 12.5px;
+        margin-bottom: 6.5px;
+        font-size: 15px;
+    }
+    input.mainTextInput
+    {
+        outline: none !important;
+        font-size: 15px !important;
+        display: block;
+        width: 100%;
+        padding: 12.5px;
+        padding-top: 9.6px;
+        &::placeholder
+        {
+            font-size: 15px !important;
+        }
+    }
+}

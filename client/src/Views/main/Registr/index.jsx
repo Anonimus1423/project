@@ -64,7 +64,7 @@ const RegistrPage = () => {
         }}
       />
       {step === 0 && (
-        <>
+        <div className="right-container">
           <h2 className="secondPage">Already have an account?</h2>
           <form
             onSubmit={(e) => {
@@ -121,10 +121,10 @@ const RegistrPage = () => {
               </div>
             </div>
           </form>
-        </>
+        </div>
       )}
       {step === 1 && (
-        <>
+        <div className="right-container">
           <h2 className="secondPage">Already have an account?</h2>
           <form
             onSubmit={(e) => {
@@ -151,7 +151,7 @@ const RegistrPage = () => {
               </div>
             </div>
           </form>
-        </>
+        </div>
       )}
       <Footer fixed />
     </div>

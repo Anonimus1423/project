@@ -17,7 +17,7 @@ function Test({ test }) {
         }}
       />
       <h2 className="secondPage">{test.title}</h2>
-      <div className="test-container">
+      <div className="test-container test-container-2">
         <div className="test">
           <div className="test-top">
             <p className="m">Выбери правильный вариант</p>
@@ -38,6 +38,9 @@ function Test({ test }) {
               </div>
             </div>
             <div className="test-buttons">
+              <div className="hide">
+                <MainButton color="yellow">Պատասխանել</MainButton>
+              </div>
               <MainButton color="transparent-yellow" arrowLeft>
                 Նախորդը
               </MainButton>

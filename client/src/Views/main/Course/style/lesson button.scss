@@ -22,6 +22,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-left: 20px;
         .time
         {
             display: flex;
@@ -40,8 +41,10 @@
         .check-box
         {
             margin: 0 40px;
-            width: 24px;
-            height: 24px;
+            min-width: 24px;
+            min-height: 24px;
+            max-width: 24px;
+            max-height: 24px;
             border: 1px solid #BDBDBD;
             border-radius: 4px;
             img
@@ -75,5 +78,150 @@
             }
         }
 
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .lesson-button
+    {
+        margin-top: 14px;
+        padding: 12px 30px;
+        .lesson-button__right
+        {
+            button
+            {
+                padding: 11.6px 36px;
+                p
+                {
+                    font-size: 14px;
+                    line-height: 18.5px;
+                }
+                svg
+                {
+                    margin-left: 13px;
+                }
+            }
+            .time
+            {
+                img
+                {
+                    width: 19px;
+                    height: 19px;
+                }
+            }
+            .check-box
+            {
+                margin: 0 32px;
+                min-width: 19px;
+                min-height: 19px;
+                max-width: 19px;
+                max-height: 19px;
+                &.locked
+                {
+                    img
+                    {
+                        width: 13px;
+                        height: 17px;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .lesson-button
+    {
+        flex-direction: column;
+        margin-top: 16px;
+        align-items: start;
+        padding: 26px 40px;
+        .lesson-button__right
+        {
+            margin-left: 0;
+            margin-top: 35px;
+            .time
+            {
+                img
+                {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+            .check-box
+            {
+                margin: 0 20px;
+                min-width: 24px;
+                min-height: 24px;
+                max-width: 24px;
+                max-height: 24px;
+                &.locked
+                {
+                    img
+                    {
+                        width: 16px;
+                        height: 21px;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .lesson-button
+    {
+        flex-direction: column;
+        margin-top: 16px;
+        align-items: start;
+        padding: 16px 40px;
+        h5
+        {
+            line-height: 20px;
+        }
+        .lesson-button__right
+        {
+            margin-left: 0;
+            margin-top: 22px;
+            .time
+            {
+                img
+                {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+            .check-box
+            {
+                margin: 0 15px;
+                min-width: 20px;
+                min-height: 20px;
+                max-width: 20px;
+                max-height: 20px;
+                &.locked
+                {
+                    img
+                    {
+                        width: 16px;
+                        height: 21px;
+                    }
+                }
+            }
+            button
+            {
+                padding: 8px 25px;
+                p
+                {
+                    font-size: 12px !important;
+                    line-height: 15.5px !important;
+                }
+                svg
+                {
+                    margin-left: 11px;
+                }
+            }
+        }
     }
 }

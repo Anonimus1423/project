@@ -52,50 +52,58 @@ const LoginPage = () => {
         }}
       />
       <h2 className="secondPage">Already have an account?</h2>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLogin();
-        }}
-        className="form"
-      >
-        <div className="form__left">
-          <img src={LoginIcon} alt="registration" />
-        </div>
-        <div className="form__right">
-          <div className="form__right__body margin-top">
-            <MainTextInput
-              type="text"
-              placeHolder="Գրեք ձեր Email-ը"
-              value={data.login}
-              label="Email"
-              name="login"
-              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-            />
-            <MainTextInput
-              type="password"
-              value={data.password}
-              name="password"
-              label="Password"
-              placeHolder="Գրեք ձեր ծածկագիրը"
-              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
-            />
-            <MainButton color="transparent-yellow forget">
-              Forgot password?
-            </MainButton>
-            <MainButton size="m full" color="yellow">
-              Գրանցում
-            </MainButton>
-            <div className="form-bottom">
-              <p className="m">Don't have an account?</p>
-              <Link to="/registration">
-                <MainButton color="transparent-yellow">Registration</MainButton>
-              </Link>
-            </div>
-            {isError && <div>Not Found</div>}
+      <div className=" right-container">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin();
+          }}
+          className="form"
+        >
+          <div className="form__left">
+            <img src={LoginIcon} alt="registration" />
           </div>
-        </div>
-      </form>
+          <div className="form__right">
+            <div className="form__right__body margin-top">
+              <MainTextInput
+                type="text"
+                placeHolder="Գրեք ձեր Email-ը"
+                value={data.login}
+                label="Email"
+                name="login"
+                onChange={(e) =>
+                  handleInputChange(e.target.name, e.target.value)
+                }
+              />
+              <MainTextInput
+                type="password"
+                value={data.password}
+                name="password"
+                label="Password"
+                placeHolder="Գրեք ձեր ծածկագիրը"
+                onChange={(e) =>
+                  handleInputChange(e.target.name, e.target.value)
+                }
+              />
+              <MainButton color="transparent-yellow forget">
+                Forgot password?
+              </MainButton>
+              <MainButton size="m full" color="yellow">
+                Գրանցում
+              </MainButton>
+              <div className="form-bottom">
+                <p className="m">Don't have an account?</p>
+                <Link to="/registration">
+                  <MainButton color="transparent-yellow">
+                    Registration
+                  </MainButton>
+                </Link>
+              </div>
+              {isError && <div>Not Found</div>}
+            </div>
+          </div>
+        </form>
+      </div>
       <Footer fixed />
     </div>
   );
