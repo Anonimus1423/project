@@ -1,16 +1,19 @@
-import { createBrowserRouter } from "react-router-dom";
 import MainPage from "../Views/main/MainPage";
 import MyCourses from "../Views/main/MyCourses";
 import { defaultRoutes } from "./DefaultRoutes";
+import { Route } from "react-router-dom";
+import { Routes } from "react-router-dom";
 
-export const userRoutes = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainPage />,
-  },
-  {
-    path: "/my-courses",
-    element: <MyCourses />,
-  },
-  ...defaultRoutes,
-]);
+const UserRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/my-courses" element={<MyCourses />} />
+      {defaultRoutes.map((e, key) => {
+        return <Route path={e.path} key={key} element={e.element} />;
+      })}
+    </Routes>
+  );
+};
+
+export default UserRoutes;

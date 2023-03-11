@@ -47,7 +47,7 @@ const LoginPage = () => {
         buttons={{
           firstText: "Մուտք",
           secondText: "Գրանցում",
-          firstLink: "/sign-up",
+          firstLink: "/log-in",
           secondLink: "/registration",
         }}
       />

@@ -4,8 +4,6 @@ import AdminMainPage from "../Views/admin/MainPage";
 import AdminUsersPage from "../Views/admin/Users";
 import { EditClass } from "./../Views/admin/EditClass/index";
 import Main from "../Views/main";
-import LoginPage from "../Views/main/Login";
-import RegistrPage from "../Views/main/Registr";
 import { defaultRoutes } from "./DefaultRoutes";
 import { DefaultTestAdmin } from "./../Views/admin/DefaultTest/index";
 

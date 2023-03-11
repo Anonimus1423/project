@@ -3,8 +3,8 @@ import { authUser, getCoursesList } from "./Api/queries";
 import useSumbitForm from "./utils/submitForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { mainRoutes } from "./Routes/main";
-import { userRoutes } from "./Routes/user";
+import MainRoutes from "./Routes/main";
+import UserRoutes from "./Routes/user";
 import { adminRoutes } from "./Routes/admin";
 import { BrowserRouter, RouterProvider } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -72,8 +72,8 @@ function App() {
                       }
                     ></div>
                     <Sidebar sidebarOpened={sidebarOpened} />
+                    <MainRoutes />
                   </BrowserRouter>
-                  <RouterProvider router={mainRoutes} />
                 </>
               )}
               {role === 1 && (
@@ -92,8 +92,8 @@ function App() {
                       <span></span>
                     </div>
                     <Sidebar sidebarOpened={sidebarOpened} />
+                    <UserRoutes />
                   </BrowserRouter>
-                  <RouterProvider router={userRoutes} />
                 </>
               )}
               {role === 2 && <RouterProvider router={adminRoutes} />}
