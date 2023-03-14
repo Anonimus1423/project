@@ -34,12 +34,20 @@ export const getCoursesList = () => {
   return axios.get("/api/courses/all");
 };
 
+export const getUserCourses = () => {
+  return axios.get("/api/user/courses/all");
+};
+
 export const getDefaultTest = () => {
   return axios.get("/admin/default-test");
 };
 
 export const updateDefaultTest = (data) => {
   return axios.put("/admin/default-test", data);
+};
+
+export const getLessonWithTest = (courseId, lessonId) => {
+  return axios.get(`/api/user/course/${courseId}/lesson/${lessonId}`);
 };
 
 export const deleteClass = (id) => {

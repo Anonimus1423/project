@@ -9,14 +9,14 @@ const useSumbitForm = (query, initialLoadingState) => {
       onSuccess(response.data);
       setLoading(false);
     } catch ({ response }) {
-      if (response.status === 403) {
+      if (response?.status === 403) {
         alert("TOKEN HAS EXPIRED");
         localStorage.removeItem("token");
         window.location = "/";
         return;
       }
       setLoading(false);
-      PrintErrors(response.data.errors);
+      PrintErrors(response?.data?.errors);
     }
   };
   return [func, loading];

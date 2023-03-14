@@ -12,7 +12,7 @@ function PageTitle({ title, tags, proggress, time }) {
           </div>
         ) : (
           <ul className="tags">
-            {tags.map((tagText) => {
+            {tags?.map((tagText) => {
               return (
                 <li
                   key={Math.random()}

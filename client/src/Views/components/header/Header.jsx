@@ -12,6 +12,7 @@ function Header({ buttons }) {
   const [popupOpened, setPopupOpened] = useState(false);
   const togglePopup = () => setPopupOpened((state) => !state);
   let authorized = false;
+  const app = useSelector(appSelectors.appSelector);
   const role = useSelector(appSelectors.roleSelector);
   if (role === 1) authorized = true;
   if (authorized)
@@ -30,7 +31,7 @@ function Header({ buttons }) {
             </MainButton>
           </Link>
           <div className="profile">
-            <h6 onClick={() => togglePopup()}>A2</h6>
+            <h6 onClick={() => togglePopup()}>{app?.user?.level}</h6>
             <PopUp
               popupOpened={popupOpened}
               togglePopup={togglePopup}

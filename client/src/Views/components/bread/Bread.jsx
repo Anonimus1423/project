@@ -6,7 +6,7 @@ function Bread({ elements }) {
   return (
     <div className="bread">
       {elements.map((element, i) => (
-        <div className="bread__element">
+        <div className="bread__element" key={i}>
           <Link to={element[1]}>
             <p className="s">{element[0]}</p>
           </Link>

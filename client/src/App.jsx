@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { authUser, getCoursesList } from "./Api/queries";
+import { authUser, getCoursesList, getUserCourses } from "./Api/queries";
 import useSumbitForm from "./utils/submitForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

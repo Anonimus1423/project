@@ -1,6 +1,7 @@
 import "./style/index.scss";
 import { ReactComponent as Share } from "../../images/icons/Share.svg";
 import { ReactComponent as Lock } from "../../images/icons/Lock.svg";
+import { Link } from "react-router-dom";
 
 function CourseBlock({
   title,
@@ -10,10 +11,11 @@ function CourseBlock({
   Image,
   proggress,
   closed,
+  id,
 }) {
-  console.log(title, description, tags, date, Image, proggress, closed);
   return (
-    <div
+    <Link
+      to={!closed ? "/courses/" + id : "#"}
       className={
         closed
           ? "course closed"
@@ -32,7 +34,7 @@ function CourseBlock({
         <div className="right">
           <div className="top">
             <ul className="tags">
-              {tags.map((tagText) => {
+              {tags?.map((tagText) => {
                 return (
                   <li
                     key={Math.random()}
@@ -68,7 +70,7 @@ function CourseBlock({
           </div>
         ) : null}
       </div>
-    </div>
+    </Link>
   );
 }
 
