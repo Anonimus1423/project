@@ -6,9 +6,11 @@ import { useSelector } from "react-redux";
 import ProfileIcon from "../../images/icons/Profile.svg";
 import * as appSelectors from "../../../redux/app/selectors";
 import PopUp from "../popup/PopUp";
+import { useState } from "react";
 
 function Header({ buttons }) {
-  const app = useSelector(appSelectors.appSelector);
+  const [popupOpened, setPopupOpened] = useState(false);
+  const togglePopup = () => setPopupOpened((state) => !state);
   let authorized = false;
   const role = useSelector(appSelectors.roleSelector);
   if (role === 1) authorized = true;
@@ -28,15 +30,12 @@ function Header({ buttons }) {
             </MainButton>
           </Link>
           <div className="profile">
-            <h6>A2</h6>
+            <h6 onClick={() => togglePopup()}>A2</h6>
             <PopUp
+              popupOpened={popupOpened}
+              togglePopup={togglePopup}
               title="Right ansrer is 3"
-              position={{
-                top: "100%",
-                left: "100%",
-                transform:
-                  "translateX(-100%) translateX(-100px) translateY(15px)",
-              }}
+              className="header"
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
               euismod bibendum laoreet. Proin gravida dolor sit amet lacus
