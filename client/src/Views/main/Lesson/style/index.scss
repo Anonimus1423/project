@@ -1,0 +1,47 @@
+.video
+{
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 16px;
+    position: relative;
+    width: 100%;
+    background-color: #FFFBD9;
+    .video-button
+    {
+        width: 140px;
+        height: 140px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        opacity: 0;
+        left: 50%;
+        cursor: pointer;
+        pointer-events: none;
+        background-color: white;
+        border-radius: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        justify-content: center;
+        &.active
+        {
+            opacity: 1;
+        }
+        svg
+        {
+            margin-left: 13px;
+            margin-top: -7px;
+            width: 56px;
+            height: 56px;
+        }
+    }
+    video
+    {
+        border-radius: 16px;
+        width: 100%;
+    }
+    &.active video
+    {
+        filter: brightness(0.7);
+    }
+}

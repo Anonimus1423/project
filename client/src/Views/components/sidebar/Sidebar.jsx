@@ -14,8 +14,16 @@ function Sidebar({ sidebarOpened }) {
           Icon={TestIcon}
           link="/test"
         />
-        <SidebarLink text="Իմ դասընթացները" Icon={ClassIcon} link="/b" />
-        <SidebarLink text="Բոլոր դասընթացները" Icon={CheckedIcon} link="/c" />
+        <SidebarLink
+          text="Իմ դասընթացները"
+          Icon={ClassIcon}
+          link="/my-courses"
+        />
+        <SidebarLink
+          text="Բոլոր դասընթացները"
+          Icon={CheckedIcon}
+          link="/courses"
+        />
       </ul>
     </nav>
   );

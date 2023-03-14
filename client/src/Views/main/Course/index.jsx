@@ -7,9 +7,24 @@ import LessonButton from "./Course Components/Lesson Button";
 import "./style/index.scss";
 import "./style/about.scss";
 import "./style/lesson button.scss";
+import useSumbitForm from "../../../utils/submitForm";
+import { getClassInfo } from "../../../Api/queries";
 import Footer from "../../components/footer/Footer";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function Course() {
+  let { courseId } = useParams();
+  const [getCourse, loading] = useSumbitForm(
+    () => getClassInfo(courseId),
+    true
+  );
+  const [course, setCourse] = useState({});
+  useEffect(() => {
+    getCourse({}, (data) => {
+      setCourse(data);
+    });
+  }, []);
   return (
     <div className="right-main-container">
       <Header
@@ -25,39 +40,32 @@ function Course() {
           elements={[
             ["Գլխավոր", "/"],
             ["Բալոր դասընթացները", "/courses"],
-            ["A1", "/course"],
+            ["Դասընթաց", window.location.pathname],
           ]}
         />
         <PageTitle
-          title="Անգլերենի դասընթաց A1 մակարդակի համար"
-          tags={["լավ", "А1"]}
-          proggress={30}
+          title={course?.title}
+          tags={course?.tags}
+          proggress={course?.proggress}
         />
         <About
           title="Դասընթացի մասին"
-          description="Անգլերեն խոսելը 21-րդ դարում շատ կարևոր է: Ամրագրեք ձեր տեղը #TESOL և #TEFL երաշխավորում ստացած մեր ուսուցիչների մոտ և եղեք 1 քայլով ավելի մոտ Ձեր երազանքին: Անգլերեն խոսելը 21-րդ դարում շատ կարևոր է: Ամրագրեք ձեր տեղը #TESOL և #TEFL երաշխավորում ստացած մեր ուսուցիչների մոտ և եղեք 1 քայլով ավելի մոտ Ձեր երազանքին:"
-          image={CourseExampleImage}
+          description={course?.description}
+          image={course?.picture_src}
         />
-        <LessonButton
-          title="Present Simple։ Կիրառություն Present Simple։ Կիրառություն "
-          time="15ր."
-          checked
-        />
-        <LessonButton
-          title="Present Simple։ Կիրառություն"
-          time="15ր."
-          checked
-        />
-        <LessonButton
-          title="Present Simple։ Կիրառություն"
-          time="15ր."
-          checked
-        />
-        <LessonButton title="Present Simple։ Կիրառություն" time="15ր." active />
-        <LessonButton title="Present Simple։ Կիրառություն" time="15ր." locked />
-        <LessonButton title="Present Simple։ Կիրառություն" time="15ր." locked />
-        <LessonButton title="Present Simple։ Կիրառություն" time="15ր." locked />
-        <LessonButton title="Present Simple։ Կիրառություն" time="15ր." locked />
+        {course?.lessons
+          ? course.lessons?.map((lesson, id) => {
+              return (
+                <LessonButton
+                  key={id}
+                  id={lesson._id}
+                  title={lesson.title}
+                  time={lesson.time}
+                  checked
+                />
+              );
+            })
+          : null}
       </div>
       <Footer />
     </div>
