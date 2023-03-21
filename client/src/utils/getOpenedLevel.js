@@ -1,6 +1,5 @@
 export default function getOpenedLevel(level) {
   let openedLevel = [level];
-  console.log(openedLevel);
   if (level === "A2") {
     openedLevel = [...openedLevel, "A1"];
   }

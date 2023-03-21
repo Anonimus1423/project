@@ -42,7 +42,7 @@ export const getCourseWithProgress = async (courseId, userId) => {
   const ongoing = await Ongoing.findOne({ courseId, userId });
   const course = await Course.findById(courseId);
   if (!ongoing) {
-    return { course, progress: null };
+    return { course, progress: 0, isPassed: false };
   }
   const courseLessons = await Lesson.find({ courseId });
   const lessonsIds = courseLessons.map((e) => e._id);
@@ -153,19 +153,21 @@ export const getCourseWithLessons = async (req, res) => {
     const allCoursesLessons = await Lesson.find({ courseId: id });
     const ongoing = await Ongoing.findOne({ userId: user._id, courseId: id });
     const lessons = [];
-    if (!ongoing) {
-      return res.status(200).send({
-        course,
-        lessons: allCoursesLessons,
-      });
-    }
+    const courseWithProgress = await getCourseWithProgress(id, user._id);
+
+    // if (!ongoing) {
+    //   return res.status(200).send({
+    //     course: courseWithProgress,
+    //     lessons: allCoursesLessons,
+    //   });
+    // }
     for (const less of allCoursesLessons) {
       lessons.push({
         ...JSON.parse(JSON.stringify(less)),
-        passed: !!ongoing.passedLessonsIds.includes(less._id),
+        passed: ongoing ? !!ongoing.passedLessonsIds.includes(less._id) : false,
       });
     }
-    return res.status(200).send({ course, lessons });
+    return res.status(200).send({ ...courseWithProgress, lessons });
   } catch (error) {
     return res.status(400).send(error);
   }
