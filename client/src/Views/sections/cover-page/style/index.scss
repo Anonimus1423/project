@@ -4,17 +4,26 @@ section.cover-page
     position: relative;
     display: flex;
     justify-content: space-between;
-    background-size: 101%;
-    background-repeat: no-repeat;
-    background-position: bottom;
     align-items: end;
-    background-image: url("../../../images/Cover Page Background.svg");
+    overflow: hidden;
+    .cover-page-background
+    {
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        transform: translate(-50%, -100%);
+        height: auto;
+        width: 101%;
+        z-index: 0;
+    }
     .left
     {
         width: 50%;
         max-width: 560px;
         padding-top: 179px;
         padding-bottom: 211px;
+        position: relative;
+        z-index: 1;
         h1
         {
             color: white;
@@ -31,6 +40,7 @@ section.cover-page
     .right-img
     {
         position: relative;
+        z-index: 1;
         left: -59px;
         top: -44px;
         img
@@ -40,12 +50,14 @@ section.cover-page
     }
     .play-button
     {
+        transition: 0.3s;
         width: 180px;
         height: 180px;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
+        transform-origin: center;
         flex-direction: column;
         background: linear-gradient(140.52deg, #7D16FF 0%, #A766FE 100%);
         position: absolute;
@@ -53,6 +65,7 @@ section.cover-page
         top: 48.9%;
         transform: translateX(-50%);
         transition: 0.3s;
+        z-index: 1;
         &:after
         {
             content: "";
@@ -103,6 +116,7 @@ section.cover-page
         }
         &:hover
         {
+            transform: scale(1.03) translateX(-50%);
             &::before
             {
                 transform: translate(-50%, -50%) scale(1.07);
@@ -147,6 +161,18 @@ section.cover-page
             img
             {
                 width: 500px;
+            }
+            @keyframes man {
+                from
+                {
+                    transform: translateX(120%);
+                    left: 0px !important;
+                }
+                to
+                {
+                    transform: translateX(0%);
+                    left: 0px !important;
+                }
             }
         }
         .play-button
@@ -197,6 +223,12 @@ section.cover-page
         background-size: 160%;
         background-position-x: 100%;
         align-items: center;
+        .cover-page-background
+        {
+            left: -60%;
+            transform: translate(0%, -100%);
+            width: 160%;
+        }
         .left
         {
             width: 100%;
@@ -261,6 +293,11 @@ section.cover-page
     {
         background-size: 180%;
         background-position-x: 98%;
+        .cover-page-background
+        {
+            left: -78.35%;
+            width: 180%;
+        }
         .left
         {
             padding-top: 80px;
@@ -347,8 +384,13 @@ section.cover-page
 @media screen and (max-width: 576px) {
     section.cover-page
     {
-        background-size: 170%; // dza
+        background-size: 170%;
         background-position-x: 100%;
+        .cover-page-background
+        {
+            left: -70%;
+            width: 170%;
+        }
         .left
         {
             padding-top: 40px;
@@ -419,6 +461,11 @@ section.cover-page
     {
         background-size: 250%; // dza
         background-position-x: 70%;
+        .cover-page-background
+        {
+            left: -105%;
+            width: 250%;
+        }
         .play-button
         {
             width: 80px;

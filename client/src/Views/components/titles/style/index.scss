@@ -85,6 +85,116 @@ h2.main-title
             background-color: #EFC31A;
         }
     }
+    .proggress.C1
+    {
+        background-color: #E2D0FD;
+        .proggress__pointer
+        {
+            background-color: #A766FE;
+        }
+    }
+    .page-title__top .tags.C1
+    {
+        li.tag
+        {
+            &.white
+            {
+                background-color: #F2E9FF;
+            }
+            &.yellow
+            {
+                background-color: #E2D0FD;
+            }
+        }
+    }
+    .proggress.A1
+    {
+        background-color: #CEFAC6;
+        .proggress__pointer
+        {
+            background-color: #10AF63;
+        }
+    }
+    .page-title__top .tags.A1
+    {
+        li.tag
+        {
+            &.white
+            {
+                background-color: #E9FFE5;
+            }
+            &.yellow
+            {
+                background-color: #CEFAC6;
+            }
+        }
+    }
+    .proggress.A2
+    {
+        background-color: #FEB2D5;
+        .proggress__pointer
+        {
+            background-color: #FF3596;
+        }
+    }
+    .page-title__top .tags.A2
+    {
+        li.tag
+        {
+            &.white
+            {
+                background-color: #FFEBF4;
+            }
+            &.yellow
+            {
+                background-color: #FEB2D5;
+            }
+        }
+    }
+    .proggress.B1
+    {
+        background-color: #8EC0EF;
+        .proggress__pointer
+        {
+            background-color: #0487FF;
+        }
+    }
+    .page-title__top .tags.B1
+    {
+        li.tag
+        {
+            &.white
+            {
+                background-color: #E8F4FF;
+            }
+            &.yellow
+            {
+                background-color: #8EC0EF;
+            }
+        }
+    }
+    .proggress.C2
+    {
+        background-color: #F2C487;
+        .proggress__pointer
+        {
+            background-color: #FFA837;
+        }
+    }
+    .page-title__top .tags.C2
+    {
+        li.tag
+        {
+            &.white
+            {
+                background-color: #FFF3E3;
+            }
+            &.yellow
+            {
+                background-color: #F2C487;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 1450px) {

@@ -1,0 +1,80 @@
+.cover-page-background
+{
+    g.others
+    {
+        transform: translateY(100%);
+        animation: others 0.4s;
+        animation-fill-mode: forwards;
+    }
+    g.time
+    {
+        transform: translateY(100%);
+        animation: time 0.5s;
+        animation-fill-mode: forwards;
+    }
+    g.clouds
+    {
+        transform: translateY(-100%);
+        animation: clouds 0.4s;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+    }
+}
+.right-img
+{
+    transform: translateX(120%);
+    left: 0px !important;
+    animation: man 0.4s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+}
+@keyframes others {
+    from
+    {
+        transform: translateY(100%);
+    }
+    to
+    {
+        transform: translateY(0);
+    }
+}
+@keyframes time {
+    from
+    {
+        transform: translateY(100%);
+    }
+    70%
+    {
+        transform: translateY(-6%);
+    }
+    to
+    {
+        transform: translateY(0);
+    }
+}
+@keyframes clouds {
+    from
+    {
+        transform: translateY(-100%);
+    }
+    60%
+    {
+        transform: translateY(3%);
+    }
+    to
+    {
+        transform: translateY(0);
+    }
+}
+@keyframes man {
+    from
+    {
+        transform: translateX(120%);
+        left: 0px !important;
+    }
+    to
+    {
+        transform: translateX(0%);
+        left: -59px !important;
+    }
+}

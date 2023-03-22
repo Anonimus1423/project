@@ -4,11 +4,23 @@
     padding: 20px;
     border-radius: 16px;
     position: relative;
+    margin-bottom: 63px;
     width: 100%;
     background-color: #FFFBD9;
+    &.fixed-video
+    {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 70%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        z-index: 10;
+    }
     .video-button
     {
         width: 140px;
+        transition: 0.2s;
         height: 140px;
         display: flex;
         justify-content: center;
@@ -39,9 +51,514 @@
     {
         border-radius: 16px;
         width: 100%;
+        transition: 0.2s;
     }
     &.active video
     {
         filter: brightness(0.7);
+    }
+}
+.video-black-background
+{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.461);
+}
+
+.lesson 
+{
+    .test-buttons
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        p
+        {
+            text-align: center;
+        }
+        .hide
+        {
+            display: none;
+            width: 100%;
+        }
+        button:nth-child(3)
+        {
+            margin: 0 64px;
+        }
+    }
+}
+
+.lesson .lesson-content
+{
+    h1, h2, h3
+    {
+        padding-left: 29px;
+        position: relative;
+        &::before
+        {
+            content: "";
+            height: 100%;
+            width: 5px;
+            border-radius: 0 10px 10px 0;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);   
+            background: #EFBE00;
+        }
+    }
+    h1
+    {
+        margin-top: 29px;
+        margin-bottom: 30px;
+    }
+    h2
+    {
+        margin-top: 23px;
+        margin-bottom: 24px;
+    }
+    h3
+    {
+        margin-top: 20px;
+        margin-bottom: 21px;
+    }
+    h4
+    {
+        margin-top: 18px;
+        margin-bottom: 18px;
+    }
+    h5, h6
+    {
+        margin-top: 16px;
+        margin-bottom: 15px;
+    }
+    p
+    {
+        margin: 0;
+    }
+    img
+    {
+        margin: 40px 0;
+    }
+}
+
+
+
+@media screen and (max-width: 1450px) {
+    .lesson
+    {
+        .test-buttons
+        {
+            margin-top: 36px;
+            button:nth-child(3), .hide button
+            {
+                margin: 0 50px;
+                padding: 16px 50px;
+                p
+                {
+                    font-size: 16px;
+                    line-height: 23px;
+                }
+            }
+            button:nth-child(4), button:nth-child(2)
+            {
+                p
+                {
+                    font-size: 16px;
+                    line-height: 23px;
+                }
+            }
+            button:nth-child(4)
+            {
+                svg
+                {
+                    margin-left: 13px;
+                }
+            }
+            button:nth-child(2)
+            {
+                svg
+                {
+                    margin-right: 13px;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    .video
+    {
+        margin-top: 38px;
+        padding: 19px;
+        margin-bottom: 60px;
+        .video-button
+        {
+            width: 133px;
+            height: 133px;
+            svg
+            {
+                margin-left: 12px;
+                width: 53px;
+                height: 53px;
+            }
+        }
+    }
+    
+    .lesson 
+    {
+        .test-buttons
+        {
+            margin-top: 38px;
+            button:nth-child(3)
+            {
+                margin: 0 61px;
+            }
+        }
+    }
+    
+    .lesson .lesson-content
+    {
+        h1, h2, h3
+        {
+            padding-left: 27.5px;
+        }
+        h1
+        {
+            margin-top: 27.5px;
+            margin-bottom: 28.5px;
+        }
+        h2
+        {
+            margin-top: 22px;
+            margin-bottom: 22.5px;
+        }
+        h3
+        {
+            margin-top: 19px;
+            margin-bottom: 20px;
+        }
+        h4
+        {
+            margin-top: 17px;
+            margin-bottom: 17px;
+        }
+        h5, h6
+        {
+            margin-top: 15px;
+            margin-bottom: 14px;
+        }
+        img
+        {
+            margin: 38px 0;
+        }
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+    .video
+    {
+        margin-top: 35px;
+        padding: 17.5px;
+        margin-bottom: 55.5px;
+        .video-button
+        {
+            width: 123px;
+            height: 123px;
+            svg
+            {
+                margin-left: 11.5px;
+                margin-top: -6px;
+                width: 49px;
+                height: 49px;
+            }
+        }
+    }
+    
+    .lesson 
+    {
+        .test-buttons
+        {
+            margin-top: 35px;
+            button:nth-child(3)
+            {
+                margin: 0 56px;
+            }
+        }
+    }
+    
+    .lesson .lesson-content
+    {
+        h1, h2, h3
+        {
+            padding-left: 25.5px;
+        }
+        h1
+        {
+            margin-top: 25.5px;
+            margin-bottom: 26.5px;
+        }
+        h2
+        {
+            margin-top: 20px;
+            margin-bottom: 21px;
+        }
+        h3
+        {
+            margin-top: 17.5px;
+            margin-bottom: 18.5px;
+        }
+        h4
+        {
+            margin-top: 15.5px;
+            margin-bottom: 15.5px;
+        }
+        h5, h6
+        {
+            margin-top: 14px;
+            margin-bottom: 13px;
+        }
+        img
+        {
+            margin: 35px 0;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .lesson
+    {
+        .test-buttons
+        {
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            button:nth-child(2)
+            {
+                flex: none;
+                margin-left: 52px;
+            }
+            .hide
+            {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                button
+                {
+                    margin: 0;
+                    margin-bottom: 24px;
+                }
+            }
+            button:nth-child(3)
+            {   
+                display: none;
+            }
+            button:nth-child(4)
+            {
+                flex: none;
+                margin-left: 32px;
+            }
+        }
+    }
+    .video
+    {
+        margin-top: 30px;
+        padding: 15px;
+        margin-bottom: 47.25px;
+        &.fixed-video
+        {
+            width: 90%;
+        }
+        .video-button
+        {
+            width: 95px;
+            height: 95px;
+            svg
+            {
+                margin-left: 12px;
+                margin-top: -2px;
+                width: 35px;
+                height: 35px;
+            }
+        }
+    }
+    
+    .lesson 
+    {
+        .test-buttons
+        {
+            margin-top: 30px;
+            button:nth-child(3)
+            {
+                margin: 0 48px;
+            }
+        }
+    }
+    
+    .lesson .lesson-content
+    {
+        h1, h2, h3
+        {
+            padding-left: 21.75px;
+            &::before
+            {
+                width: 4px;
+            }
+        }
+        h1
+        {
+            margin-top: 21.75px;
+            margin-bottom: 22.5px;
+        }
+        h2
+        {
+            margin-top: 17.25px;
+            margin-bottom: 18px;
+        }
+        h3
+        {
+            margin-top: 15px;
+            margin-bottom: 15.75px;
+        }
+        h4
+        {
+            margin-top: 13.5px;
+            margin-bottom: 13.5px;
+        }
+        h5, h6
+        {
+            margin-top: 12px;
+            margin-bottom: 11.25px;
+        }
+        img
+        {
+            margin: 30px 0;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .lesson
+    {
+        .lesson-content
+        {
+            h2
+            {
+                margin-top: 40px;
+                margin-bottom: 24px;
+                padding-left: 17px;
+                &::before
+                {
+                    transform: translateY(-50%) translateY(3px);
+                }
+            }
+        }
+        .test-buttons
+        {
+            margin-top: 24px;
+            button:nth-child(2)
+            {
+                margin-left: 32px;
+            }
+            .hide button
+            {
+                padding: 10.5px 35px;
+                p
+                {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .video
+    {
+        margin-top: 27px;
+        padding: 13.5px;
+        margin-bottom: 43px;
+        &.fixed-video
+        {
+            width: 95%;
+        }
+        .video-button
+        {
+            width: 50px;
+            height: 50px;
+            svg
+            {
+                margin-left: 5px;
+                margin-top: -2px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+    
+    .lesson 
+    {
+        .test-buttons
+        {
+            margin-top: 27px;
+            button:nth-child(3)
+            {
+                margin: 0 43.5px;
+            }
+        }
+    }
+    
+    .lesson .lesson-content
+    {
+        h1, h2, h3
+        {
+            padding-left: 20px;
+        }
+        h1
+        {
+            margin-top: 20px;
+            margin-bottom: 20.5px;
+        }
+        h2
+        {
+            margin-top: 15.64px;
+            margin-bottom: 16.3px;
+        }
+        h3
+        {
+            margin-top: 13.5px;
+            margin-bottom: 14.3px;
+        }
+        h4
+        {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+        h5, h6
+        {
+            margin-top: 11px;
+            margin-bottom: 10px;
+        }
+        img
+        {
+            margin: 27px 0;
+        }
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .lesson
+    {
+        .test-buttons
+        {
+            button:nth-child(2)
+            {
+                margin-left: 11.5%;
+            }
+        }
     }
 }

@@ -45,10 +45,10 @@ const LoginPage = () => {
     <div className="right-main-container registration">
       <Header
         buttons={{
-          firstText: "Մուտք",
-          secondText: "Գրանցում",
-          firstLink: "/log-in",
-          secondLink: "/registration",
+          firstText: "Գրանցում",
+          secondText: "Մուտք",
+          firstLink: "/registration",
+          secondLink: "/log-in",
         }}
       />
       <h2 className="secondPage">Already have an account?</h2>

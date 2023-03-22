@@ -14,6 +14,10 @@ export const getAllCourses = () => {
   return axios.get("/admin/get-all-courses");
 };
 
+export const getOnGoingCourses = () => {
+  return axios.get("/api/user/ongoing-courses");
+};
+
 export const getAllUsers = (search) => {
   return axios.get(`/admin/get-all-users?search=${search}`);
 };
@@ -22,12 +26,20 @@ export const getClassInfo = (id) => {
   return axios.get(`/admin/class/${id}`);
 };
 
+export const getUserDefaultTest = () => {
+  return axios.get(`/api/test`);
+};
+
 export const updateClass = ({ id, payload }) => {
   return axios.put(`/admin/class/${id}`, payload);
 };
 
 export const login = (data) => {
   return axios.post("/user/login", data);
+};
+
+export const changeUserLevel = (data) => {
+  return axios.post("/api/test", data);
 };
 
 export const getCoursesList = () => {
@@ -52,4 +64,9 @@ export const getLessonWithTest = (courseId, lessonId) => {
 
 export const deleteClass = (id) => {
   return axios.delete(`/admin/class/${id}`);
+};
+
+
+export const passLesson = (courseId, lessonId) => {
+  return axios.post(`/api/pass/${courseId}/${lessonId}`);
 };

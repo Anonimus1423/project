@@ -47,6 +47,7 @@ header
                 width: 56px;
                 height: 56px;
                 border-radius: 50%;
+                cursor: pointer;
                 background-color: #F2E9FF;
                 display: flex;
                 justify-content: center;
@@ -55,6 +56,36 @@ header
                 {
                     width: 24px;
                     height: 24px;
+                }
+            }
+            .logout
+            {
+                position: absolute;
+                top: 100%;
+                cursor: pointer;
+                background-color: white;
+                padding: 5px 10px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform: translateY(-50%);
+                transition: 0.3s;
+                opacity: 0;
+                border: 1px solid #F2E9FF;
+                box-shadow: 0px 0 4.712500095367432px 0px #00000005;
+                box-shadow: 0px 0 29px 0px #0000000A;
+                pointer-events: none;
+                z-index: 10;
+                &.active
+                {
+                    transform: translateY(5px);
+                    pointer-events: auto;
+                    opacity: 1;
+                }
+                &:hover
+                {
+                    background-color: #faf6ff;
                 }
             }
         }
@@ -126,8 +157,15 @@ header
 }
 
 @media screen and (max-width: 1250px) {
-    header .right > a:first-child{
+    header .right.unautorized > a:first-child{
         display: none;
+    }
+    header .right > a:first-child{
+        margin: 0;
+    }
+    .authorized
+    {
+        margin-right: 40px !important;
     }
     header .right .profile .profile-icon
     {
@@ -158,7 +196,7 @@ header
 @media screen and (max-width: 768px) {
     header .left a
     {
-        margin-left: 75px;
+        margin-left: 50px;
     }
     .sidebar-button
     {
@@ -167,6 +205,14 @@ header
 }
 
 
+
+@media screen and (max-width: 630px) 
+{
+    .authorized
+    {
+        display: none;
+    }
+}
 @media screen and (max-width: 576px) {
     header .left a
     {

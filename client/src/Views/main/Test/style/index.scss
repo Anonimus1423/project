@@ -37,7 +37,7 @@ div.test-container
                 img
                 {
                     margin-top: 32px;
-    
+                    min-height: 100px;
                 }
                 .question
                 {
@@ -79,6 +79,24 @@ div.test-container
                                     background-color: #FBCB59;
                                     cursor: pointer;
                                 }
+                            }
+                            &.active .answer-body
+                            {
+                                color: white;
+                                background-color: #FBCB59;
+                                cursor: pointer;
+                            }
+                            &.false .answer-body
+                            {
+                                color: white;
+                                background-color: #FF3D00F7;
+                                cursor: pointer;
+                            }
+                            &.true .answer-body
+                            {
+                                color: white;
+                                background-color: #10AF63;
+                                cursor: pointer;
                             }
                         }
                     }

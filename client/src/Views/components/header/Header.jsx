@@ -10,6 +10,7 @@ import { useState } from "react";
 
 function Header({ buttons }) {
   const [popupOpened, setPopupOpened] = useState(false);
+  const [userPopupOpened, setUserPopupOpened] = useState(false);
   const togglePopup = () => setPopupOpened((state) => !state);
   let authorized = false;
   const app = useSelector(appSelectors.appSelector);
@@ -25,7 +26,7 @@ function Header({ buttons }) {
           <h2 className="h4 subtitle">Սովորիր արագ և արդյունավետ</h2>
         </div>
         <div className="right authorized-right">
-          <Link to="/test">
+          <Link to="/test" className="authorized">
             <MainButton size="m" color="transparent">
               Անգլերենի մակարդակի ստուգում
             </MainButton>
@@ -43,8 +44,14 @@ function Header({ buttons }) {
               accumsan et viverra justo commodo. Proin sodales pulvinar sic
               tempor. Sociis natoque penatibus et magnis dis parturient?
             </PopUp>
-            <div className="profile-icon">
+            <div
+              className="profile-icon"
+              onClick={() => setUserPopupOpened((state) => !state)}
+            >
               <img src={ProfileIcon} alt="profile" />
+            </div>
+            <div className={userPopupOpened ? "logout active" : "logout"}>
+              <p>Log-out</p>
             </div>
           </div>
         </div>
@@ -60,7 +67,7 @@ function Header({ buttons }) {
           </Link>
           <h2 className="h4 subtitle">Սովորիր արագ և արդյունավետ</h2>
         </div>
-        <div className="right">
+        <div className="right unautorized">
           <Link to={buttons.firstLink}>
             <MainButton size="m" color="transparent">
               {buttons.firstText}

@@ -5,19 +5,24 @@ import getNormalDate from "../../../utils/getNormalDate";
 
 function AllCoursesComponent() {
   const courses = useSelector(selectAllCourses);
-  return courses.map((course, i) => {
-    return (
-      <CourseBlock
-        title={course.title}
-        description={course.description}
-        tags={course.tags}
-        date={getNormalDate(course.created_at)}
-        Image={course.picture_src}
-        id={course._id}
-        key={i}
-      />
-    );
-  });
+  return courses
+    .filter((course) => {
+      return !course?.course?.tags?.includes("hidden");
+    })
+    .map((course, i) => {
+      return (
+        <CourseBlock
+          title={course.title}
+          description={course.description}
+          tags={course.tags}
+          date={getNormalDate(course.created_at)}
+          Image={course.picture_src}
+          id={course._id}
+          key={i}
+          href={"/registration"}
+        />
+      );
+    });
 }
 
 export default AllCoursesComponent;

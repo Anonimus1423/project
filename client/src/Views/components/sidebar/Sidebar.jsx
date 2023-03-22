@@ -4,7 +4,7 @@ import { ReactComponent as TestIcon } from "../../images/icons/Test.svg";
 import { ReactComponent as ClassIcon } from "../../images/icons/Class.svg";
 import { ReactComponent as CheckedIcon } from "../../images/icons/Checked.svg";
 
-function Sidebar({ sidebarOpened }) {
+function Sidebar({ sidebarOpened, noUser }) {
   return (
     <nav className={sidebarOpened ? "active sidebar" : "sidebar"}>
       <ul>
@@ -17,7 +17,7 @@ function Sidebar({ sidebarOpened }) {
         <SidebarLink
           text="Իմ դասընթացները"
           Icon={ClassIcon}
-          link="/my-courses"
+          link={!noUser ? "/my-courses" : "/registration"}
         />
         <SidebarLink
           text="Բոլոր դասընթացները"

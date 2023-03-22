@@ -1,14 +1,64 @@
 import MainButton from "../../components/buttons/MainButton";
 import "./style/index.scss";
 import Header from "../../components/header/Header";
-import VkIcon from "../../images/icons/Vk.svg";
-import OkIcon from "../../images/icons/Ok.svg";
-import InstagramIcon from "../../images/icons/Instagram.svg";
+import InIcon from "../../images/icons/In.svg";
 import FacebookIcon from "../../images/icons/Facebook.svg";
 import TwitterIcon from "../../images/icons/Twitter.svg";
 import Footer from "../../components/footer/Footer.jsx";
+import useSumbitForm from "../../../utils/submitForm";
+import { passLesson, changeUserLevel } from "../../../Api/queries";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-function Result() {
+function Result({
+  title,
+  description,
+  tableInfo,
+  buttonLeftText,
+  buttonText,
+  setStep,
+  setIsTest,
+  leftButtonText,
+  setIsTestPassed,
+  score,
+  testLength,
+  lessonId,
+  courseId,
+  level,
+  courseLink,
+  role,
+  isDefaultTest,
+}) {
+  const [passLessonFunction, loading] = useSumbitForm(
+    () => passLesson(lessonId, courseId),
+    true
+  );
+  const [changeUserLevelFunction, loading1] = useSumbitForm(
+    () => changeUserLevel({ level: level }),
+    true
+  );
+  const [state, setState] = useState(false);
+  useEffect(() => {
+    if (role === 1) {
+      if (isDefaultTest) {
+        changeUserLevelFunction({}, () => {});
+      }
+    }
+  }, []);
+  const goBack = () => {
+    if (role === 1) {
+      if (!isDefaultTest) {
+        if (testLength / score <= 2) {
+          setIsTestPassed(true);
+          passLessonFunction({}, () => {});
+        }
+        setIsTest(false);
+      }
+    }
+  };
+  if (role === 0) {
+    courseLink = "/registration";
+  }
   return (
     <div className="result right-main-container">
       <Header
@@ -20,69 +70,68 @@ function Result() {
         }}
       />
       <div className="right-container">
-        <h2 className="secondPage">Ստուգեք Ձեր անգլերենի մակարդակը</h2>
-        <p>
-          Շնորհավորում ենք դուք անցել եք թեստը <br /> կիսվեք Ձեր հաջողությամբ
-          սոցիալական կայքերում
-        </p>
+        <h2 className="secondPage">{title}</h2>
+        <p>{description}</p>
         <div className="social-icons">
-          <div className="social-icon">
-            <img src={VkIcon} alt="vk" />
-          </div>
-          <div className="social-icon">
-            <img src={InstagramIcon} alt="instagram" />
-          </div>
-          <div className="social-icon">
-            <img src={TwitterIcon} alt="twitter" />
-          </div>
-          <div className="social-icon">
-            <img src={FacebookIcon} alt="facebook" />
-          </div>
-          <div className="social-icon">
-            <img src={OkIcon} alt="ok" />
-          </div>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.origin}`}
+          >
+            <div className="social-icon">
+              <img src={FacebookIcon} alt="facebook" />
+            </div>
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=I%20get%20%20points%20and%20you%20can%20too,%20it's%20very%20fun%20to%20learn%20english%20with%20this%20site%20">
+            <div className="social-icon">
+              <img src={TwitterIcon} alt="twitter" />
+            </div>
+          </a>
+          <a
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.origin}`}
+          >
+            <div className="social-icon">
+              <img src={InIcon} alt="linkedin" />
+            </div>
+          </a>
         </div>
         <div className="table">
-          <div className="row">
-            <div className="left">
-              <p>Բոլոր հարցերը</p>
-            </div>
-            <div className="right">
-              <p>48</p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="left">
-              <p>Ջիշտ պատասխաններ</p>
-            </div>
-            <div className="right">
-              <p>32</p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="left">
-              <p>Սխալպատասխաններ</p>
-            </div>
-            <div className="right">
-              <p>16</p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="left">
-              <p>Սխալպատասխաններ</p>
-            </div>
-            <div className="right">
-              <p>16</p>
-            </div>
-          </div>
+          {tableInfo
+            ? tableInfo.map((info) => {
+                return (
+                  <div key={Math.random()} className="row">
+                    <div className="left">
+                      <p>{info.title}</p>
+                    </div>
+                    <div className="right">
+                      <p>{info.value}</p>
+                    </div>
+                  </div>
+                );
+              })
+            : null}
         </div>
         <div className="buttons">
-          <MainButton color="transparent-yellow-bordered">Կրկնել</MainButton>
+          <MainButton
+            color="transparent-yellow-bordered"
+            onClick={() => setStep(0)}
+          >
+            {leftButtonText}
+          </MainButton>
           <div className="right">
-            <MainButton color="yellow">Բարելավե՛ք ձեր անգլերենը:</MainButton>
-            <p className="s">
-              Անցիր մեր դասընթացը հատուկ C1 <br /> մակարդակի համար
-            </p>
+            {!isDefaultTest ? (
+              <MainButton color="yellow" onClick={() => goBack()}>
+                {buttonText}
+              </MainButton>
+            ) : (
+              <Link
+                to={courseLink}
+                onClick={() => {
+                  setState((state) => !state);
+                }}
+              >
+                <MainButton color="yellow">{buttonText}</MainButton>
+              </Link>
+            )}
+            <p className="s">{buttonLeftText}</p>
           </div>
         </div>
       </div>

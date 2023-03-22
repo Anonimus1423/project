@@ -10,8 +10,8 @@ function Video({ src }) {
       <ReactPlayer
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        width={1343}
-        height={760}
+        width={"100%"}
+        height={"auto"}
         url={src}
         controls={true}
       />

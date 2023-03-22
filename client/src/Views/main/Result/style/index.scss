@@ -105,6 +105,34 @@
             justify-content: center;
             margin-top: 20px;
             padding-left: 20px;
+            a
+            {
+                background-color: #EFBE00;
+                border-radius: 50px;
+                margin-right: 16px;
+                transition: 0.3s;
+                button
+                {
+                    margin-right: 0;
+                    background: #EFBE00;
+                }
+                button:hover
+                {
+                    background: #EFBE00;
+                }
+                &:hover
+                {
+                    background: #d8ad00;
+                    button
+                    {
+                        background: #d8ad00;
+                        .background
+                        {
+                        background: #d8ad00;
+                        }
+                    }
+                }
+            }
             button
             {
                 max-width: 59%;

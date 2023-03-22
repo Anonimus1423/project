@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import ArrowIcon from "../../images/icons/Small Arrow.svg";
 import "./style/index.scss";
 
-function Bread({ elements }) {
+function Bread({ elements, className }) {
   return (
-    <div className="bread">
+    <div className={"bread " + className}>
       {elements.map((element, i) => (
         <div className="bread__element" key={i}>
           <Link to={element[1]}>

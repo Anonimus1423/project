@@ -71,8 +71,8 @@ function App() {
                           : "black-background"
                       }
                     ></div>
-                    <Sidebar sidebarOpened={sidebarOpened} />
-                    <MainRoutes />
+                    <Sidebar noUser={true} sidebarOpened={sidebarOpened} />
+                    <MainRoutes loading />
                   </BrowserRouter>
                 </>
               )}

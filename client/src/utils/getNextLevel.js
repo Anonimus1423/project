@@ -1,6 +1,6 @@
 export default function getNextLevel(level){
     let nextLevel = level;
-    if(level === "A1")
+    if(level === "A1" || level === null)
         nextLevel = "A2"
     if(level === "A2")
         nextLevel = "B1"

@@ -1,8 +1,8 @@
 import TimeIcon from "../../images/icons/Time.svg";
 
-function PageTitle({ title, tags, proggress, time }) {
+function PageTitle({ title, tags, proggress, time, className }) {
   return (
-    <div className="page-title">
+    <div className={"page-title"}>
       <div className="page-title__top">
         <h2>{title}</h2>
         {time ? (
@@ -11,7 +11,7 @@ function PageTitle({ title, tags, proggress, time }) {
             <p>{time}</p>
           </div>
         ) : (
-          <ul className="tags">
+          <ul className={"tags " + className}>
             {tags?.map((tagText) => {
               return (
                 <li
@@ -25,7 +25,7 @@ function PageTitle({ title, tags, proggress, time }) {
           </ul>
         )}
       </div>
-      <div className="proggress">
+      <div className={"proggress " + className}>
         <div className="proggress__back"></div>
         <div
           style={{ width: proggress + "%" }}

@@ -165,6 +165,50 @@
             }
         }
     }
+    &.disabled
+    {
+        opacity: 0.4;
+    }
+    &.C1
+    {
+        background-color: #A766FE;
+        &>.background
+        {
+            background: #9056dd;
+        }
+    }
+    &.A1
+    {
+        background-color: #10AF63;
+        &>.background
+        {
+            background: #119957;
+        }
+    }
+    &.A2
+    {
+        background-color: #FF3596;
+        &>.background
+        {
+            background: #d72b7e;
+        }
+    }
+    &.B1
+    {
+        background-color: #0487FF;
+        &>.background
+        {
+            background: #046ed1;
+        }
+    }
+    &.C2
+    {
+        background-color: #FFA837;
+        &>.background
+        {
+            background: #db902f;
+        }
+    }
 }
 
 @media screen and (max-width: 576px) 

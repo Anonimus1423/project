@@ -25,6 +25,26 @@
             }
         }
     }
+    &.C1 .bread__element:last-child p
+    {
+        color: #A766FE;
+    }
+    &.A1 .bread__element:last-child p
+    {
+        color: #10AF63;
+    }
+    &.A2 .bread__element:last-child p
+    {
+        color: #FF3596;
+    }
+    &.B1 .bread__element:last-child p
+    {
+        color: #0487FF;
+    }
+    &.C2 .bread__element:last-child p
+    {
+        color: #FFA837;
+    }
 }
 
 

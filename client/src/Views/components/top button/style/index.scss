@@ -1,6 +1,7 @@
 .top-button {
   position: fixed;
   top: 100%;
+  z-index: 999;
   left: 100%;
   transform: translate(-100%, -100%) translateX(-30px) translateY(-45px);
   opacity: 0.4;

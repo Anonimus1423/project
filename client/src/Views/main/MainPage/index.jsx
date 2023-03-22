@@ -29,11 +29,16 @@ function MainPage() {
     userCourses({}, (data) => {
       courses = data.data;
       setPresentCourse(
-        courses?.find((course) => course.course.level === app.user.level)
+        courses?.find(
+          (course) =>
+            course.course.level === app.user.level ||
+            course.course.level === "A1"
+        )
       );
       setNextCourse(
         courses?.find(
-          (course) => course.course.level === getNextLevel(app.user.level)
+          (course) =>
+            course.course.level === getNextLevel(app.user.level || "A1")
         )
       );
     });
@@ -62,6 +67,7 @@ function MainPage() {
           Image={presentCourse?.course?.picture_src}
           proggress={presentCourse?.progress || 0}
           id={presentCourse?.course?._id}
+          loading={loading}
         />
         <MainTitle>Հաջորդ դասընթացը</MainTitle>
         <CourseBlock
@@ -72,6 +78,7 @@ function MainPage() {
           Image={nextCourse?.course?.picture_src}
           proggress={nextCourse?.progress || 0}
           id={presentCourse?.course?._id}
+          loading={loading}
           closed
         />
       </div>
