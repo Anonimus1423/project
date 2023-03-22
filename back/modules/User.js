@@ -5,7 +5,7 @@ const User = new mongoose.Schema({
   password: String,
   mail: String,
   date: String,
-  level: String,
+  level: { type: String, default: "A1" },
   isLevelCompleted: Boolean,
 });
 

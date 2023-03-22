@@ -49,6 +49,7 @@ const ClassCreateStep1 = ({ data, setData, setStep, handleInputChange }) => {
           name="level"
           onChange={handleInputChange}
         >
+          <MenuItem value={"None"}>None</MenuItem>
           <MenuItem value={"A1"}>A1</MenuItem>
           <MenuItem value={"A2"}>A2</MenuItem>
           <MenuItem value={"B1"}>B1</MenuItem>

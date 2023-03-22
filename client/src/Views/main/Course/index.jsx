@@ -19,12 +19,15 @@ function Course() {
     () => getClassInfo(courseId),
     true
   );
+
   const [course, setCourse] = useState({});
+
   useEffect(() => {
     getCourse({}, (data) => {
       setCourse(data);
     });
   }, []);
+  console.log(course);
   return (
     <div className="right-main-container">
       <Header

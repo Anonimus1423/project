@@ -7,7 +7,7 @@ function AllCoursesComponent() {
   const courses = useSelector(selectAllCourses);
   return courses
     .filter((course) => {
-      return !course?.course?.tags?.includes("hidden");
+      return !course?.tags?.includes("hidden");
     })
     .map((course, i) => {
       return (

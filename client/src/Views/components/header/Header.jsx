@@ -15,6 +15,11 @@ function Header({ buttons }) {
   let authorized = false;
   const app = useSelector(appSelectors.appSelector);
   const role = useSelector(appSelectors.roleSelector);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+  };
+
   if (role === 1) authorized = true;
   if (authorized)
     return (
@@ -50,7 +55,10 @@ function Header({ buttons }) {
             >
               <img src={ProfileIcon} alt="profile" />
             </div>
-            <div className={userPopupOpened ? "logout active" : "logout"}>
+            <div
+              onClick={() => logout()}
+              className={userPopupOpened ? "logout active" : "logout"}
+            >
               <p>Log-out</p>
             </div>
           </div>

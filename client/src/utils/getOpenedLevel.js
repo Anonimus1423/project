@@ -1,16 +1,14 @@
 export default function getOpenedLevel(level){
-    if(level === null)
-        return ["A1"]
     let openedLevel = [level];
     if(level === "A2")
         openedLevel.push("A1")
     if(level === "B1")
-        openedLevel = [...openedLevel, "A1", "A2"]
+        openedLevel.push("A1").push("A2")
     if(level === "B2")
-        openedLevel = [...openedLevel, "A1", "A2", "B1"]
+        openedLevel.push("A1").push("A2").push("B1")
     if(level === "C1")
-        openedLevel = [...openedLevel, "A1", "A2", "B1", "B2"]
+        openedLevel.push("A1").push("A2").push("B1").push("B2")
     if(level === "C2")
-        openedLevel = [...openedLevel, "A1", "A2", "B1", "B2", "C1"]
+        openedLevel.push("A1").push("A2").push("B1").push("B2").push("C1")
     return openedLevel
 }
