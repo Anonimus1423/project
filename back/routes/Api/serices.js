@@ -175,10 +175,20 @@ export const getCourseWithLessons = async (req, res) => {
 
 export const getCourseLessonWithTest = async (req, res) => {
   const { id, lessonId } = req.params;
+  const { user } = req;
   try {
     const lesson = await Lesson.findOne({ courseId: id, _id: lessonId });
+    const ongoing = await Ongoing.findOne({ userId: user._id, courseId: id });
     const quizes = await Quizes.find({ lessonId });
-    return res.status(200).send({ lesson, test: quizes });
+    return res.status(200).send({
+      lesson: {
+        ...JSON.parse(JSON.stringify(lesson)),
+        passed: ongoing
+          ? !!ongoing.passedLessonsIds.includes(lesson._id)
+          : false,
+      },
+      test: quizes,
+    });
   } catch (error) {
     return res.status(400).send(error);
   }
