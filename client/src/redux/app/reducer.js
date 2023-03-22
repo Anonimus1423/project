@@ -15,10 +15,14 @@ export const app = createSlice({
       }
       state.role = 1;
     },
+    logoutApp: (state) => {
+      state.app = null;
+      state.role = 0;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { initApp } = app.actions;
+export const { initApp, logoutApp } = app.actions;
 
 export default app.reducer;

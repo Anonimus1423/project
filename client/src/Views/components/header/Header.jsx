@@ -1,12 +1,13 @@
 import MainButton from "../buttons/MainButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OwlImageUrl from "../../images/owl.png";
 import "./style/index.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileIcon from "../../images/icons/Profile.svg";
 import * as appSelectors from "../../../redux/app/selectors";
 import PopUp from "../popup/PopUp";
 import { useState } from "react";
+import { logoutApp } from "../../../redux/app/reducer";
 
 function Header({ buttons }) {
   const [popupOpened, setPopupOpened] = useState(false);
@@ -15,9 +16,13 @@ function Header({ buttons }) {
   let authorized = false;
   const app = useSelector(appSelectors.appSelector);
   const role = useSelector(appSelectors.roleSelector);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("token");
+    dispatch(logoutApp());
+    navigate("/");
   };
 
   if (role === 1) authorized = true;
