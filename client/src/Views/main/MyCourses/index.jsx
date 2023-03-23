@@ -14,9 +14,10 @@ import MainTitle from "../../components/titles/MainTitle.jsx";
 import useSumbitForm from "../../../utils/submitForm";
 import getNormalDate from "../../../utils/getNormalDate";
 import { getOnGoingCourses } from "../../../Api/queries";
+import Loading from "../../components/loading";
 
 function MyCourses() {
-  const [onGoingCourses] = useSumbitForm(getOnGoingCourses, true);
+  const [onGoingCourses, loading] = useSumbitForm(getOnGoingCourses, true);
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     onGoingCourses({}, (data) => {
@@ -33,31 +34,41 @@ function MyCourses() {
           secondLink: "/registration",
         }}
       />
-      <div className="right-container after-relative">
-        {courses.length ? (
-          <>
-            <MainTitle>
-              Անհատական դասընթաց անգլերենի ձեր մակարդակին համապատասխան
-            </MainTitle>
-            {courses.map((course, i) => {
-              return (
-                <CourseBlock
-                  title={course.title}
-                  description={course.description}
-                  tags={course.tags}
-                  date={getNormalDate(course.created_at)}
-                  Image={course.picture_src}
-                  id={course._id}
-                  key={i}
-                />
-              );
-            })}
-          </>
-        ) : (
-          <MainTitle>Այս պահին դուք չունեք անցկացվող դասընթաց</MainTitle>
-        )}
-      </div>
-      <Footer fixed={!courses.length} />
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="right-container after-relative">
+          {courses.length ? (
+            <>
+              <MainTitle>
+                Անհատական դասընթաց անգլերենի ձեր մակարդակին համապատասխան
+              </MainTitle>
+              {courses
+                .sort((a, b) => {
+                  return a?.course?.progress !== 100 ? 1 : -1;
+                })
+                .map((course, i) => {
+                  console.log(course);
+                  return (
+                    <CourseBlock
+                      title={course?.course?.title}
+                      description={course?.course?.description}
+                      tags={course?.course?.tags}
+                      date={getNormalDate(course?.course?.created_at)}
+                      Image={course?.course?.picture_src}
+                      proggress={course?.progress}
+                      id={course?.course?._id}
+                      key={i}
+                    />
+                  );
+                })}
+            </>
+          ) : (
+            <MainTitle>Այս պահին դուք չունեք անցկացվող դասընթաց</MainTitle>
+          )}
+        </div>
+      )}
+      <Footer fixed={courses.length === 0 || courses.length === 1} />
       <TopButton />
     </div>
   );

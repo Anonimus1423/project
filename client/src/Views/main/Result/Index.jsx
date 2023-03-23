@@ -22,15 +22,14 @@ function Result({
   setIsTestPassed,
   score,
   testLength,
-  lessonId,
-  courseId,
+  Ids,
   level,
   courseLink,
   role,
   isDefaultTest,
 }) {
   const [passLessonFunction, loading] = useSumbitForm(
-    () => passLesson(lessonId, courseId),
+    () => passLesson(Ids?.courseId, Ids?.lessonId),
     true
   );
   const [changeUserLevelFunction, loading1] = useSumbitForm(
@@ -49,8 +48,8 @@ function Result({
     if (role === 1) {
       if (!isDefaultTest) {
         if (testLength / score <= 2) {
-          setIsTestPassed(true);
           passLessonFunction({}, () => {});
+          setIsTestPassed(true);
         }
         setIsTest(false);
       }

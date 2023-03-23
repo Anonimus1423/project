@@ -4,7 +4,16 @@ import CourseChecked from "../../../images/icons/Course Checked.svg";
 import MainButton from "../../../components/buttons/MainButton";
 import { Link } from "react-router-dom";
 
-function LessonButton({ title, time, checked, locked, active, id, className }) {
+function LessonButton({
+  title,
+  time,
+  checked,
+  locked,
+  active,
+  id,
+  className,
+  passed,
+}) {
   return (
     <div
       className={
@@ -19,16 +28,30 @@ function LessonButton({ title, time, checked, locked, active, id, className }) {
           <img src={TimeIcon} alt="time" />
           <p>{time}</p>
         </div>
-        {!locked ? (
+        {locked ? (
+          <div className="check-box locked">
+            <img src={CourseLock} alt="lock" />
+          </div>
+        ) : passed ? (
           <div className={checked ? "check-box checked" : "check-box"}>
             <img src={CourseChecked} alt="checked" />
           </div>
         ) : (
-          <div className="check-box locked">
-            <img src={CourseLock} alt="lock" />
+          <div className={checked ? "check-box" : "check-box"}>
+            <img src={CourseChecked} alt="checked" />
           </div>
         )}
-        <Link to={window.location.pathname + "/" + id}>
+        {!locked ? (
+          <Link to={window.location.pathname + "/" + id}>
+            <MainButton
+              color={"yellow-none-gradient " + className}
+              size="m"
+              arrowRight
+            >
+              Տեսնել
+            </MainButton>
+          </Link>
+        ) : (
           <MainButton
             color={"yellow-none-gradient " + className}
             size="m"
@@ -36,7 +59,7 @@ function LessonButton({ title, time, checked, locked, active, id, className }) {
           >
             Տեսնել
           </MainButton>
-        </Link>
+        )}
       </div>
     </div>
   );

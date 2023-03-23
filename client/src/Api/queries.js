@@ -23,7 +23,7 @@ export const getAllUsers = (search) => {
 };
 
 export const getClassInfo = (id) => {
-  return axios.get(`/admin/class/${id}`);
+  return axios.get(`/api/user/course/${id}`);
 };
 
 export const getUserDefaultTest = () => {

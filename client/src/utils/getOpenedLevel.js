@@ -1,5 +1,8 @@
+import getNextLevel from "./getNextLevel";
+
 export default function getOpenedLevel(level) {
-  let openedLevel = [level];
+  let nextLevel = getNextLevel(level)
+  let openedLevel = [level, nextLevel];
   if (level === "A2") {
     openedLevel = [...openedLevel, "A1"];
   }

@@ -2,7 +2,11 @@ import Bread from "../../components/bread/Bread.jsx";
 import Header from "../../components/header/Header.jsx";
 import PageTitle from "../../components/titles/PageTitle";
 import "./style/index.scss";
-import { getLessonWithTest, getClassInfo } from "../../../Api/queries";
+import {
+  getLessonWithTest,
+  getClassInfo,
+  passLesson,
+} from "../../../Api/queries";
 import useSumbitForm from "../../../utils/submitForm";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -21,18 +25,35 @@ function Lesson() {
   const [lesson, setLesson] = useState({});
   const [nextLessonId, setNextLessonId] = useState();
   const [prevLessonId, setPrevLessonId] = useState();
+  const [link, setLink] = useState();
   const [getLesson, loading] = useSumbitForm(
     () => getLessonWithTest(courseId, lessonId),
     true
   );
+  const [passLessonFunction, loading2] = useSumbitForm(
+    () => passLesson(courseId, lessonId),
+    true
+  );
+
+  const goNext = (isLastTest) => {
+    if (lesson?.test?.length === 0) {
+      passLessonFunction({}, () => {});
+    }
+    if (isLastTest) {
+      setLink("/courses/" + courseId);
+    }
+    setIsTestPassed(false);
+    setState((state) => !state);
+  };
+
   useEffect(() => {
     getCourse({}, (data) => {
       setNextLessonId(
         data?.lessons[
           data?.lessons?.findIndex((lesson) => {
             return lesson._id === lessonId;
-          })
-        ]?._id + 1
+          }) + 1
+        ]?._id
       );
       setPrevLessonId(
         data?.lessons[
@@ -44,11 +65,15 @@ function Lesson() {
     });
     getLesson({}, (data) => {
       setLesson(data);
-      if (data?.test?.length === 0) {
+      console.log(data?.test?.length === 0, data.lesson.passed);
+      if (data?.test?.length === 0 || data.lesson.passed) {
         setIsTestPassed(true);
       }
     });
   }, [state]);
+
+  const isLastTest = !nextLessonId;
+  console.log(link);
   if (!isTest) {
     return (
       <div className="lesson right-main-container">
@@ -81,7 +106,7 @@ function Lesson() {
             <PageTitle
               title={lesson?.lesson?.title}
               time={lesson?.lesson?.time}
-              proggress={30}
+              proggress={100}
             />
             <Video src={lesson?.lesson?.videoUrl?.toString()} />
             <div
@@ -100,6 +125,7 @@ function Lesson() {
                   onClick={() => {
                     if (prevLessonId) {
                       setState((state) => !state);
+                      setIsTestPassed(false);
                     }
                   }}
                 >
@@ -126,14 +152,17 @@ function Lesson() {
                 ԱՆՑՆԵԼ ԼԵԶՎԻ ՄԱՐԴԱԿԻ ԹԵՍՏ
               </MainButton>
               {isTestPassed ? (
-                <Link to={`/${courseId}/${nextLessonId}`}>
+                <Link
+                  to={link ? link : `/courses/${courseId}/${nextLessonId}`}
+                  onClick={() => goNext(isLastTest)}
+                >
                   <MainButton
                     color="transparent-yellow"
                     arrowRight
                     disabled={!isTestPassed}
                     className={!isTestPassed ? "disabled" : ""}
                   >
-                    Հետագա
+                    {!isLastTest ? "Հետագա" : "Ավարտել"}
                   </MainButton>
                 </Link>
               ) : (
@@ -143,7 +172,7 @@ function Lesson() {
                   disabled={!isTestPassed}
                   className={!isTestPassed ? "disabled" : ""}
                 >
-                  Հետագա
+                  {!isLastTest ? "Հետագա" : "Ավարտել"}
                 </MainButton>
               )}
             </div>

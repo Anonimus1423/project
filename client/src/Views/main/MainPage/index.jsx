@@ -18,6 +18,7 @@ import Footer from "../../components/footer/Footer";
 import TopButton from "../../components/top button/TopButton";
 import getNextLevel from "../../../utils/getNextLevel";
 import getNormalDate from "../../../utils/getNormalDate";
+import getSecondLevel from "../../../utils/getSecondLevel";
 
 function MainPage() {
   const app = useSelector(appSelectors.appSelector);
@@ -29,16 +30,18 @@ function MainPage() {
     userCourses({}, (data) => {
       courses = data.data;
       setPresentCourse(
-        courses?.find(
-          (course) =>
-            course.course.level === app.user.level ||
+        courses?.find((course) => {
+          console.log(getNextLevel(app.user.level), course.course.level);
+          return (
+            course.course.level === getNextLevel(app.user.level) ||
             course.course.level === "A1"
-        )
+          );
+        })
       );
       setNextCourse(
         courses?.find(
           (course) =>
-            course.course.level === getNextLevel(app.user.level || "A1")
+            course.course.level === getSecondLevel(app.user.level || "A1")
         )
       );
     });

@@ -27,7 +27,11 @@ function Course() {
       setCourse(data);
     });
   }, []);
-  console.log(course);
+  let courseProggress =
+    course?.lessons?.length -
+    course?.lessons?.reverse().findIndex((lesson) => lesson.passed);
+  if (courseProggress === course?.lessons?.length + 1) courseProggress = 0;
+  course?.lessons?.reverse();
   return (
     <div className="right-main-container">
       <Header
@@ -46,22 +50,24 @@ function Course() {
               ["Բալոր դասընթացները", "/courses"],
               ["Դասընթաց", window.location.pathname],
             ]}
-            className={course?.level}
+            className={course?.course?.level}
           />
           <PageTitle
-            title={course?.title}
-            tags={course?.tags}
-            proggress={course?.proggress}
-            className={course?.level}
+            title={course?.course?.title}
+            tags={course?.course?.tags}
+            proggress={course?.progress}
+            className={course?.course?.level}
           />
           <About
             title="Դասընթացի մասին"
-            description={course?.description}
-            image={course?.picture_src}
-            className={course?.level}
+            description={course?.course?.description}
+            image={course?.course?.picture_src}
+            className={course?.course?.level}
           />
           {course?.lessons
             ? course.lessons?.map((lesson, id) => {
+                let locked = false;
+                if (id >= courseProggress + 1) locked = true;
                 return (
                   <LessonButton
                     key={id}
@@ -69,7 +75,9 @@ function Course() {
                     title={lesson.title}
                     time={lesson.time}
                     checked
-                    className={course?.level}
+                    className={course?.course.level}
+                    passed={lesson.passed}
+                    locked={locked}
                   />
                 );
               })
