@@ -12,11 +12,17 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Video from "./Lesson Components/Video.jsx";
 import Footer from "../../components/footer/Footer.jsx";
+import * as appSelectors from "../../../redux/app/selectors";
+import getNextLevel from "../../../utils/getNextLevel";
+import { initApp } from "../../../redux/app/reducer";
 import MainButton from "../../components/buttons/MainButton.jsx";
 import Test from "../Test/index.jsx";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../components/loading/index.jsx";
 
 function Lesson() {
+  const dispatch = useDispatch();
+  const user = useSelector(appSelectors.appSelector);
   let { courseId, lessonId } = useParams();
   const [isTest, setIsTest] = useState(false);
   const [state, setState] = useState(false);
@@ -40,6 +46,11 @@ function Lesson() {
       passLessonFunction({}, () => {});
     }
     if (isLastTest) {
+      dispatch(
+        initApp({
+          user: { ...user.user, level: getNextLevel(user.user.level) },
+        })
+      );
       setLink("/courses/" + courseId);
     }
     setIsTestPassed(false);
@@ -71,9 +82,7 @@ function Lesson() {
       }
     });
   }, [state]);
-
   const isLastTest = !nextLessonId;
-  console.log(link);
   if (!isTest) {
     return (
       <div className="lesson right-main-container">

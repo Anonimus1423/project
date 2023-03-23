@@ -29,6 +29,7 @@ function App() {
     });
     if (token) {
       init({}, (data) => {
+        console.log(data);
         dispatch(initApp(data));
       });
       return;

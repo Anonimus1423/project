@@ -7,7 +7,7 @@ import "./style/index.scss";
 import "./style/about.scss";
 import "./style/lesson button.scss";
 import useSumbitForm from "../../../utils/submitForm";
-import { getClassInfo } from "../../../Api/queries";
+import { getUserClassInfo } from "../../../Api/queries";
 import Footer from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -16,7 +16,7 @@ import Loading from "../../components/loading";
 function Course() {
   let { courseId } = useParams();
   const [getCourse, loading] = useSumbitForm(
-    () => getClassInfo(courseId),
+    () => getUserClassInfo(courseId),
     true
   );
 
@@ -32,6 +32,7 @@ function Course() {
     course?.lessons?.reverse().findIndex((lesson) => lesson.passed);
   if (courseProggress === course?.lessons?.length + 1) courseProggress = 0;
   course?.lessons?.reverse();
+
   return (
     <div className="right-main-container">
       <Header

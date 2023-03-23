@@ -23,7 +23,7 @@ export const getAllUsers = (search) => {
 };
 
 export const getClassInfo = (id) => {
-  return axios.get(`/api/user/course/${id}`);
+  return axios.get(`/admin/class/${id}`);
 };
 
 export const getUserDefaultTest = () => {
@@ -66,6 +66,9 @@ export const deleteClass = (id) => {
   return axios.delete(`/admin/class/${id}`);
 };
 
+export const getUserClassInfo = (id) => {
+  return axios.get(`/api/user/course/${id}`);
+};
 
 export const passLesson = (courseId, lessonId) => {
   return axios.post(`/api/pass/${courseId}/${lessonId}`);
