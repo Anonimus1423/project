@@ -24,9 +24,8 @@ function Header({ buttons }) {
     dispatch(logoutApp());
     navigate("/");
   };
-
   if (role === 1) authorized = true;
-  if (authorized)
+  if (authorized && app !== null)
     return (
       <header className="right-container">
         <div className="left">
@@ -71,7 +70,7 @@ function Header({ buttons }) {
       </header>
     );
 
-  if (!authorized)
+  if (!authorized && app !== null)
     return (
       <header className="right-container">
         <div className="left">
