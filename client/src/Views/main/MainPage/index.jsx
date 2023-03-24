@@ -31,11 +31,7 @@ function MainPage() {
       courses = data.data;
       setPresentCourse(
         courses?.find((course) => {
-          console.log(getNextLevel(app.user.level), course.course.level);
-          return (
-            course.course.level === getNextLevel(app.user.level) ||
-            course.course.level === "A1"
-          );
+          return course.course.level === getNextLevel(app.user.level);
         })
       );
       setNextCourse(
@@ -72,18 +68,22 @@ function MainPage() {
           id={presentCourse?.course?._id}
           loading={loading}
         />
-        <MainTitle>Հաջորդ դասընթացը</MainTitle>
-        <CourseBlock
-          title={nextCourse?.course?.title}
-          description={nextCourse?.course?.description}
-          tags={nextCourse?.course?.tags}
-          date={getNormalDate(nextCourse?.course?.created_at)}
-          Image={nextCourse?.course?.picture_src}
-          proggress={nextCourse?.progress || 0}
-          id={presentCourse?.course?._id}
-          loading={loading}
-          closed
-        />
+        {app.user.level === "C1" || app.user.level === "C2" ? null : (
+          <>
+            <MainTitle>Հաջորդ դասընթացը</MainTitle>
+            <CourseBlock
+              title={nextCourse?.course?.title}
+              description={nextCourse?.course?.description}
+              tags={nextCourse?.course?.tags}
+              date={getNormalDate(nextCourse?.course?.created_at)}
+              Image={nextCourse?.course?.picture_src}
+              proggress={nextCourse?.progress || 0}
+              id={presentCourse?.course?._id}
+              loading={loading}
+              closed
+            />
+          </>
+        )}
       </div>
       <Footer />
       <TopButton />

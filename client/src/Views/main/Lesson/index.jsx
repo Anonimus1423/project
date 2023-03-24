@@ -42,6 +42,7 @@ function Lesson() {
   );
 
   const goNext = (isLastTest) => {
+    console.log(isLastTest);
     if (lesson?.test?.length === 0) {
       passLessonFunction({}, () => {});
     }
@@ -51,7 +52,6 @@ function Lesson() {
           user: { ...user.user, level: getNextLevel(user.user.level) },
         })
       );
-      setLink("/courses/" + courseId);
     }
     setIsTestPassed(false);
     setState((state) => !state);
@@ -64,7 +64,7 @@ function Lesson() {
           data?.lessons?.findIndex((lesson) => {
             return lesson._id === lessonId;
           }) + 1
-        ]?._id
+        ]?._id || null
       );
       setPrevLessonId(
         data?.lessons[
@@ -82,7 +82,10 @@ function Lesson() {
       }
     });
   }, [state]);
-  const isLastTest = !nextLessonId;
+
+  const isLastTest = nextLessonId === null;
+  if (nextLessonId === null && link !== "/courses/" + courseId)
+    setLink("/courses/" + courseId);
   if (!isTest) {
     return (
       <div className="lesson right-main-container">
@@ -162,8 +165,8 @@ function Lesson() {
               </MainButton>
               {isTestPassed ? (
                 <Link
-                  to={link ? link : `/courses/${courseId}/${nextLessonId}`}
                   onClick={() => goNext(isLastTest)}
+                  to={link ? link : `/courses/${courseId}/${nextLessonId}`}
                 >
                   <MainButton
                     color="transparent-yellow"

@@ -10,5 +10,10 @@ export default function getNextLevel(level){
         nextLevel = "C1"
     if(level === "C1")
         nextLevel = "C2"
+    if(level === "C2")
+    {
+        nextLevel = "C2"
+    }
+    console.log(nextLevel);
     return nextLevel
 }

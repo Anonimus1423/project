@@ -157,8 +157,14 @@ header
 }
 
 @media screen and (max-width: 1250px) {
-    header .right.unautorized > a:first-child{
+    header .right.unautorized > a:last-child{
         display: none;
+    }
+    header .right.unautorized > a:first-child{
+        button
+        {
+            padding: 0 !important;
+        }
     }
     header .right > a:first-child{
         margin: 0;
