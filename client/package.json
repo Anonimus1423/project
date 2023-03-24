@@ -38,7 +38,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "http://85.193.84.70:3001",
   "browserslist": {
     "production": [
       ">0.2%",
