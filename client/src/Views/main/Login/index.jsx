@@ -6,6 +6,7 @@ import Header from "../../components/header/Header";
 import LoginIcon from "../../images/form images/Login.svg";
 import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
+import { toast, ToastContainer } from "react-toastify";
 
 const LoginPage = () => {
   const [data, setData] = React.useState({
@@ -34,10 +35,10 @@ const LoginPage = () => {
       })
       .catch((error) => {
         setIsError(true);
-        // if (error?.response?.data?.errors)
-        //   error.response.data.errors.map((e) => {
-        //     toast.error(e.msg);
-        //   });
+        if (error?.response?.data?.errors)
+          error.response.data.errors.map((e) => {
+            toast.error(e.msg);
+          });
       });
   };
 
@@ -50,7 +51,9 @@ const LoginPage = () => {
           firstLink: "/registration",
           secondLink: "/log-in",
         }}
+        isForm
       />
+      <ToastContainer />
       <h2 className="secondPage">Already have an account?</h2>
       <div className=" right-container">
         <form
@@ -85,10 +88,12 @@ const LoginPage = () => {
                   handleInputChange(e.target.name, e.target.value)
                 }
               />
-              <MainButton color="transparent-yellow forget">
-                Forgot password?
-              </MainButton>
-              <MainButton size="m full" color="yellow">
+              <Link to={"/forget-password"}>
+                <MainButton color="transparent-yellow forget" type="button">
+                  Forgot password?
+                </MainButton>
+              </Link>
+              <MainButton size="m full" color="yellow" type="submit">
                 Գրանցում
               </MainButton>
               <div className="form-bottom">
@@ -99,7 +104,6 @@ const LoginPage = () => {
                   </MainButton>
                 </Link>
               </div>
-              {isError && <div>Not Found</div>}
             </div>
           </div>
         </form>

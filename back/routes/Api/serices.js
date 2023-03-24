@@ -11,10 +11,8 @@ export const defaultTestUpdate = async (req, res) => {
   const { level } = req.body;
   const { user } = req;
   if (user.isLevelCompleted) {
-    return res
-      .status(400)
-      .send({ errors: errorsGenerator(["You canot update your level."]) });
-  }
+  return res.status(200).send({ updated: false });
+}
   try {
     await User.findOneAndUpdate(
       { mail: user.mail },

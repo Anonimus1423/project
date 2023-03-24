@@ -75,7 +75,7 @@ export const loginUser = async (req, res) => {
   if (!findUser) {
     findUser = await User.findOne({ mail: login });
     if (!findUser) {
-      return res.status(404).send({ errors: [{ msg: "User not found." }] });
+      return res.status(404).send({ errors: [{ msg: "User is not found." }] });
     }
     isLoginMail = true;
   }
@@ -88,7 +88,7 @@ export const loginUser = async (req, res) => {
   }
   const isPasswordCompare = await bcrypt.compare(password, findUser.password);
   if (!isPasswordCompare) {
-    return res.status(404).send({ errors: [{ msg: "User not found." }] });
+    return res.status(404).send({ errors: [{ msg: "Password is not correct." }] });
   }
   const user = isLoginMail
     ? await User.findOne({ mail: login }).select("-password -_id -__v")
@@ -166,7 +166,7 @@ export const forgetPasswordStep2 = async (req, res) => {
     if (securityCheck.length === 0) {
       return res
         .status(403)
-        .send({ errors: [{ msg: "Something went wrong." }] });
+        .send({ errors: [{ msg: "Something was gone wrong." }] });
     }
     if (isPasswordCompare) {
       return res.status(400).send({
@@ -184,6 +184,6 @@ export const forgetPasswordStep2 = async (req, res) => {
     await Tokens.deleteOne({ label: verify.mail });
     return res.status(200).send({ changes: true });
   } catch {
-    return res.status(403).send({ errors: [{ msg: "Something went wrong." }] });
+    return res.status(403).send({ errors: [{ msg: "Something was gone wrong." }] });
   }
 };

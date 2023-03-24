@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 const PrintErrors = (errors) => {
-  if (errors && typeof errors === Array) {
-    errors.forEach((element) => {
+  if (errors?.length) {
+      errors.forEach((element) => {
       toast.error(element.msg);
     });
   }

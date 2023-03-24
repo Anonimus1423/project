@@ -9,7 +9,7 @@ import PopUp from "../popup/PopUp";
 import { useState } from "react";
 import { logoutApp } from "../../../redux/app/reducer";
 
-function Header({ buttons }) {
+function Header({ buttons, isForm }) {
   const [popupOpened, setPopupOpened] = useState(false);
   const [userPopupOpened, setUserPopupOpened] = useState(false);
   const togglePopup = () => setPopupOpened((state) => !state);
@@ -24,8 +24,9 @@ function Header({ buttons }) {
     dispatch(logoutApp());
     navigate("/");
   };
+
   if (role === 1) authorized = true;
-  if (authorized && app !== null)
+  if (authorized)
     return (
       <header className="right-container">
         <div className="left">
@@ -70,7 +71,7 @@ function Header({ buttons }) {
       </header>
     );
 
-  if (!authorized && app !== null)
+  if (!authorized)
     return (
       <header className="right-container">
         <div className="left">
@@ -79,7 +80,9 @@ function Header({ buttons }) {
           </Link>
           <h2 className="h4 subtitle">Սովորիր արագ և արդյունավետ</h2>
         </div>
-        <div className="right unautorized">
+        <div
+          className={isForm ? "right unautorized formm" : "right unautorized"}
+        >
           <Link to={buttons.firstLink}>
             <MainButton size="m" color="transparent">
               {buttons.firstText}

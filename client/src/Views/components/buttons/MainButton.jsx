@@ -10,12 +10,14 @@ function MainButton({
   arrowRight,
   className,
   disabled,
+  type,
 }) {
   return (
     <button
       onClick={onClick}
       className={"mainButton " + size + " " + color + " " + className}
       disabled={disabled}
+      type={type}
     >
       {arrowLeft ? <ArrowRight className="left" /> : ""}
       <div className="background"></div>

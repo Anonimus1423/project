@@ -42,7 +42,6 @@ function Lesson() {
   );
 
   const goNext = (isLastTest) => {
-    console.log(isLastTest);
     if (lesson?.test?.length === 0) {
       passLessonFunction({}, () => {});
     }

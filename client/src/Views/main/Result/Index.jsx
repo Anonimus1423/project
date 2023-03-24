@@ -9,6 +9,11 @@ import useSumbitForm from "../../../utils/submitForm";
 import { passLesson, changeUserLevel } from "../../../Api/queries";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { initApp } from "../../../redux/app/reducer";
+import * as appSelectors from "../../../redux/app/selectors";
+import getNextLevel from "../../../utils/getNextLevel";
 
 function Result({
   title,
@@ -28,6 +33,8 @@ function Result({
   role,
   isDefaultTest,
 }) {
+  const dispatch = useDispatch();
+  const user = useSelector(appSelectors.appSelector);
   const [passLessonFunction, loading] = useSumbitForm(
     () => passLesson(Ids?.courseId, Ids?.lessonId),
     true
@@ -40,7 +47,22 @@ function Result({
   useEffect(() => {
     if (role === 1) {
       if (isDefaultTest) {
-        changeUserLevelFunction({}, () => {});
+        changeUserLevelFunction({}, (data) => {
+          if (data.updated === true) {
+            toast.success("You level changes successfuly", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+            dispatch(
+              initApp({
+                user: { ...user.user, level: getNextLevel(user.user.level) },
+              })
+            );
+          } else {
+            toast.info("You have already passed test one time", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+          }
+        });
       }
     }
   }, []);
@@ -60,6 +82,7 @@ function Result({
   }
   return (
     <div className="result right-main-container">
+      <ToastContainer />
       <Header
         buttons={{
           firstText: "Անգլերենի մակարդակի ստուգում",
