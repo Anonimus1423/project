@@ -11,10 +11,10 @@ axios.defaults.headers["Access-Control-Allow-Methods"] =
   "GET,PUT,POST,DELETE,PATCH,OPTIONS";
 axios.defaults.headers["Access-Control-Allow-Credentials"] = true;
 axios.defaults.proxy = {
-  host: "85.193.84.70",
+  host: "lochalhost",
   port: 3443,
 };
-axios.defaults.baseURL = "https://85.193.84.70:3443";
+axios.defaults.baseURL = process.env.REACT_APP_AXIOS;
 
 export const authUser = () => {
   return axios.get("/user/auth");

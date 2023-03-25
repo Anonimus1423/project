@@ -13,7 +13,7 @@ import getEnglishLevel from "../../../utils/getEnglishLevel";
 import getNextLevel from "../../../utils/getNextLevel";
 import * as appSelectors from "../../../redux/app/selectors";
 import axios from "axios";
-axios.defaults.baseURL = "https://85.193.84.70:3443";
+axios.defaults.baseURL = process.env.REACT_APP_AXIOS;
 
 function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
   let isDefaultTest = false;

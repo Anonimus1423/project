@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import LoginIcon from "../../images/form images/Login.svg";
 import MainTextInput from "../../components/inputs";
 import MainButton from "../../components/buttons/MainButton";
-axios.defaults.baseURL = "https://85.193.84.70:3443";
+axios.defaults.baseURL = process.env.REACT_APP_AXIOS;
 
 export const ForgetPasswordStep1 = () => {
   const [mail, setMail] = React.useState("");
