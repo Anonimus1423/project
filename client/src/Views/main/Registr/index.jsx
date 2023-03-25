@@ -9,6 +9,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+axios.defaults.baseURL = "https://85.193.84.70:3443";
 
 const RegistrPage = () => {
   const [step, setStep] = React.useState(0);

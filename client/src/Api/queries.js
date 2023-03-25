@@ -1,7 +1,20 @@
 import axios from "axios";
 const token = localStorage.getItem("token");
-axios.defaults.headers.common = { Authorization: `bearer ${token}` };
-axios.defaults.baseURL = 'http://85.193.84.70:3001';
+
+// AXIOS CONFIGS DONT CHANGE
+axios.defaults.headers.common = {
+  Authorization: `bearer ${token}`,
+};
+axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
+axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
+axios.defaults.headers["Access-Control-Allow-Methods"] =
+  "GET,PUT,POST,DELETE,PATCH,OPTIONS";
+axios.defaults.headers["Access-Control-Allow-Credentials"] = true;
+axios.defaults.proxy = {
+  host: "85.193.84.70",
+  port: 3443,
+};
+axios.defaults.baseURL = "https://85.193.84.70:3443";
 
 export const authUser = () => {
   return axios.get("/user/auth");
