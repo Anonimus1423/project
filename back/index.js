@@ -23,17 +23,11 @@ const bd = config.get("databse.mongoURL");
 const app = express();
 
 // middlewares
-<<<<<<< Updated upstream
 app.use(
   cors({
     origin: "*",
   })
 );
-=======
-app.use(cors({
-  origin: '*'
-}))
->>>>>>> Stashed changes
 app.use(express.json());
 
 // ROUTES
@@ -54,12 +48,7 @@ const sslServer = https.createServer(
   app
 );
 
-// sslServer.listen(port, () => {
-//   connect(bd).then(() => console.log("Mongoo connected!!"));
-//   console.log("started ssl server");
-// });
-
-app.listen(port, () => {
+sslServer.listen(port, () => {
   connect(bd).then(() => console.log("Mongoo connected!!"));
-  console.log(`Server has been started on port ${port}`);
+  console.log("started ssl server");
 });
