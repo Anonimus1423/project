@@ -1,6 +1,7 @@
 import axios from "axios";
 const token = localStorage.getItem("token");
 axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+axios.defaults.baseURL = 'http://85.193.84.70:3001';
 
 export const authUser = () => {
   return axios.get("/user/auth");
