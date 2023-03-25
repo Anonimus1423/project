@@ -2,4 +2,5 @@
 
 # dependencies
 /back/node_modules
+/back/config
 /client/node_modules
