@@ -6,7 +6,7 @@ axios.defaults.headers.common = {
   Authorization: `bearer ${token}`,
 };
 axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
-axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
+// axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
 axios.defaults.headers["Access-Control-Allow-Methods"] =
   "GET,PUT,POST,DELETE,PATCH,OPTIONS";
 axios.defaults.headers["Access-Control-Allow-Credentials"] = true;
