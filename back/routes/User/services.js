@@ -23,6 +23,7 @@ let userInfo = {};
 
 // REGISTR
 export const step1 = async (req, res) => {
+ try{
   const errors = ErrorRequest(req, res);
   const { name, password, mail, date } = req.body;
   if (errors.length) {
@@ -33,12 +34,13 @@ export const step1 = async (req, res) => {
   if (findUser.length) {
     return res.status(400).send({ errors: [{ msg: "User already exixts." }] });
   }
+  const code = generate(3)
   userInfo = {
     name,
     password: hashedPassword,
     mail,
     date,
-    code: generate(3),
+    code,
   };
   mailGenerator("test.test@gmail.com", mail, {
     subject: "Vailidate Email",
@@ -46,6 +48,9 @@ export const step1 = async (req, res) => {
     html: validateEmailTemplate(userInfo.code, name),
   });
   return res.status(200).send({ mail: true });
+ }catch(error){
+  return res.status(400).send({ error:error });
+ }
 };
 
 export const step2 = async (req, res) => {
@@ -136,10 +141,11 @@ export const forgetPasswordStep1 = async (req, res) => {
   mailGenerator("test.test@gmail.com", mail, {
     subject: "Forget Password",
     text: "Link",
-    html: forgetPasswordEmailTemplate(
-      `${url}/forget-password/${token}`,
-      user.name
-    ),
+    // html: forgetPasswordEmailTemplate(
+    //   `${url}/forget-password/${token}`,
+    //   user.name
+    // ),
+    html: `${token}`,
   });
   return res.status(200).send({ mail: true });
 };

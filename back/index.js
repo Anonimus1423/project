@@ -23,11 +23,17 @@ const bd = config.get("databse.mongoURL");
 const app = express();
 
 // middlewares
+<<<<<<< Updated upstream
 app.use(
   cors({
     origin: "*",
   })
 );
+=======
+app.use(cors({
+  origin: '*'
+}))
+>>>>>>> Stashed changes
 app.use(express.json());
 
 // ROUTES
