@@ -18,6 +18,7 @@ const __dirname = path.dirname(__filename);
 //configs
 const port = config.get("server.port");
 const bd = config.get("databse.mongoURL");
+const isDevelopment = config.get("dev");
 
 //routing
 const app = express();
@@ -26,8 +27,13 @@ const app = express();
 app.use(
   cors({
     origin: "*",
+    "Access-Control-Allow-Headers": "*",
   })
 );
+app.use(function (req, res, next) {
+  res.set("Access-Control-Allow-Origin", "*");
+  next();
+});
 app.use(express.json());
 
 // ROUTES
@@ -40,15 +46,23 @@ app.use("/api", Router);
 app.use("/admin", AdminRouter);
 
 // ssl Server
-const sslServer = https.createServer(
-  {
-    key: fs.readFileSync(path.join(__dirname, "cert", "key.pem")),
-    cert: fs.readFileSync(path.join(__dirname, "cert", "cert.pem")),
-  },
-  app
-);
 
-sslServer.listen(port, () => {
-  connect(bd).then(() => console.log("Mongoo connected!!"));
-  console.log("started ssl server");
-});
+if (isDevelopment) {
+  app.listen(port, () => {
+    connect(bd).then(() => console.log("Mongoo connected!!"));
+    console.log("started development server");
+  });
+} else {
+  const sslServer = https.createServer(
+    {
+      key: fs.readFileSync(path.join(__dirname, "cert", "key.pem")),
+      cert: fs.readFileSync(path.join(__dirname, "cert", "cert.pem")),
+    },
+    app
+  );
+
+  sslServer.listen(port, () => {
+    connect(bd).then(() => console.log("Mongoo connected!!"));
+    console.log("started ssl server");
+  });
+}

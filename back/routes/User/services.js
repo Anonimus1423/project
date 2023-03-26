@@ -141,11 +141,10 @@ export const forgetPasswordStep1 = async (req, res) => {
   mailGenerator("test.test@gmail.com", mail, {
     subject: "Forget Password",
     text: "Link",
-    // html: forgetPasswordEmailTemplate(
-    //   `${url}/forget-password/${token}`,
-    //   user.name
-    // ),
-    html: `${token}`,
+    html: forgetPasswordEmailTemplate(
+      `${url}/forget-password/${token}`,
+      user.name
+    ),
   });
   return res.status(200).send({ mail: true });
 };
