@@ -7,7 +7,6 @@ const password = config.get("nodemailer.pass");
 export async function mailGenerator(from, to, inputs) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
-    pool: true,
     host: "smtp.gmail.com",
     port: 993,
     secure: true, // use 
@@ -16,13 +15,11 @@ export async function mailGenerator(from, to, inputs) {
       pass: password,
     },
   });
-  console.log(user,password)
   let mailOptions = {
     from: from,
     to: to,
     ...inputs,
   };
-  console.log(mailOptions)
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
