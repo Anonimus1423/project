@@ -50,7 +50,6 @@ app.use("/admin", AdminRouter);
 if (isDevelopment) {
   app.listen(port, () => {
     connect(bd).then(() => console.log("Mongoo connected!!"));
-    console.log("started development server");
   });
 } else {
   const sslServer = https.createServer(

@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   const [sidebarOpened, setSidebarOpened] = useState(false);
-
+  console.log(123123);
   useEffect(() => {
     sidebarOpened
       ? (document.documentElement.style = "overflow: hidden;")
@@ -71,6 +71,7 @@ function App() {
                           ? "black-background active"
                           : "black-background"
                       }
+                      onClick={() => setSidebarOpened((state) => !state)}
                     ></div>
                     <Sidebar noUser={true} sidebarOpened={sidebarOpened} />
                     <MainRoutes loading />
@@ -98,6 +99,7 @@ function App() {
                           ? "black-background active"
                           : "black-background"
                       }
+                      onClick={() => setSidebarOpened((state) => !state)}
                     ></div>
                     <Sidebar sidebarOpened={sidebarOpened} />
                     <UserRoutes />
