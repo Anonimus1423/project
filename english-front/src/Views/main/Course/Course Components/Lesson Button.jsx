@@ -53,7 +53,7 @@ function LessonButton({
           </Link>
         ) : (
           <MainButton
-            color={"yellow-none-gradient " + className}
+            color={"yellow-none-gradient locked " + className}
             size="m"
             arrowRight
           >

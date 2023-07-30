@@ -108,12 +108,12 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
             }}
           />
           <h2 className="secondPage">
-            {lesson?.title || "English Level Test"}
+            {lesson?.title || "Անգլերենի մակարդակի ստուգում"}
           </h2>
           <div className="test-container test-container-2">
             <div className="test">
               <div className="test-top">
-                <p className="m">Выбери правильный вариант</p>
+                <p className="m">Ստուգեք ձեր գիտելիքները</p>
                 <p className="subtitle h2">
                   {step + 1} \ {currentTest?.length}
                 </p>
@@ -151,6 +151,8 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
                       onClick={() => {
                         if (!isAnswered) checkAnswer(testAnswer);
                       }}
+                      className={isAnswered ? "disabled" : ""}
+                      disabled={isAnswered}
                     >
                       Պատասխանել
                     </MainButton>
@@ -159,6 +161,8 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
                     color="transparent-yellow"
                     arrowLeft
                     onClick={() => previousStep()}
+                    disabled={step === 0}
+                    className={step === 0 ? "disabled" : ""}
                   >
                     Նախորդը
                   </MainButton>
@@ -167,6 +171,8 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
                     onClick={() => {
                       if (!isAnswered) checkAnswer(testAnswer);
                     }}
+                    className={isAnswered ? "disabled" : ""}
+                    disabled={isAnswered}
                   >
                     Պատասխանել
                   </MainButton>
@@ -177,7 +183,7 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
                     disabled={!isAnswered}
                     onClick={() => nextStep()}
                   >
-                    Հետագա
+                    Հաջորդը
                   </MainButton>
                 </div>
               </div>
@@ -192,7 +198,7 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
           title={lesson?.title}
           description={
             <>
-              Շնորհավորում ենք դուք անցել եք թեստը <br /> կիսվեք Ձեր
+              Շնորհավորում ենք, դուք ավարտեցիք թեստը <br /> կիսվեք Ձեր
               հաջողությամբ սոցիալական կայքերում
             </>
           }
@@ -203,12 +209,12 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
           buttonLeftText={
             isDefaultTest ? (
               <>
-                Անցիր մեր դասընթացը հատուկ
+                Սկսիր մեր դասընթացը հատուկ
                 {" " + getEnglishLevel(score)} <br /> մակարդակի համար
               </>
             ) : (
               <>
-                Անցիր մեր դասընթացը հատուկ
+                Սկսիր մեր դասընթացը հատուկ
                 {getNextLevel(getEnglishLevel(score))} <br /> մակարդակի համար
               </>
             )
@@ -221,7 +227,7 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
                     value: currentTest?.length,
                   },
                   {
-                    title: "Ջիշտ պատասխաններ",
+                    title: "Ճիշտ պատասխաններ",
                     value: score,
                   },
                   {
@@ -235,7 +241,7 @@ function Test({ test, lesson, setIsTest, setIsTestPassed, courseId }) {
                     value: currentTest?.length,
                   },
                   {
-                    title: "Ջիշտ պատասխաններ",
+                    title: "Ճիշտ պատասխաններ",
                     value: score,
                   },
                   {

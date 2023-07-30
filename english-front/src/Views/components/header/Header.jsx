@@ -46,13 +46,10 @@ function Header({ buttons, isForm }) {
             <PopUp
               popupOpened={popupOpened}
               togglePopup={togglePopup}
-              title="Right ansrer is 3"
+              title="Անգլերենի ձեր մակարդակը"
               className="header"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              euismod bibendum laoreet. Proin gravida dolor sit amet lacus
-              accumsan et viverra justo commodo. Proin sodales pulvinar sic
-              tempor. Sociis natoque penatibus et magnis dis parturient?
+              Այստեղ գրվում է ձեր Անգլերենի մակարդակը, դուք կարող եք այն բարելավել անցնելով տեստ կամ դասընթացներ 
             </PopUp>
             <div
               className="profile-icon"
@@ -64,7 +61,7 @@ function Header({ buttons, isForm }) {
               onClick={() => logout()}
               className={userPopupOpened ? "logout active" : "logout"}
             >
-              <p>Log-out</p>
+              <p>Դուրս գալ</p>
             </div>
           </div>
         </div>

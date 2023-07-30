@@ -107,6 +107,12 @@ div.test-container
                     justify-content: center;
                     align-items: center;
                     margin-top: 40px;
+                    button
+                    {
+                        -webkit-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                    }
                     .hide
                     {
                         display: none;

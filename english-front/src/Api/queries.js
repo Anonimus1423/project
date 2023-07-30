@@ -28,6 +28,14 @@ export const getAllCourses = () => {
   return axios.get("/admin/get-all-courses");
 };
 
+export const getAddintionalInformation = () => {
+  return axios.get("/api/addintional");
+};
+
+export const updateAddintionalInformation = (data) => {
+  return axios.post("/api/addintional", data);
+};
+
 export const getOnGoingCourses = () => {
   return axios.get("/api/user/ongoing-courses");
 };
@@ -37,6 +45,7 @@ export const getAllUsers = (search) => {
 };
 
 export const getClassInfo = (id) => {
+  console.log(token);
   return axios.get(`/admin/class/${id}`);
 };
 

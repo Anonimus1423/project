@@ -12,6 +12,16 @@
     {
         margin-top: 42px;
     }
+    & > .absolute-link
+    {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
     .course__body
     {
         display: flex;
@@ -68,11 +78,19 @@
                 {
                     display: flex;
                     align-items: center;
+                    position: relative;
+                    z-index: 5;
                     margin-top: 10px;
                     svg
                     {
                         width: 30px;
                         height: 30px;
+                        transition: 0.2s;
+
+                        &:hover
+                        {
+                            transform: scale(1.2);
+                        }
                     }
                     p
                     {

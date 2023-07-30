@@ -49,6 +49,13 @@ const AdminMainPage = () => {
           >
             Test
           </Button>
+          <Button
+            color="success"
+            variant="outlined"
+            onClick={() => navigate("/addintional")}
+          >
+            Addintional Information
+          </Button>
         </div>
         <Button color="error" variant="contained" onClick={() => logout()}>
           Log Out

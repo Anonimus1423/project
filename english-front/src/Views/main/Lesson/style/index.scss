@@ -1,4 +1,4 @@
-.video
+.video-g
 {
     margin-top: 40px;
     padding: 20px;
@@ -47,13 +47,12 @@
             height: 56px;
         }
     }
-    video
+    iframe
     {
         border-radius: 16px;
-        width: 100%;
         transition: 0.2s;
     }
-    &.active video
+    &.active video iframe
     {
         filter: brightness(0.7);
     }
@@ -146,6 +145,10 @@
     {
         margin: 40px 0;
     }
+}
+.right-container.lesson.about-us
+{
+    padding-top: 50px !important;
 }
 
 
@@ -257,7 +260,10 @@
             margin: 38px 0;
         }
     }
-
+    .right-container.lesson.about-us
+    {
+        padding-top: 45px !important;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -328,6 +334,10 @@
             margin: 35px 0;
         }
     }
+    .right-container.lesson.about-us
+    {
+        padding-top: 40px !important;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -360,10 +370,11 @@
             {   
                 display: none;
             }
-            button:nth-child(4)
+            a:nth-child(4),
+            button.disabled:nth-child(4)
             {
                 flex: none;
-                margin-left: 32px;
+                margin-left: 30px;
             }
         }
     }
@@ -442,6 +453,10 @@
             margin: 30px 0;
         }
     }
+    .right-container.lesson.about-us
+    {
+        padding-top: 35px !important;
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -474,6 +489,12 @@
                 {
                     font-size: 14px;
                 }
+            }
+            a:nth-child(4),
+            button.disabled:nth-child(4)
+            {
+                flex: none;
+                margin-left: 30px;
             }
         }
     }
@@ -548,6 +569,10 @@
             margin: 27px 0;
         }
     }
+    .right-container.lesson.about-us
+    {
+        padding-top: 32px !important;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -560,5 +585,12 @@
                 margin-left: 11.5%;
             }
         }
+    }
+}
+@media screen and (max-width: 330px) {
+    a:nth-child(4),
+    button.disabled:nth-child(4)
+    {
+        margin-left: 30px;
     }
 }

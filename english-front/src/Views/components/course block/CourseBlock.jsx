@@ -17,8 +17,7 @@ function CourseBlock({
   href,
 }) {
   return (
-    <Link
-      to={href ? href : !closed ? "/courses/" + id : "#"}
+    <div
       className={
         closed
           ? "course closed"
@@ -27,6 +26,7 @@ function CourseBlock({
           : "course"
       }
     >
+      <Link to={href ? href : !closed ? "/courses/" + id : "#"} className="absolute-link"></Link>
       <div className="close-block">
         <Lock />
       </div>
@@ -58,7 +58,11 @@ function CourseBlock({
                   )}
                 </ul>
                 <div className="share">
-                  <Share />
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.origin}`}
+                  >
+                          <Share />
+                  </a>
                   <p className="m">{date}</p>
                 </div>
               </div>
@@ -84,7 +88,7 @@ function CourseBlock({
           </div>
         ) : null}
       </div>
-    </Link>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { authUser, getCoursesList, getUserCourses } from "./Api/queries";
+import { authUser, getCoursesList } from "./Api/queries";
 import useSumbitForm from "./utils/submitForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,15 +29,12 @@ function App() {
     });
     if (token) {
       init({}, (data) => {
-        console.log(data);
         dispatch(initApp(data));
       });
       return;
     }
   }, []);
-
   const [sidebarOpened, setSidebarOpened] = useState(false);
-  console.log(123123);
   useEffect(() => {
     sidebarOpened
       ? (document.documentElement.style = "overflow: hidden;")
@@ -73,7 +70,11 @@ function App() {
                       }
                       onClick={() => setSidebarOpened((state) => !state)}
                     ></div>
-                    <Sidebar noUser={true} sidebarOpened={sidebarOpened} />
+                    <Sidebar
+                      noUser={true}
+                      sidebarOpened={sidebarOpened}
+                      setSidebarOpened={setSidebarOpened}
+                    />
                     <MainRoutes loading />
                   </BrowserRouter>
                 </>
@@ -101,7 +102,10 @@ function App() {
                       }
                       onClick={() => setSidebarOpened((state) => !state)}
                     ></div>
-                    <Sidebar sidebarOpened={sidebarOpened} />
+                    <Sidebar
+                      sidebarOpened={sidebarOpened}
+                      setSidebarOpened={setSidebarOpened}
+                    />
                     <UserRoutes />
                   </BrowserRouter>
                 </>

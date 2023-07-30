@@ -14,6 +14,5 @@ export default function getNextLevel(level){
     {
         nextLevel = "C2"
     }
-    console.log(nextLevel);
     return nextLevel
 }

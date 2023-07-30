@@ -7,12 +7,12 @@ function Bread({ elements, className }) {
     <div className={"bread " + className}>
       {elements.map((element, i) => (
         <div className="bread__element" key={i}>
+          {i !== 0 ? (
+            <img src={ArrowIcon} alt="arrow" />
+          ) : null}
           <Link to={element[1]}>
             <p className="s">{element[0]}</p>
           </Link>
-          {i !== elements.length - 1 ? (
-            <img src={ArrowIcon} alt="arrow" />
-          ) : null}
         </div>
       ))}
     </div>

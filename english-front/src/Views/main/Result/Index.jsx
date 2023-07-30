@@ -9,7 +9,7 @@ import useSumbitForm from "../../../utils/submitForm";
 import { passLesson, changeUserLevel } from "../../../Api/queries";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { initApp } from "../../../redux/app/reducer";
 import * as appSelectors from "../../../redux/app/selectors";
@@ -82,7 +82,6 @@ function Result({
   }
   return (
     <div className="result right-main-container">
-      <ToastContainer />
       <Header
         buttons={{
           firstText: "Անգլերենի մակարդակի ստուգում",

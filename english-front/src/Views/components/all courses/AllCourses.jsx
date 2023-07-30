@@ -2,6 +2,7 @@ import { selectAllCourses } from "../../../redux/courses/selectors";
 import { useSelector } from "react-redux";
 import CourseBlock from "../../components/course block/CourseBlock";
 import getNormalDate from "../../../utils/getNormalDate";
+import sortCourses from "../../../utils/sortCourses"
 
 function AllCoursesComponent() {
   const courses = useSelector(selectAllCourses);
@@ -9,6 +10,7 @@ function AllCoursesComponent() {
     .filter((course) => {
       return !course?.tags?.includes("hidden");
     })
+    .sort((a, b) => sortCourses(a, b))
     .map((course, i) => {
       return (
         <CourseBlock

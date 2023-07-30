@@ -186,6 +186,11 @@ body, .App
     min-height: 100vh;
 }
 
+html
+{
+    overflow-x: hidden !important;
+}
+
 @media screen and (max-width: 1450px) 
 {
     h2.secondPage

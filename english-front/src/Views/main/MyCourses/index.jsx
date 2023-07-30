@@ -15,6 +15,7 @@ import useSumbitForm from "../../../utils/submitForm";
 import getNormalDate from "../../../utils/getNormalDate";
 import { getOnGoingCourses } from "../../../Api/queries";
 import Loading from "../../components/loading";
+import sortCourses from "../../../utils/sortCourses";
 
 function MyCourses() {
   const [onGoingCourses, loading] = useSumbitForm(getOnGoingCourses, true);
@@ -45,10 +46,10 @@ function MyCourses() {
               </MainTitle>
               {courses
                 .sort((a, b) => {
-                  return a?.course?.progress !== 100 ? 1 : -1;
+                  return a?.progress > b?.progress ? 1 : -1;
                 })
+                .sort((a, b) => sortCourses(a, b))
                 .map((course, i) => {
-                  console.log(course);
                   return (
                     <CourseBlock
                       title={course?.course?.title}

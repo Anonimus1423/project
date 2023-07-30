@@ -6,6 +6,7 @@ import { EditClass } from "./../Views/admin/EditClass/index";
 import Main from "../Views/main";
 import { defaultRoutes } from "./DefaultRoutes";
 import { DefaultTestAdmin } from "./../Views/admin/DefaultTest/index";
+import AddintionalInformationPage from "../Views/admin/AddintionalPage";
 
 export const adminRoutes = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const adminRoutes = createBrowserRouter([
   {
     path: "/default-test",
     element: <DefaultTestAdmin />,
+  },
+  {
+    path: "/addintional",
+    element: <AddintionalInformationPage />,
   },
   ...defaultRoutes,
 ]);

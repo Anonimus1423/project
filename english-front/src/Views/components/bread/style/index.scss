@@ -4,18 +4,28 @@
     margin-bottom: 48px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     .bread__element
     {
         display: flex;
         justify-content: center;
-        p
-        {
-            color: #828282;
-        }
-        img
+        & p
         {
             margin-right: 11px;
             margin-left: 11px;
+        }
+        &:first-child p
+        {
+            margin-left: 0px;
+        }
+        &:last-child p
+        {
+            margin-right: 0px;
+        }
+        p
+        {
+            color: #828282;
+            white-space: nowrap;
         }
         &:last-child
         {

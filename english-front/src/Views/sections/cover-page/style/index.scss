@@ -50,7 +50,7 @@ section.cover-page
     }
     .play-button
     {
-        transition: 0.3s;
+        transition: 0.2s;
         width: 180px;
         height: 180px;
         border-radius: 50%;
@@ -64,7 +64,7 @@ section.cover-page
         left: 51.2%;
         top: 48.9%;
         transform: translateX(-50%);
-        transition: 0.3s;
+        transition: 0.2s;
         z-index: 1;
         &:after
         {
@@ -78,7 +78,7 @@ section.cover-page
             transform: translate(-50%, -50%);
             background-color: black;
             opacity: 0;
-            transition: 0.3s;
+            transition: 0.2s;
             background: linear-gradient(123.72deg, #FF8A00 0%, #FFD226 97.41%);
         }
         svg
@@ -111,12 +111,12 @@ section.cover-page
             left: 50%;
             pointer-events: none;
             z-index: -1;
-            transition: 0.3s;
+            transition: 0.2s;
             transform: translate(-50%, -50%);
         }
         &:hover
         {
-            transform: scale(1.03) translateX(-50%);
+            transform: scale(1.03) translateX(-50%) translateX(2px);
             &::before
             {
                 transform: translate(-50%, -50%) scale(1.07);

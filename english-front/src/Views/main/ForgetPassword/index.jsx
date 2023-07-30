@@ -1,22 +1,25 @@
-import { Button, Input } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PrintErrors from "../../../utils/PrintError";
 import { toast } from "react-toastify";
 import Header from "../../components/header/Header";
-import { ToastContainer } from "react-toastify";
 import LoginIcon from "../../images/form images/Login.svg";
 import MainTextInput from "../../components/inputs";
 import MainButton from "../../components/buttons/MainButton";
+import Footer from "../../components/footer/Footer";
 axios.defaults.baseURL = process.env.REACT_APP_AXIOS;
 
 export const ForgetPasswordStep1 = () => {
   const [mail, setMail] = React.useState("");
+  const [checked, setChecked] = useState(false)
   const onSumbit = async () => {
     try {
       await axios.post("/user/forget-password", { mail });
+      setTimeout(() => setChecked(false), 60000); 
+      setChecked(true);
       toast.success("Please check Email");
+      toast.info("Didn't get Email? try again in a minute");
     } catch ({ response }) {
       PrintErrors(response.data.errors);
     }
@@ -32,8 +35,7 @@ export const ForgetPasswordStep1 = () => {
         }}
         isForm
       />
-      <ToastContainer />
-      <h2 className="secondPage">Already have an account?</h2>
+      <h2 className="secondPage">Մոռացել ե՞ք ծածկագիրը</h2>
       <div className="right-container">
         <form
           onSubmit={(e) => {
@@ -50,16 +52,17 @@ export const ForgetPasswordStep1 = () => {
               <MainTextInput
                 type="mail"
                 placeHolder="Գրեք ձեր Email-ը"
-                label="Email"
+                label="E-mail"
                 onChange={(e) => setMail(e.target.value)}
               />
-              <MainButton size="m full" color="yellow">
-                Send Mail
+              <MainButton size="m full" color="yellow" disabled={checked} className={checked ? "disabled" : ""}>
+                ՈՒղարկել E-mail
               </MainButton>
             </div>
           </div>
         </form>
       </div>
+      <Footer fixed />
     </div>
   );
 };
@@ -93,8 +96,7 @@ export const ForgetPasswordStep2 = () => {
         }}
         isForm
       />
-      <ToastContainer />
-      <h2 className="secondPage">Already have an account?</h2>
+      <h2 className="secondPage">Փոխել ծածկագիրը</h2>
       <div className=" right-container">
         <form
           onSubmit={(e) => {
@@ -110,23 +112,24 @@ export const ForgetPasswordStep2 = () => {
             <div className="form__right__body margin-top">
               <MainTextInput
                 type="password"
-                label="Password"
-                placeHolder="Գրեք ձեր password-ը"
+                label="Ծածկագիր"
+                placeHolder="Գրեք ձեր ծածկագիրը"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <MainTextInput
                 type="password"
-                label="Confirm Password"
-                placeHolder="հաստատեք ձեր password-ը"
+                label="հաստատել ծածկագիրը"
+                placeHolder="հաստատեք ձեր ծածկագիրը-ը"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <MainButton size="m full" color="yellow">
-                Change
+                Փոխել ծածկագիրը
               </MainButton>
             </div>
           </div>
         </form>
       </div>
+      <Footer fixed />
     </div>
   );
 };
